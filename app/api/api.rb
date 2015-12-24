@@ -35,15 +35,29 @@ class API < Grape::API
     end
   end
 
-  resource :room do
-
-    get :status do
-      "room is good"
+  # resource :room do
+# 
+    # get :status do
+      # "room is good"
+    # end
+# 
+    # get :secret do
+      # err401
+    # end
+  # end
+  
+  # api/v1/swipe について
+  resource :swipe do
+    
+    # パラメータ有り
+    params do
+      optional :mode, type: String
     end
-
-    get :secret do
-      err401
+    get ':mode' do
+      # fixme
+      Photo.all
     end
+    
   end
 
 end

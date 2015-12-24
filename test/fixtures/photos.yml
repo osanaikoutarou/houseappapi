@@ -2,18 +2,20 @@
 
 one:
   uuid: MyString
+  title: MyText
   image_url: MyString
   like: false
   pass: false
-  liked_num: 1
-  passed_num: 1
+  liked_count: 1
+  passed_count: 1
   description: MyText
 
 two:
   uuid: MyString
+  title: MyText
   image_url: MyString
   like: false
   pass: false
-  liked_num: 1
-  passed_num: 1
+  liked_count: 1
+  passed_count: 1
   description: MyText

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151224141745) do
+ActiveRecord::Schema.define(version: 20151224154410) do
 
   create_table "architects", force: :cascade do |t|
     t.string   "uuid"
@@ -37,14 +37,15 @@ ActiveRecord::Schema.define(version: 20151224141745) do
 
   create_table "photos", force: :cascade do |t|
     t.string   "uuid"
+    t.text     "title"
     t.string   "image_url"
     t.boolean  "like"
     t.boolean  "pass"
-    t.integer  "liked_num"
-    t.integer  "passed_num"
+    t.integer  "liked_count"
+    t.integer  "passed_count"
     t.text     "description"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
 end
