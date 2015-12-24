@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  uuid: MyString
+  image_url: MyString
+  like: false
+  pass: false
+  liked_num: 1
+  passed_num: 1
+  description: MyText
+
+two:
+  uuid: MyString
+  image_url: MyString
+  like: false
+  pass: false
+  liked_num: 1
+  passed_num: 1
+  description: MyText

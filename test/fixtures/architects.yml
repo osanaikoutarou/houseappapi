@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  uuid: MyString
+  liked_count: 1
+  icon_url: MyText
+  title: MyText
+  description: MyText
+  house_id: MyString
+
+two:
+  uuid: MyString
+  liked_count: 1
+  icon_url: MyText
+  title: MyText
+  description: MyText
+  house_id: MyString
