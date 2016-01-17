@@ -6,7 +6,7 @@ class CreateArchitects < ActiveRecord::Migration
       t.text :icon_url
       t.text :title
       t.text :description
-      t.string :house_id
+      t.string :house_uuid
 
       t.timestamps null: false
     end

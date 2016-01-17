@@ -6,7 +6,7 @@ class CreateHouses < ActiveRecord::Migration
       t.integer :liked_count
       t.text :title
       t.text :description
-      t.string :photo_id
+      t.string :photo_uuid
 
       t.timestamps null: false
     end

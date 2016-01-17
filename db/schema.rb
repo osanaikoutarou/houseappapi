@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151224154410) do
+ActiveRecord::Schema.define(version: 20151228082047) do
 
   create_table "architects", force: :cascade do |t|
     t.string   "uuid"
@@ -19,9 +19,36 @@ ActiveRecord::Schema.define(version: 20151224154410) do
     t.text     "icon_url"
     t.text     "title"
     t.text     "description"
-    t.string   "house_id"
+    t.string   "house_uuid"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+  end
+
+  create_table "favorite_architects", force: :cascade do |t|
+    t.string   "user_uuid"
+    t.string   "house_uuid"
+    t.boolean  "like"
+    t.boolean  "dislike"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "favorite_houses", force: :cascade do |t|
+    t.string   "user_uuid"
+    t.string   "house_uuid"
+    t.boolean  "like"
+    t.boolean  "dislike"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "favorite_photos", force: :cascade do |t|
+    t.string   "user_uuid"
+    t.string   "photo_uuid"
+    t.boolean  "like"
+    t.boolean  "pass"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "houses", force: :cascade do |t|
@@ -30,7 +57,7 @@ ActiveRecord::Schema.define(version: 20151224154410) do
     t.integer  "liked_count"
     t.text     "title"
     t.text     "description"
-    t.string   "photo_id"
+    t.string   "photo_uuid"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
@@ -46,6 +73,22 @@ ActiveRecord::Schema.define(version: 20151224154410) do
     t.text     "description"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string   "uuid"
+    t.text     "name_sei"
+    t.text     "name_mei"
+    t.text     "name_sei_kana"
+    t.text     "name_mei_kana"
+    t.string   "gender"
+    t.string   "postal_code"
+    t.string   "prefecture"
+    t.text     "city"
+    t.text     "address1"
+    t.text     "address2"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
 end
