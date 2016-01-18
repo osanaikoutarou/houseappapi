@@ -1,5 +1,8 @@
 json.photos do
+
 	json.array!(@photos) do |photo|
-		json.(photo, :id)
+		#json.(photo, :id, :title)
+		json.photo photo
 	end
+	
 end
