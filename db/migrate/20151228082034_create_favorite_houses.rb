@@ -6,6 +6,8 @@ class CreateFavoriteHouses < ActiveRecord::Migration
       t.boolean :like
       t.boolean :dislike
 
+      t.integer :user_id
+
       t.timestamps null: false
     end
   end

@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 20151228082047) do
     t.string   "house_uuid"
     t.boolean  "like"
     t.boolean  "dislike"
+    t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -38,6 +39,7 @@ ActiveRecord::Schema.define(version: 20151228082047) do
     t.string   "house_uuid"
     t.boolean  "like"
     t.boolean  "dislike"
+    t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -47,6 +49,7 @@ ActiveRecord::Schema.define(version: 20151228082047) do
     t.string   "photo_uuid"
     t.boolean  "like"
     t.boolean  "pass"
+    t.integer  "photo_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -66,8 +69,6 @@ ActiveRecord::Schema.define(version: 20151228082047) do
     t.string   "uuid"
     t.text     "title"
     t.string   "image_url"
-    t.boolean  "like"
-    t.boolean  "pass"
     t.integer  "liked_count"
     t.integer  "passed_count"
     t.text     "description"

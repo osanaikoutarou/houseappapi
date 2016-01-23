@@ -77,7 +77,32 @@ class API < Grape::API
 		#### API No.10　スワイプのための画像取得 -> Formatter:swipes.jbuilder
 		get '/', jbuilder: 'swipes' do
 			#TODO			
-			@photos = Photo.all
+			swipePhotos = Photo.all
+			
+			#該当好みデータを探す 無ければnilを配列に入れる
+			favoriteArray = Array.new
+			puts "ん"
+			swipePhotos.each do |photo|
+
+				#userのphotoの評価を取得
+				favorite_photo = FavoritePhoto.find_by(user_uuid: "testUserUUID", photo_uuid: photo.uuid)
+				
+				if favorite_photo==nil
+					puts "はげ"
+				else
+					puts "ふさ"
+				end
+				
+				favoriteArray.push(favorite_photo)
+			end
+			puts "お"
+			puts swipePhotos
+
+			@photos = swipePhotos
+			@favorites = favoriteArray
+			
+			
+			
 		end
 	
 	end
@@ -92,7 +117,7 @@ class API < Grape::API
 
 			#### API No.20 画像詳細取得  get /photo/:uuid -> Formatter:photo.jbuilder
 			get '/', jbuilder: 'photos' do
-				@photos = Photo.find_by(uuid: params[:uuid])
+				@photo = Photo.find_by(uuid: params[:uuid])
 			end
 			
 			#### API No.11 画像LIKE  patch /photo/:uuid/like -> Formatter:swipes.jbuilder

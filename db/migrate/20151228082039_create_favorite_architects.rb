@@ -5,6 +5,8 @@ class CreateFavoriteArchitects < ActiveRecord::Migration
       t.string :house_uuid
       t.boolean :like
       t.boolean :dislike
+      
+      t.integer :user_id
 
       t.timestamps null: false
     end
