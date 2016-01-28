@@ -7,8 +7,13 @@ class CreatePhotos < ActiveRecord::Migration
       t.integer :liked_count
       t.integer :passed_count
       t.text :description
+      
+      t.belongs_to :architect
+      t.belongs_to :house
+      t.references :favorite_photo
 
       t.timestamps null: false
     end
+    
   end
 end

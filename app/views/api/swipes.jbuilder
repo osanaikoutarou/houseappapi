@@ -5,8 +5,6 @@ json.photos do
 	i=0
 	json.array!(@photos) do |photo|
 		
-#		favorite = @favorites[i]
-	
 		json.photo photo
 		json.favorite @favorites[i]
 		

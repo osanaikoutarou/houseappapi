@@ -6,6 +6,8 @@ class CreateFavoritePhotos < ActiveRecord::Migration
       t.boolean :like
       t.boolean :pass
       t.integer :photo_id
+      
+      t.belongs_to :photo
 
       t.timestamps null: false
     end

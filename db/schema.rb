@@ -17,21 +17,24 @@ ActiveRecord::Schema.define(version: 20151228082047) do
     t.string   "uuid"
     t.integer  "liked_count"
     t.text     "icon_url"
-    t.text     "title"
+    t.text     "name"
     t.text     "description"
-    t.string   "house_uuid"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.integer  "house_id"
+    t.integer  "photo_id"
+    t.integer  "favorite_architect_id"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
   end
 
+  add_index "architects", ["house_id", "photo_id", "created_at"], name: "index_architects_on_house_id_and_photo_id_and_created_at"
+
   create_table "favorite_architects", force: :cascade do |t|
-    t.string   "user_uuid"
-    t.string   "house_uuid"
     t.boolean  "like"
     t.boolean  "dislike"
     t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "architect_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
   create_table "favorite_houses", force: :cascade do |t|
@@ -39,6 +42,7 @@ ActiveRecord::Schema.define(version: 20151228082047) do
     t.string   "house_uuid"
     t.boolean  "like"
     t.boolean  "dislike"
+    t.integer  "house_id"
     t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -60,10 +64,14 @@ ActiveRecord::Schema.define(version: 20151228082047) do
     t.integer  "liked_count"
     t.text     "title"
     t.text     "description"
-    t.string   "photo_uuid"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.integer  "photo_id"
+    t.integer  "architect_id"
+    t.integer  "favorite_house_id"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
   end
+
+  add_index "houses", ["photo_id", "created_at"], name: "index_houses_on_photo_id_and_created_at"
 
   create_table "photos", force: :cascade do |t|
     t.string   "uuid"
@@ -72,8 +80,11 @@ ActiveRecord::Schema.define(version: 20151228082047) do
     t.integer  "liked_count"
     t.integer  "passed_count"
     t.text     "description"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.integer  "architect_id"
+    t.integer  "house_id"
+    t.integer  "favorite_photo_id"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -88,8 +99,11 @@ ActiveRecord::Schema.define(version: 20151228082047) do
     t.text     "city"
     t.text     "address1"
     t.text     "address2"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.integer  "favorite_photo_id"
+    t.integer  "favorite_house_id"
+    t.integer  "favorite_architect_id"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
   end
 
 end
