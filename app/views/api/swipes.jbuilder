@@ -1,9 +1,6 @@
 json.photos do
 
-puts "a"
-puts @photos.count
-puts @photos[0].uuid
-puts @favorites
+	puts "in swipes "
 
 	i=0
 	json.array!(@photos) do |photo|
@@ -12,7 +9,8 @@ puts @favorites
 	
 		json.photo photo
 		json.favorite @favorites[i]
-			#favorite
+		
+		#favorite
 		#end
 	
 		i=i+1

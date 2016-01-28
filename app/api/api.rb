@@ -81,28 +81,18 @@ class API < Grape::API
 			
 			#該当好みデータを探す 無ければnilを配列に入れる
 			favoriteArray = Array.new
-			puts "ん"
 			swipePhotos.each do |photo|
 
 				#userのphotoの評価を取得
 				favorite_photo = FavoritePhoto.find_by(user_uuid: "testUserUUID", photo_uuid: photo.uuid)
 				
-				if favorite_photo==nil
-					puts "はげ"
-				else
-					puts "ふさ"
-				end
-				
 				favoriteArray.push(favorite_photo)
 			end
-			puts "お"
+
 			puts swipePhotos
 
 			@photos = swipePhotos
 			@favorites = favoriteArray
-			
-			
-			
 		end
 	
 	end
@@ -116,26 +106,27 @@ class API < Grape::API
 		route_param :uuid do
 
 			#### API No.20 画像詳細取得  get /photo/:uuid -> Formatter:photo.jbuilder
-			get '/', jbuilder: 'photos' do
+			get '/', jbuilder: 'photo' do
 				@photo = Photo.find_by(uuid: params[:uuid])
+				@favorite_photo = FavoritePhoto.find_by(photo_uuid: params[:uuid])
 			end
 			
-			#### API No.11 画像LIKE  patch /photo/:uuid/like -> Formatter:swipes.jbuilder
-			patch 'like', jbuilder: 'swipes' do
+			#### API No.11 画像LIKE  patch /photo/:uuid/like -> Formatter:photo
+			patch 'like', jbuilder: 'photo' do
 				
 				# patch処理
 				if FavoritePhoto.exists?(photo_uuid:params[:uuid] , user_uuid:"testUserUUID")
 					puts("in FavoritePhoto exist -> update")
 					
 					# patch処理
-					FavoritePhoto.find_by(photo_uuid: params[:uuid]).update({
+					favoritePhoto = FavoritePhoto.find_by(photo_uuid: params[:uuid]).update({
 						like: true,
 						pass: false,
 					})
 				else
 					puts("in FavoritePhoto no -> create")
 
-					FavoritePhoto.create({
+					favoritePhoto = FavoritePhoto.create({
 						user_uuid: "testUserUUID",
 						photo_uuid: params[:uuid],
 						like: true,
@@ -144,26 +135,26 @@ class API < Grape::API
 				end
 				
 				# response
-				#TODO
-				@photos = Photo.all
+				@photo = Photo.find_by(uuid: params[:uuid])
+				@favorite_photo = favoritePhoto
 						
 			end
 			
-			#### API No.12 画像PASS　patch /photo/:uuid/pass -> Formatter:photo_pass.jbuilder
-			patch 'pass' , jbuilder: 'swipes' do
+			#### API No.12 画像PASS　patch /photo/:uuid/pass -> Formatter:photo.jbuilder
+			patch 'pass' , jbuilder: 'photo' do
 				
 				# patch処理
 				if FavoritePhoto.exists?(photo_uuid:params[:uuid] , user_uuid:"testUserUUID")
 					puts("in FavoritePhoto exist -> update")
 					# !をつけるとバリデーションエラーが発生した場合にActiveRecord::RecordInvalidが発生する
-					FavoritePhoto.find_by(photo_uuid: params[:uuid]).update({
+					favoritePhoto = FavoritePhoto.find_by(photo_uuid: params[:uuid]).update({
 						like: false,
 						pass: true,
 					})
 				else
 					puts("in FavoritePhoto no -> create")
 					
-					FavoritePhoto.create({
+					favoritePhoto = FavoritePhoto.create({
 						user_uuid: "testUserUUID",
 						photo_uuid: params[:uuid],
 						like: false,
@@ -172,8 +163,36 @@ class API < Grape::API
 				end
 
 				#response
-				#TODO
-				@photos = Photo.all
+				@photo = Photo.find_by(uuid: params[:uuid])
+				@favorite_photo = favoritePhoto
+			
+			end
+						
+			#### API No.13 画像like,passのニュートラル　patch /photo/:uuid/neutral -> Formatter:photo.jbuilder
+			patch 'neutral' , jbuilder: 'photo' do
+				
+				# patch処理
+				if FavoritePhoto.exists?(photo_uuid:params[:uuid] , user_uuid:"testUserUUID")
+					puts("in FavoritePhoto exist -> update")
+					# !をつけるとバリデーションエラーが発生した場合にActiveRecord::RecordInvalidが発生する
+					favoritePhoto = FavoritePhoto.find_by(photo_uuid: params[:uuid]).update({
+						like: false,
+						pass: false,
+					})
+				else
+					puts("in FavoritePhoto no -> create")
+					
+					favoritePhoto = FavoritePhoto.create({
+						user_uuid: "testUserUUID",
+						photo_uuid: params[:uuid],
+						like: false,
+						pass: false,
+					})
+				end
+
+				#response
+				@photo = Photo.find_by(uuid: params[:uuid])
+				@favorite_photo = favoritePhoto
 			
 			end
 						
@@ -189,47 +208,53 @@ class API < Grape::API
 		route_param :uuid do
 
 			#### API No.30 家詳細取得  get /house/:uuid -> Formatter:house.jbuilder
-			get '/' , jbuilder: 'houses' do
+			get '/' , jbuilder: 'house' do
 				@house = House.find_by(uuid: params[:uuid])
+				@favorite_house = FavoriteHouse.find_by(house_uuid: params[:uuid])
 			end
 
 
-			#### API No.31 家LIKE　get /house/:uuid/like -> Formatter:swipes.jbuilder
-			patch 'like' , jbuilder: 'swipes' do			
+			#### API No.31 家LIKE　get /house/:uuid/like -> Formatter:house.jbuilder
+			patch 'like' , jbuilder: 'house' do			
+				
 				if FavoriteHouse.exists?(house_uuid:params[:uuid] , user_uuid:"testUserUUID")
 					puts("in FavoriteHouse exist -> update")
 					# !をつけるとバリデーションエラーが発生した場合にActiveRecord::RecordInvalidが発生する
-					FavoriteHouse.find_by(house_uuid: params[:uuid]).update({
+					favoriteHouse = FavoriteHouse.find_by(house_uuid: params[:uuid]).update({
 						like: true,
 						dislike: false,
 					})
+					favoriteArray.push(favorite)
 				else
 					puts("in FavoriteHouse no -> create")
-					FavoriteHouse.create({
+					favoriteHouse = FavoriteHouse.create({
 						user_uuid: "testUserUUID",
 						house_uuid: params[:uuid],
 						like: true,
 						dislike: false,
 					})
+					favoriteArray.push(favorite)
 				end
 				
 				# response
-				#TODO
-				@photos = Photo.all
+				@house = House.find_by(uuid: params[:uuid])
+				@favorites = favoriteArray
+				
 			end
 			
-			#### API No.32 家PASS　get /house/:uuid/pass -> Formatter:swipes.jbuilder
-			patch 'pass' , jbuilder: 'swipes' do
+			#### API No.32 家PASS　get /house/:uuid/pass -> Formatter:house.jbuilder
+			# 最初は使わないかも
+			patch 'pass' , jbuilder: 'house' do
 				if FavoriteHouse.exists?(house_uuid:params[:uuid] , user_uuid:"testUserUUID")
 					puts("in FavoriteHouse exist -> update")
 					# !をつけるとバリデーションエラーが発生した場合にActiveRecord::RecordInvalidが発生する
-					FavoriteHouse.find_by(house_uuid: params[:uuid]).update({
+					favoriteHouse = FavoriteHouse.find_by(house_uuid: params[:uuid]).update({
 						like: false,
 						dislike: true,
 					})
 				else
 					puts("in FavoriteHouse no -> create")
-					FavoriteHouse.create({
+					favoriteHouse = FavoriteHouse.create({
 						user_uuid: "testUserUUID",
 						house_uuid: params[:uuid],
 						like: false,
@@ -238,8 +263,33 @@ class API < Grape::API
 				end
 				
 				# response
-				#TODO
-				@photos = Photo.all
+				@house = House.find_by(uuid: params[:uuid])
+				@favorite_house = favoriteHouse 
+			
+			end
+			
+			#### API No.33 家ニュートラル　get /house/:uuid/neutral -> Formatter:house.jbuilder
+			patch 'neutral' , jbuilder: 'house' do
+				if FavoriteHouse.exists?(house_uuid:params[:uuid] , user_uuid:"testUserUUID")
+					puts("in FavoriteHouse exist -> update")
+					# !をつけるとバリデーションエラーが発生した場合にActiveRecord::RecordInvalidが発生する
+					favoriteHouse = FavoriteHouse.find_by(house_uuid: params[:uuid]).update({
+						like: false,
+						dislike: false,
+					})
+				else
+					puts("in FavoriteHouse no -> create")
+					favoriteHouse = FavoriteHouse.create({
+						user_uuid: "testUserUUID",
+						house_uuid: params[:uuid],
+						like: false,
+						dislike: false,
+					})
+				end
+				
+				# response
+				@house = House.find_by(uuid: params[:uuid])
+				@favorite_house = favoriteHouse 
 			
 			end
 		
@@ -257,20 +307,21 @@ class API < Grape::API
 			#### API No.40 建築家詳細取得  get /architect/:uuid  -> Formatter:architect.jbuilder
 			get '/' , jbuilder: 'artchitect' do
 				@architect = Architect.find_by(uuid: params[:uuid])
+				@favorite_architect = FavoriteArchitect.find_by(architect_uuid: params[:uuid])
 			end
 			
-			#### API No.41 建築家LIKE  patch /architect/:uuid/like -> Formatter:swipes.jbuilder
-			patch 'like' , jbuilder: 'swipes' do
+			#### API No.41 建築家LIKE  patch /architect/:uuid/like -> Formatter:architect.jbuilder
+			patch 'like' , jbuilder: 'architect' do
 				if FavoriteArchitect.exists?(architect_uuid:params[:uuid] , user_uuid:"testUserUUID")
-				puts("in FavoriteArchitect exist -> update")
-				# !をつけるとバリデーションエラーが発生した場合にActiveRecord::RecordInvalidが発生する
-				FavoriteArchitect.find_by(architect_uuid: params[:uuid]).update({
-					like: true,
-					dislike: false,
-				})
+					puts("in FavoriteArchitect exist -> update")
+					# !をつけるとバリデーションエラーが発生した場合にActiveRecord::RecordInvalidが発生する
+					favoriteArchitect = FavoriteArchitect.find_by(architect_uuid: params[:uuid]).update({
+						like: true,
+						dislike: false,
+					})
 				else
 					puts("in FavoriteArchitect no -> create")
-					FavoriteArchitect.create({
+					favoriteArchitect = FavoriteArchitect.create({
 						user_uuid: "testUserUUID",
 						architect_uuid: params[:uuid],
 						like: true,
@@ -279,22 +330,22 @@ class API < Grape::API
 				end
 				
 				# response 
-				#TODO
-				@photos = Photo.all
+				@architect = Architect.find_by(uuid: params[:uuid])
+				@favorite_architect = favoriteArchitect
 			end
 
-			#### API No.42 建築家PASS  patch /architect/:uuid/pass -> Formatter:swipes.jbuilder	
-			patch 'pass' , jbuilder: 'swipes' do
+			#### API No.42 建築家PASS  patch /architect/:uuid/pass -> Formatter:architect.jbuilder	
+			patch 'pass' , jbuilder: 'architect' do
 				if FavoriteArchitect.exists?(architect_uuid:params[:uuid] , user_uuid:"testUserUUID")
 					puts("in FavoriteArchitect exist -> update")
 					# !をつけるとバリデーションエラーが発生した場合にActiveRecord::RecordInvalidが発生する
-					FavoriteArchitect.find_by(architect_uuid: params[:uuid]).update({
+					favoriteArchitect = FavoriteArchitect.find_by(architect_uuid: params[:uuid]).update({
 						like: false,
 						dislike: true,
 					})
 				else
 					puts("in FavoriteArchitect no -> create")
-					FavoriteArchitect.create({
+					favoriteArchitect = FavoriteArchitect.create({
 						user_uuid: "testUserUUID",
 						architect_uuid: params[:uuid],
 						like: false,
@@ -303,9 +354,35 @@ class API < Grape::API
 				end
 				
 				# response
-				#TODO
-				@photos = Photo.all
+				@architect = Architect.find_by(uuid: params[:uuid]) 
+				@favorite_architect = favoriteArchitect
 			end
+			
+			
+			#### API No.43 建築家ニュートラル  patch /architect/:uuid/neutral -> Formatter:architect.jbuilder	
+			patch 'neutral' , jbuilder: 'architect' do
+				if FavoriteArchitect.exists?(architect_uuid:params[:uuid] , user_uuid:"testUserUUID")
+					puts("in FavoriteArchitect exist -> update")
+					# !をつけるとバリデーションエラーが発生した場合にActiveRecord::RecordInvalidが発生する
+					favoriteArchitect = FavoriteArchitect.find_by(architect_uuid: params[:uuid]).update({
+						like: false,
+						dislike: false,
+					})
+				else
+					puts("in FavoriteArchitect no -> create")
+					favoriteArchitect = FavoriteArchitect.create({
+						user_uuid: "testUserUUID",
+						architect_uuid: params[:uuid],
+						like: false,
+						dislike: false,
+					})
+				end
+				
+				# response
+				@architect = Architect.find_by(uuid: params[:uuid]) 
+				@favorite_architect = favoriteArchitect
+			end
+
 			
 		end
 	end
@@ -335,6 +412,8 @@ class API < Grape::API
 			end
 			get '/' , jbuilder: 'favorite_photos' do
 				@photos 		= FavoritePhoto.where(user_uuid: "testUserUUID").limit(limit).offset(offset)
+				
+				#TODO:favoriteどうしよ
 			end
 		end
 		

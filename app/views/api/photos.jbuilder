@@ -1,3 +1,3 @@
 json.photos do
-	json.photo @photo
+	json.photo @photos
 end
