@@ -93,7 +93,8 @@ class API < Grape::API
 			puts swipePhotos
 
 			@photos = swipePhotos
-			@favorites = favoriteArray
+			#@favorites = favoriteArray
+			#@favorite_photos = @photos.favoritePhotos
 		end
 	
 	end
