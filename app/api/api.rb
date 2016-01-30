@@ -79,21 +79,21 @@ class API < Grape::API
 			#TODO			
 			swipePhotos = Photo.all
 			
-			#TODO:join使って
-			#該当好みデータを探す 無ければnilを配列に入れる
-			favoriteArray = Array.new
-			swipePhotos.each do |photo|
+			favorite_photos = Array.new		#そのユーザーの
+			houses = Array.new
+			architects = Array.new
 
-				#userのphotoの評価を取得
-				favorite_photo = FavoritePhoto.find_by(user_uuid: "testUserUUID", photo_uuid: photo.uuid)
-				
-				favoriteArray.push(favorite_photo)
+			swipePhotos.each do |photo|
+				houses.push(photo.house)
+				architects.push(photo.house.architect)
+				# これヤバそう			
+				favorite_photos.push(FavoritePhoto.find_by(user_uuid: "testUserUUID", photo_uuid: photo.uuid))
 			end
 
-			puts swipePhotos
-
 			@photos = swipePhotos
-			@favorites = favoriteArray
+			@houses = houses
+			@architects = architects
+			@favorite_photos = favorite_photos
 		end
 	
 	end
