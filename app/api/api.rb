@@ -1,9 +1,5 @@
 #require 'spec_helper'
-<<<<<<< HEAD
-#test
-=======
 #tes
->>>>>>> parent of 34fb912... gitignore
 
 class API < Grape::API
 	prefix 'api'
@@ -83,7 +79,6 @@ class API < Grape::API
 			#TODO			
 			swipePhotos = Photo.all
 			
-<<<<<<< HEAD
 			favorite_photos = Array.new		#そのユーザーの
 			houses = Array.new
 			architects = Array.new
@@ -99,23 +94,6 @@ class API < Grape::API
 			@houses = houses
 			@architects = architects
 			@favorite_photos = favorite_photos
-=======
-			#TODO:join使って
-			#該当好みデータを探す 無ければnilを配列に入れる
-			favoriteArray = Array.new
-			swipePhotos.each do |photo|
-
-				#userのphotoの評価を取得
-				favorite_photo = FavoritePhoto.find_by(user_uuid: "testUserUUID", photo_uuid: photo.uuid)
-				
-				favoriteArray.push(favorite_photo)
-			end
-
-			puts swipePhotos
-
-			@photos = swipePhotos
-			@favorites = favoriteArray
->>>>>>> parent of 34fb912... gitignore
 		end
 	
 	end
