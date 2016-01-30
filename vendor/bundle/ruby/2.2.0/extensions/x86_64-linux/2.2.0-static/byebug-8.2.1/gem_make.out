@@ -1,0 +1,19 @@
+current directory: /home/ubuntu/rails/houseappapi/vendor/bundle/ruby/2.2.0/gems/byebug-8.2.1/ext/byebug
+/home/ubuntu/.rbenv/versions/2.2.4/bin/ruby -r ./siteconf20160126-12978-uwbkci.rb extconf.rb
+creating Makefile
+
+current directory: /home/ubuntu/rails/houseappapi/vendor/bundle/ruby/2.2.0/gems/byebug-8.2.1/ext/byebug
+make "DESTDIR=" clean
+
+current directory: /home/ubuntu/rails/houseappapi/vendor/bundle/ruby/2.2.0/gems/byebug-8.2.1/ext/byebug
+make "DESTDIR="
+compiling byebug.c
+compiling locker.c
+compiling breakpoint.c
+compiling context.c
+compiling threads.c
+linking shared-object byebug/byebug.so
+
+current directory: /home/ubuntu/rails/houseappapi/vendor/bundle/ruby/2.2.0/gems/byebug-8.2.1/ext/byebug
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 byebug.so ./.gem.20160126-12978-hx1rz5/byebug

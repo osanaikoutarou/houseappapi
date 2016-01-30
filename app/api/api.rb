@@ -79,6 +79,7 @@ class API < Grape::API
 			#TODO			
 			swipePhotos = Photo.all
 			
+			#TODO:join使って
 			#該当好みデータを探す 無ければnilを配列に入れる
 			favoriteArray = Array.new
 			swipePhotos.each do |photo|
@@ -107,8 +108,11 @@ class API < Grape::API
 
 			#### API No.20 画像詳細取得  get /photo/:uuid -> Formatter:photo.jbuilder
 			get '/', jbuilder: 'photo' do
-				@photo = Photo.find_by(uuid: params[:uuid])
+				photo = Photo.find_by(uuid: params[:uuid])
+				@photo = photo
 				@favorite_photo = FavoritePhoto.find_by(photo_uuid: params[:uuid])
+				@house = photo.house
+				@architect = photo.house.architect
 			end
 			
 			#### API No.11 画像LIKE  patch /photo/:uuid/like -> Formatter:photo
@@ -137,6 +141,8 @@ class API < Grape::API
 				# response
 				@photo = Photo.find_by(uuid: params[:uuid])
 				@favorite_photo = favoritePhoto
+				@house = @photo.house
+				@architect = @photo.house.architect
 						
 			end
 			
@@ -165,6 +171,9 @@ class API < Grape::API
 				#response
 				@photo = Photo.find_by(uuid: params[:uuid])
 				@favorite_photo = favoritePhoto
+				@house = @photo.house
+				@architect = @photo.house.architect
+
 			
 			end
 						
@@ -193,6 +202,8 @@ class API < Grape::API
 				#response
 				@photo = Photo.find_by(uuid: params[:uuid])
 				@favorite_photo = favoritePhoto
+				@house = @photo.house
+				@architect = @photo.house.architect
 			
 			end
 						
@@ -239,6 +250,7 @@ class API < Grape::API
 				# response
 				@house = House.find_by(uuid: params[:uuid])
 				@favorites = favoriteArray
+				@architect = @house.architect
 				
 			end
 			
@@ -265,6 +277,7 @@ class API < Grape::API
 				# response
 				@house = House.find_by(uuid: params[:uuid])
 				@favorite_house = favoriteHouse 
+				@architect = @house.architect
 			
 			end
 			
@@ -290,6 +303,7 @@ class API < Grape::API
 				# response
 				@house = House.find_by(uuid: params[:uuid])
 				@favorite_house = favoriteHouse 
+				@architect = @house.architect
 			
 			end
 		
@@ -332,6 +346,7 @@ class API < Grape::API
 				# response 
 				@architect = Architect.find_by(uuid: params[:uuid])
 				@favorite_architect = favoriteArchitect
+				
 			end
 
 			#### API No.42 建築家PASS  patch /architect/:uuid/pass -> Formatter:architect.jbuilder	

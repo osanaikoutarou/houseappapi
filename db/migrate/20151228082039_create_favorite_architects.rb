@@ -1,12 +1,11 @@
 class CreateFavoriteArchitects < ActiveRecord::Migration
   def change
     create_table :favorite_architects do |t|
-      t.string :user_uuid
-      t.string :house_uuid
       t.boolean :like
       t.boolean :dislike
       
-      t.integer :user_id
+      t.belongs_to :user
+      t.belongs_to :architect
 
       t.timestamps null: false
     end

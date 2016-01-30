@@ -4,11 +4,16 @@ class CreateArchitects < ActiveRecord::Migration
       t.string :uuid
       t.integer :liked_count
       t.text :icon_url
-      t.text :title
+      t.text :name
       t.text :description
-      t.string :house_uuid
+      
+      t.references :house
+      t.references :photo
+      t.references :favorite_architect
 
       t.timestamps null: false
     end
+    
+    add_index :architects, [:house_id, :photo_id, :created_at]
   end
 end

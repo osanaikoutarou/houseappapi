@@ -6,9 +6,14 @@ class CreateHouses < ActiveRecord::Migration
       t.integer :liked_count
       t.text :title
       t.text :description
-      t.string :photo_uuid
+
+      t.references :photo
+      t.belongs_to :architect
+      t.references :favorite_house
 
       t.timestamps null: false
     end
+    
+    add_index :houses, [:photo_id, :created_at]
   end
 end
