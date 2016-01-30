@@ -1,5 +1,5 @@
 #require 'spec_helper'
-#tes
+#test
 
 class API < Grape::API
 	prefix 'api'
