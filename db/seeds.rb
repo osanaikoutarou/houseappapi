@@ -36,16 +36,25 @@ house4 = House.create(:uuid=>'houseuuid4', :view_count=>4444, :liked_count=>444,
 house5 = House.create(:uuid=>'houseuuid5', :view_count=>5555, :liked_count=>555, :title=>"家名5", :description=>"家5の説明文です");
 
 #画像
-photo1 = Photo.create(:uuid=>'abcde', :title=>'たいとる111', :image_url=>'a000001_h0000001_img000000001.jpg', :liked_count=>12, :passed_count=>2345, :description=>'説明文1説明文');
-photo2 = Photo.create(:uuid=>'fghijk', :title=>'タイトル222', :image_url=>'a000001_h0000001_img000000002.jpg', :liked_count=>123, :passed_count=>23456, :description=>'説明文2説明文');
-photo3 = Photo.create(:uuid=>'lmnopq', :title=>'たいとる333', :image_url=>'a000001_h0000001_img000000001.jpg', :liked_count=>1234, :passed_count=>234567, :description=>'説明文3説明文');
-photo4 = Photo.create(:uuid=>'rstuvw', :title=>'タイトル444', :image_url=>'a000001_h0000001_img000000002.jpg', :liked_count=>12345, :passed_count=>2345678, :description=>'説明文4説明文');
+# photo1 = Photo.create(:uuid=>'abcde', :title=>'たいとる111', :image_url=>'a000001_h0000001_img000000001.jpg', :liked_count=>12, :passed_count=>2345, :description=>'説明文1説明文');
+# photo2 = Photo.create(:uuid=>'fghijk', :title=>'タイトル222', :image_url=>'a000001_h0000001_img000000002.jpg', :liked_count=>123, :passed_count=>23456, :description=>'説明文2説明文');
+# photo3 = Photo.create(:uuid=>'lmnopq', :title=>'たいとる333', :image_url=>'a000001_h0000001_img000000001.jpg', :liked_count=>1234, :passed_count=>234567, :description=>'説明文3説明文');
+# photo4 = Photo.create(:uuid=>'rstuvw', :title=>'タイトル444', :image_url=>'a000001_h0000001_img000000002.jpg', :liked_count=>12345, :passed_count=>2345678, :description=>'説明文4説明文');
+# photo5 = Photo.create(:uuid=>'xyz012', :title=>'タイトル555', :image_url=>'a000001_h0000001_img000000002.jpg', :liked_count=>123456, :passed_count=>23456789, :description=>'説明文5説明文');
+# photo6 = Photo.create(:uuid=>'xyz345', :title=>'タイトル666', :image_url=>'a000001_h0000001_img000000002.jpg', :liked_count=>123456, :passed_count=>23456789, :description=>'説明文5説明文');
+# photo7 = Photo.create(:uuid=>'xyz678', :title=>'タイトル777', :image_url=>'a000001_h0000001_img000000002.jpg', :liked_count=>123456, :passed_count=>23456789, :description=>'説明文5説明文');
+# photo8 = Photo.create(:uuid=>'xyz901', :title=>'タイトル888', :image_url=>'a000001_h0000001_img000000002.jpg', :liked_count=>123456, :passed_count=>23456789, :description=>'説明文5説明文');<< house1
+
+photo1 = Photo.create(:uuid=>'abcde', :title=>'たいとる111', :image_url=>'test_320.jpg', :liked_count=>12, :passed_count=>2345, :description=>'説明文1説明文');
+photo2 = Photo.create(:uuid=>'fghijk', :title=>'タイトル222', :image_url=>'test_480.jpg', :liked_count=>123, :passed_count=>23456, :description=>'説明文2説明文');
+photo3 = Photo.create(:uuid=>'lmnopq', :title=>'たいとる333', :image_url=>'test_800.jpg', :liked_count=>1234, :passed_count=>234567, :description=>'説明文3説明文');
+photo4 = Photo.create(:uuid=>'rstuvw', :title=>'タイトル444', :image_url=>'test_1280.jpg', :liked_count=>12345, :passed_count=>2345678, :description=>'説明文4説明文');
 photo5 = Photo.create(:uuid=>'xyz012', :title=>'タイトル555', :image_url=>'a000001_h0000001_img000000002.jpg', :liked_count=>123456, :passed_count=>23456789, :description=>'説明文5説明文');
 photo6 = Photo.create(:uuid=>'xyz345', :title=>'タイトル666', :image_url=>'a000001_h0000001_img000000002.jpg', :liked_count=>123456, :passed_count=>23456789, :description=>'説明文5説明文');
 photo7 = Photo.create(:uuid=>'xyz678', :title=>'タイトル777', :image_url=>'a000001_h0000001_img000000002.jpg', :liked_count=>123456, :passed_count=>23456789, :description=>'説明文5説明文');
 photo8 = Photo.create(:uuid=>'xyz901', :title=>'タイトル888', :image_url=>'a000001_h0000001_img000000002.jpg', :liked_count=>123456, :passed_count=>23456789, :description=>'説明文5説明文');
 
-architect1.houses << house1
+
 architect1.houses << house2
 architect1.houses << house3
 architect2.houses << house4
