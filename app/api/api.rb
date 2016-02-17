@@ -28,17 +28,25 @@ class API < Grape::API
 	end
 
 	
-	# # #
-	
+	####
+	# helpers 
+	#
 	helpers do
-		# TODO:わからん
-		def current_user
-			@current_user ||= User.authorize! (env)
-		end
-
 		def authenticate!
-			error!('401 Unauthorized', 401) unless current_user
+			error!('Unauthorized. Invalid or expired token.', 401) unless current_user
 		end
+		
+		def current_user
+			# Access-Token -> ApiKey -> User
+			accessToken = request.headers['Access-Token']
+			apiKey = ApiKey.where(access_token: accessToken).first
+			if apiKey && !apiKey.expired?
+				@current_user = User.find(apiKey.user_id)
+			else
+				false
+			end
+		end
+		
 	end
 	
 	# sample  
@@ -75,7 +83,11 @@ class API < Grape::API
 		end
 
 		#### API No.10　スワイプのための画像取得 -> Formatter:swipes.jbuilder
-		get '/', jbuilder: 'swipes' do
+		get '/', jbuilder: 'swipes' do			
+
+			# current_user 準備
+			authenticate!
+			
 			#TODO			
 			swipePhotos = Photo.all
 			
@@ -87,7 +99,7 @@ class API < Grape::API
 				houses.push(photo.house)
 				architects.push(photo.house.architect)
 				# これヤバそう			
-				favorite_photos.push(FavoritePhoto.find_by(user_uuid: "testUserUUID", photo_uuid: photo.uuid))
+				favorite_photos.push(FavoritePhoto.find_by(user_uuid: @current_user.uuid , photo_uuid: photo.uuid))
 			end
 
 			@photos = swipePhotos
@@ -118,8 +130,11 @@ class API < Grape::API
 			#### API No.11 画像LIKE  patch /photo/:uuid/like -> Formatter:photo
 			patch 'like', jbuilder: 'photo' do
 				
+				# current_user 準備
+				authenticate!
+				
 				# patch処理
-				if FavoritePhoto.exists?(photo_uuid:params[:uuid] , user_uuid:"testUserUUID")
+				if FavoritePhoto.exists?(photo_uuid:params[:uuid] , user_uuid:@current_user.uuid)
 					puts("in FavoritePhoto exist -> update")
 					
 					# patch処理
@@ -149,8 +164,11 @@ class API < Grape::API
 			#### API No.12 画像PASS　patch /photo/:uuid/pass -> Formatter:photo.jbuilder
 			patch 'pass' , jbuilder: 'photo' do
 				
+				# current_user 準備
+				authenticate!
+			
 				# patch処理
-				if FavoritePhoto.exists?(photo_uuid:params[:uuid] , user_uuid:"testUserUUID")
+				if FavoritePhoto.exists?(photo_uuid:params[:uuid] , user_uuid:@current_user.uuid)
 					puts("in FavoritePhoto exist -> update")
 					# !をつけるとバリデーションエラーが発生した場合にActiveRecord::RecordInvalidが発生する
 					favoritePhoto = FavoritePhoto.find_by(photo_uuid: params[:uuid]).update({
@@ -161,7 +179,7 @@ class API < Grape::API
 					puts("in FavoritePhoto no -> create")
 					
 					favoritePhoto = FavoritePhoto.create({
-						user_uuid: "testUserUUID",
+						user_uuid: @current_user.uuid,
 						photo_uuid: params[:uuid],
 						like: false,
 						pass: true,
@@ -173,15 +191,17 @@ class API < Grape::API
 				@favorite_photo = favoritePhoto
 				@house = @photo.house
 				@architect = @photo.house.architect
-
 			
 			end
 						
 			#### API No.13 画像like,passのニュートラル　patch /photo/:uuid/neutral -> Formatter:photo.jbuilder
 			patch 'neutral' , jbuilder: 'photo' do
 				
+				# current_user 準備
+				authenticate!
+			
 				# patch処理
-				if FavoritePhoto.exists?(photo_uuid:params[:uuid] , user_uuid:"testUserUUID")
+				if FavoritePhoto.exists?(photo_uuid:params[:uuid] , user_uuid:@current_user.uuid)
 					puts("in FavoritePhoto exist -> update")
 					# !をつけるとバリデーションエラーが発生した場合にActiveRecord::RecordInvalidが発生する
 					favoritePhoto = FavoritePhoto.find_by(photo_uuid: params[:uuid]).update({
@@ -192,7 +212,7 @@ class API < Grape::API
 					puts("in FavoritePhoto no -> create")
 					
 					favoritePhoto = FavoritePhoto.create({
-						user_uuid: "testUserUUID",
+						user_uuid: @current_user.uuid,
 						photo_uuid: params[:uuid],
 						like: false,
 						pass: false,
@@ -224,11 +244,13 @@ class API < Grape::API
 				@favorite_house = FavoriteHouse.find_by(house_uuid: params[:uuid])
 			end
 
-
 			#### API No.31 家LIKE　get /house/:uuid/like -> Formatter:house.jbuilder
 			patch 'like' , jbuilder: 'house' do			
 				
-				if FavoriteHouse.exists?(house_uuid:params[:uuid] , user_uuid:"testUserUUID")
+				# current_user 準備
+				authenticate!
+				
+				if FavoriteHouse.exists?(house_uuid:params[:uuid] , user_uuid:@current_user.uuid)
 					puts("in FavoriteHouse exist -> update")
 					# !をつけるとバリデーションエラーが発生した場合にActiveRecord::RecordInvalidが発生する
 					favoriteHouse = FavoriteHouse.find_by(house_uuid: params[:uuid]).update({
@@ -239,7 +261,7 @@ class API < Grape::API
 				else
 					puts("in FavoriteHouse no -> create")
 					favoriteHouse = FavoriteHouse.create({
-						user_uuid: "testUserUUID",
+						user_uuid: @current_user.uuid ,
 						house_uuid: params[:uuid],
 						like: true,
 						dislike: false,
@@ -257,7 +279,11 @@ class API < Grape::API
 			#### API No.32 家PASS　get /house/:uuid/pass -> Formatter:house.jbuilder
 			# 最初は使わないかも
 			patch 'pass' , jbuilder: 'house' do
-				if FavoriteHouse.exists?(house_uuid:params[:uuid] , user_uuid:"testUserUUID")
+				
+				# current_user 準備
+				authenticate!
+				
+				if FavoriteHouse.exists?(house_uuid:params[:uuid] , user_uuid: @current_user.uuid)
 					puts("in FavoriteHouse exist -> update")
 					# !をつけるとバリデーションエラーが発生した場合にActiveRecord::RecordInvalidが発生する
 					favoriteHouse = FavoriteHouse.find_by(house_uuid: params[:uuid]).update({
@@ -267,7 +293,7 @@ class API < Grape::API
 				else
 					puts("in FavoriteHouse no -> create")
 					favoriteHouse = FavoriteHouse.create({
-						user_uuid: "testUserUUID",
+						user_uuid: @current_user.uuid,
 						house_uuid: params[:uuid],
 						like: false,
 						dislike: true,
@@ -283,7 +309,11 @@ class API < Grape::API
 			
 			#### API No.33 家ニュートラル　get /house/:uuid/neutral -> Formatter:house.jbuilder
 			patch 'neutral' , jbuilder: 'house' do
-				if FavoriteHouse.exists?(house_uuid:params[:uuid] , user_uuid:"testUserUUID")
+				
+				# current_user 準備
+				authenticate!
+				
+				if FavoriteHouse.exists?(house_uuid:params[:uuid] , user_uuid:@current_user.uuid)
 					puts("in FavoriteHouse exist -> update")
 					# !をつけるとバリデーションエラーが発生した場合にActiveRecord::RecordInvalidが発生する
 					favoriteHouse = FavoriteHouse.find_by(house_uuid: params[:uuid]).update({
@@ -293,7 +323,7 @@ class API < Grape::API
 				else
 					puts("in FavoriteHouse no -> create")
 					favoriteHouse = FavoriteHouse.create({
-						user_uuid: "testUserUUID",
+						user_uuid: @current_user.uuid,
 						house_uuid: params[:uuid],
 						like: false,
 						dislike: false,
@@ -326,7 +356,11 @@ class API < Grape::API
 			
 			#### API No.41 建築家LIKE  patch /architect/:uuid/like -> Formatter:architect.jbuilder
 			patch 'like' , jbuilder: 'architect' do
-				if FavoriteArchitect.exists?(architect_uuid:params[:uuid] , user_uuid:"testUserUUID")
+				
+				# current_user 準備
+				authenticate!
+				
+				if FavoriteArchitect.exists?(architect_uuid:params[:uuid] , user_uuid:@current_user.uuid)
 					puts("in FavoriteArchitect exist -> update")
 					# !をつけるとバリデーションエラーが発生した場合にActiveRecord::RecordInvalidが発生する
 					favoriteArchitect = FavoriteArchitect.find_by(architect_uuid: params[:uuid]).update({
@@ -336,7 +370,7 @@ class API < Grape::API
 				else
 					puts("in FavoriteArchitect no -> create")
 					favoriteArchitect = FavoriteArchitect.create({
-						user_uuid: "testUserUUID",
+						user_uuid: @current_user.uuid,
 						architect_uuid: params[:uuid],
 						like: true,
 						dislike: false,
@@ -351,7 +385,11 @@ class API < Grape::API
 
 			#### API No.42 建築家PASS  patch /architect/:uuid/pass -> Formatter:architect.jbuilder	
 			patch 'pass' , jbuilder: 'architect' do
-				if FavoriteArchitect.exists?(architect_uuid:params[:uuid] , user_uuid:"testUserUUID")
+				
+				# current_user 準備
+				authenticate!
+				
+				if FavoriteArchitect.exists?(architect_uuid:params[:uuid] , user_uuid:@current_user.uuid)
 					puts("in FavoriteArchitect exist -> update")
 					# !をつけるとバリデーションエラーが発生した場合にActiveRecord::RecordInvalidが発生する
 					favoriteArchitect = FavoriteArchitect.find_by(architect_uuid: params[:uuid]).update({
@@ -361,7 +399,7 @@ class API < Grape::API
 				else
 					puts("in FavoriteArchitect no -> create")
 					favoriteArchitect = FavoriteArchitect.create({
-						user_uuid: "testUserUUID",
+						user_uuid: @current_user.uuid,
 						architect_uuid: params[:uuid],
 						like: false,
 						dislike: true,
@@ -376,7 +414,11 @@ class API < Grape::API
 			
 			#### API No.43 建築家ニュートラル  patch /architect/:uuid/neutral -> Formatter:architect.jbuilder	
 			patch 'neutral' , jbuilder: 'architect' do
-				if FavoriteArchitect.exists?(architect_uuid:params[:uuid] , user_uuid:"testUserUUID")
+				
+				# current_user 準備
+				authenticate!
+				
+				if FavoriteArchitect.exists?(architect_uuid:params[:uuid] , user_uuid:@current_user.uuid)
 					puts("in FavoriteArchitect exist -> update")
 					# !をつけるとバリデーションエラーが発生した場合にActiveRecord::RecordInvalidが発生する
 					favoriteArchitect = FavoriteArchitect.find_by(architect_uuid: params[:uuid]).update({
@@ -386,7 +428,7 @@ class API < Grape::API
 				else
 					puts("in FavoriteArchitect no -> create")
 					favoriteArchitect = FavoriteArchitect.create({
-						user_uuid: "testUserUUID",
+						user_uuid: @current_user.uuid,
 						architect_uuid: params[:uuid],
 						like: false,
 						dislike: false,
@@ -414,9 +456,13 @@ class API < Grape::API
 			optional :limit, type:Integer, default:50
 		end		
 		get '/' , jbuilder: 'favorites_allcontents' do
-			@photos 		= FavoritePhoto.where(user_uuid: "testUserUUID").limit(limit).offset(offset)
-			@houses 		= FavoriteHouse.where(user_uuid: "testUserUUID").limit(limit).offset(offset)
-			@architects = FavoriteArchitect.where(user_uuid: "testUserUUID").limit(limit).offset(offset)
+			
+			# current_user 準備
+			authenticate!
+				
+			@photos 		= FavoritePhoto.where(user_uuid: @current_user.uuid).limit(limit).offset(offset)
+			@houses 		= FavoriteHouse.where(user_uuid: @current_user.uuid).limit(limit).offset(offset)
+			@architects = FavoriteArchitect.where(user_uuid: @current_user.uuid).limit(limit).offset(offset)
 		end
 		
 		### API No.51 お気に入り写真 取得
@@ -426,7 +472,11 @@ class API < Grape::API
 				optional :limit, type:Integer, default:50
 			end
 			get '/' , jbuilder: 'favorite_photos' do
-				@photos 		= FavoritePhoto.where(user_uuid: "testUserUUID").limit(limit).offset(offset)
+				
+				# current_user 準備
+				authenticate!
+			
+				@photos 		= FavoritePhoto.where(user_uuid: @current_user.uuid).limit(limit).offset(offset)
 				
 				#TODO:favoriteどうしよ
 			end
@@ -439,7 +489,11 @@ class API < Grape::API
 				optional :limit, type:Integer, default:50
 			end
 			get '/' , jbuilder: 'favorite_houses' do
-				@houses 		= FavoriteHouse.where(user_uuid: "testUserUUID").limit(limit).offset(offset)
+				
+				# current_user 準備
+				authenticate!
+				
+				@houses 		= FavoriteHouse.where(user_uuid: @current_user.uuid).limit(limit).offset(offset)
 			end
 		end
 		
@@ -450,7 +504,11 @@ class API < Grape::API
 				optional :limit, type:Integer, default:50
 			end
 			get '/' , jbuilder: 'favorite_architects' do
-				@architects = FavoriteArchitect.where(user_uuid: "testUserUUID").limit(limit).offset(offset)
+				
+				# current_user 準備
+				authenticate!
+				
+				@architects = FavoriteArchitect.where(user_uuid: @current_user.uuid).limit(limit).offset(offset)
 			end
 		end
 
@@ -475,15 +533,24 @@ class API < Grape::API
 
 
 	####
-	# api/v1/user/
+	# api/v1/user/activation
 	#
 	resource :user do
 		
 		#### API No.90 User Activation
-		post ':activation' , jbuilder: 'account' do  
+		post ':activation' , jbuilder: 'activation' do  
 			
-			# Userの要素は他のAPIで設定（未作成）
-			@user = User.create(uuid: SecureRandom.uuid)
+			# 新規user			
+			newUser = User.create({	
+			})
+			# 新規apikey
+			apiKey = ApiKey.create({
+					user_id: newUser.id,
+					expires_at: DateTime.new(2099,1,1)
+			})
+			
+			@User = newUser
+			@ApiKey = apiKey
 			
 		end
 		
