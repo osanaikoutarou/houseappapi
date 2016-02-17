@@ -54,7 +54,7 @@ photo6 = Photo.create(:uuid=>'xyz345', :title=>'タイトル666', :image_url=>'a
 photo7 = Photo.create(:uuid=>'xyz678', :title=>'タイトル777', :image_url=>'a000001_h0000001_img000000002.jpg', :liked_count=>123456, :passed_count=>23456789, :description=>'説明文5説明文');
 photo8 = Photo.create(:uuid=>'xyz901', :title=>'タイトル888', :image_url=>'a000001_h0000001_img000000002.jpg', :liked_count=>123456, :passed_count=>23456789, :description=>'説明文5説明文');
 
-
+architect1.houses << house1
 architect1.houses << house2
 architect1.houses << house3
 architect2.houses << house4

@@ -47,6 +47,10 @@ class API < Grape::API
 			end
 		end
 		
+		def next_swipe_photos
+			Photo.where(Photo.favorite_photos.where(user_id: @current_user.id).exists.not).all
+		end
+		
 	end
 	
 	# sample  
@@ -89,7 +93,8 @@ class API < Grape::API
 			authenticate!
 			
 			#TODO			
-			swipePhotos = Photo.all
+			#swipePhotos = Photo.all
+			swipePhotos = next_swipe_photos
 			
 			favorite_photos = Array.new		#そのユーザーの
 			houses = Array.new
