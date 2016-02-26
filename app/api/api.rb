@@ -48,7 +48,19 @@ class API < Grape::API
 		end
 		
 		def next_swipe_photos
-			Photo.where(Photo.favorite_photos.where(user_id: @current_user.id).exists.not).all
+			#Photo.where(Photo.favorite_photos.where(user_id: @current_user.id).exists.not).all
+			#Photo.where("id not ?", nil) #OK
+			#Photo.find_by(FavoritePhoto.find_by(:user_id => @current_user.id , :photo_id => Photo.id).eixsts.not)
+			#Photo.includes(:favorite_photos).where(:favorite_photos => {:id => nil})
+			
+			@notShowPhotos = Array.new
+			Photo.all.each do |photo|
+				if !FavoritePhoto.exists?(photo_uuid:photo.uuid , user_uuid:@current_user.uuid)
+					@notShowPhotos.push(photo)
+				end
+			end
+			
+			return @notShowPhotos
 		end
 		
 	end
@@ -151,7 +163,7 @@ class API < Grape::API
 					puts("in FavoritePhoto no -> create")
 
 					favoritePhoto = FavoritePhoto.create({
-						user_uuid: "testUserUUID",
+						user_uuid: @current_user.uuid,
 						photo_uuid: params[:uuid],
 						like: true,
 						pass: false,
