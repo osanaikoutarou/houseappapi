@@ -261,7 +261,7 @@ class API < Grape::API
 				@favorite_house = FavoriteHouse.find_by(house_uuid: params[:uuid])
 			end
 
-			#### API No.31 家LIKE　get /house/:uuid/like -> Formatter:house.jbuilder
+			#### API No.31 家LIKE　patch /house/:uuid/like -> Formatter:house.jbuilder
 			patch 'like' , jbuilder: 'house' do			
 				
 				# current_user 準備
@@ -293,7 +293,7 @@ class API < Grape::API
 				
 			end
 			
-			#### API No.32 家PASS　get /house/:uuid/pass -> Formatter:house.jbuilder
+			#### API No.32 家PASS　patch /house/:uuid/pass -> Formatter:house.jbuilder
 			# 最初は使わないかも
 			patch 'pass' , jbuilder: 'house' do
 				
@@ -324,7 +324,7 @@ class API < Grape::API
 			
 			end
 			
-			#### API No.33 家ニュートラル　get /house/:uuid/neutral -> Formatter:house.jbuilder
+			#### API No.33 家ニュートラル　patch /house/:uuid/neutral -> Formatter:house.jbuilder
 			patch 'neutral' , jbuilder: 'house' do
 				
 				# current_user 準備
@@ -477,9 +477,9 @@ class API < Grape::API
 			# current_user 準備
 			authenticate!
 				
-			@photos 		= FavoritePhoto.where(user_uuid: @current_user.uuid).limit(limit).offset(offset)
-			@houses 		= FavoriteHouse.where(user_uuid: @current_user.uuid).limit(limit).offset(offset)
-			@architects = FavoriteArchitect.where(user_uuid: @current_user.uuid).limit(limit).offset(offset)
+			@photos 		= FavoritePhoto.where(user_uuid: @current_user.uuid).limit(:limit).offset(:offset)
+			@houses 		= FavoriteHouse.where(user_uuid: @current_user.uuid).limit(:limit).offset(:offset)
+			@architects = FavoriteArchitect.where(user_uuid: @current_user.uuid).limit(:limit).offset(:offset)
 		end
 		
 		### API No.51 お気に入り写真 取得
@@ -492,9 +492,14 @@ class API < Grape::API
 				
 				# current_user 準備
 				authenticate!
-			
-				@photos 		= FavoritePhoto.where(user_uuid: @current_user.uuid).limit(limit).offset(offset)
 				
+				@favoritePhotos = Array.new
+				Photo.all.each do |photo|
+					if FavoritePhoto.exists?(photo_uuid:photo.uuid , user_uuid:@current_user.uuid)
+						@favoritePhotos.push(photo)
+					end
+				end
+			
 				#TODO:favoriteどうしよ
 			end
 		end
@@ -510,7 +515,7 @@ class API < Grape::API
 				# current_user 準備
 				authenticate!
 				
-				@houses 		= FavoriteHouse.where(user_uuid: @current_user.uuid).limit(limit).offset(offset)
+				@houses 		= FavoriteHouse.where(user_uuid: @current_user.uuid).limit(:limit).offset(:offset)
 			end
 		end
 		
@@ -525,7 +530,7 @@ class API < Grape::API
 				# current_user 準備
 				authenticate!
 				
-				@architects = FavoriteArchitect.where(user_uuid: @current_user.uuid).limit(limit).offset(offset)
+				@architects = FavoriteArchitect.where(user_uuid: @current_user.uuid).limit(:limit).offset(:offset)
 			end
 		end
 
