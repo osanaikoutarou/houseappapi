@@ -1,8 +1,6 @@
 json.favorite_houses do
 
-	json.array!(@houses) do |house|
-		#json.(photo, :id, :title)
+	json.array!(@favoriteHouses) do |house|
 		json.house house
 	end
-	
 end

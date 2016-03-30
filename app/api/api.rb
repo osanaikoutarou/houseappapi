@@ -515,7 +515,9 @@ class API < Grape::API
 				# current_user 準備
 				authenticate!
 				
-				@houses 		= FavoriteHouse.where(user_uuid: @current_user.uuid).limit(:limit).offset(:offset)
+				# @favoriteHouses 		= FavoriteHouse.where(user_uuid: @current_user.uuid).limit(:limit).offset(:offset)
+				# 一旦House全部返す
+				@favoriteHouses = House.all  
 			end
 		end
 		
