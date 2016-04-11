@@ -517,7 +517,12 @@ class API < Grape::API
 				
 				# @favoriteHouses 		= FavoriteHouse.where(user_uuid: @current_user.uuid).limit(:limit).offset(:offset)
 				# 一旦House全部返す
-				@favoriteHouses = House.all  
+				# @favoriteHouses = House.all
+				@favoriteHouses = House.where(:house_id=>params[:house_id]).includes(:photo).all
+				
+				print(@favoriteHouses)
+				
+				
 			end
 		end
 		
