@@ -517,10 +517,7 @@ class API < Grape::API
 				
 				#######　ここ　ここここ
 				@favoriteHouses = House.all
-				
-				print(@favoriteHouses)
-				
-				
+								
 			end
 		end
 		

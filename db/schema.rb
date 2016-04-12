@@ -31,22 +31,18 @@ ActiveRecord::Schema.define(version: 20160214124531) do
     t.text     "icon_url"
     t.text     "name"
     t.text     "description"
-    t.integer  "house_id"
-    t.integer  "photo_id"
     t.integer  "favorite_architect_id"
     t.datetime "created_at",            null: false
     t.datetime "updated_at",            null: false
   end
 
-  add_index "architects", ["house_id", "photo_id", "created_at"], name: "index_architects_on_house_id_and_photo_id_and_created_at"
+  add_index "architects", ["created_at"], name: "index_architects_on_created_at"
 
   create_table "favorite_architects", force: :cascade do |t|
     t.boolean  "like"
     t.boolean  "dislike"
-    t.integer  "user_id"
-    t.integer  "architect_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "favorite_houses", force: :cascade do |t|
@@ -54,8 +50,6 @@ ActiveRecord::Schema.define(version: 20160214124531) do
     t.string   "house_uuid"
     t.boolean  "like"
     t.boolean  "dislike"
-    t.integer  "house_id"
-    t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -65,7 +59,6 @@ ActiveRecord::Schema.define(version: 20160214124531) do
     t.string   "photo_uuid"
     t.boolean  "like"
     t.boolean  "pass"
-    t.integer  "photo_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -76,14 +69,13 @@ ActiveRecord::Schema.define(version: 20160214124531) do
     t.integer  "liked_count"
     t.text     "title"
     t.text     "description"
-    t.integer  "photo_id"
     t.integer  "architect_id"
     t.integer  "favorite_house_id"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
   end
 
-  add_index "houses", ["photo_id", "created_at"], name: "index_houses_on_photo_id_and_created_at"
+  add_index "houses", ["created_at"], name: "index_houses_on_created_at"
 
   create_table "photos", force: :cascade do |t|
     t.string   "uuid"

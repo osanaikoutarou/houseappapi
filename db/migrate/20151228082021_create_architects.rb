@@ -7,13 +7,11 @@ class CreateArchitects < ActiveRecord::Migration
       t.text :name
       t.text :description
       
-      t.references :house
-      t.references :photo
       t.references :favorite_architect
 
       t.timestamps null: false
     end
     
-    add_index :architects, [:house_id, :photo_id, :created_at]
+    add_index :architects, [:created_at]
   end
 end

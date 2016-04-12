@@ -8,8 +8,8 @@ class CreatePhotos < ActiveRecord::Migration
       t.integer :passed_count
       t.text :description
       
-      t.belongs_to :architect
-      t.belongs_to :house
+      t.references :architect
+      t.references :house
       t.references :favorite_photo
 
       t.timestamps null: false
