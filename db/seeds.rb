@@ -132,11 +132,13 @@ CSV.foreach('sampledata/convertedArchitectsCSV.csv') do |row|
   career        = row[11]
   suvacoURL     = row[12]
   architectURL  = row[13]
+  iconURL       = row[14]
+  iconFileName  = row[15]
 
   architect = Architect.create(
   :uuid=>architectID,
   :liked_count=>123,
-  :icon_url=> 'RG2llUm5ZB-240x240.jpg',
+  :icon_url=> iconFileName,
   :name=>name,
   :description=>message)
   
@@ -185,6 +187,7 @@ CSV.foreach('sampledata/convertedPhotosCSV.csv') do |row|
   roomStyle     = row[3]
   description   = row[4]
   imageURL      = row[5]
+  imageFileName = row[6]
 
   photoID = houseID.to_i * 1000 + count
   count+=1
@@ -192,7 +195,7 @@ CSV.foreach('sampledata/convertedPhotosCSV.csv') do |row|
   photo = Photo.create(
   :uuid=> photoID,
   :title=> title,
-  :image_url=>'15363.jpg',
+  :image_url=> imageFileName,
   :liked_count=>123,
   :passed_count=>34,
   :description=>description);
