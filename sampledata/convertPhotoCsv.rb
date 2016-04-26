@@ -27,13 +27,14 @@ CSV.foreach("photos.csv") do |data|
     roomStyle     = data[3]
     description   = data[4]
     imageURL      = data[5]
+    imageFileName = data[6]
 
   end
   # どちみち
   description   = data[4]
 
   if isHeader
-    ex_data = [houseID,title,roomType,roomStyle,description,imageURL]
+    ex_data = [houseID,title,roomType,roomStyle,description,imageURL,imageFileName]
     data_list.push(ex_data)
 
     bufDescription = ""

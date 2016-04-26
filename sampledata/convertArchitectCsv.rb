@@ -37,6 +37,8 @@ CSV.foreach("architects.csv") do |data|
     career        = data[11]
     suvacoURL     = data[12]
     architectURL  = data[13]
+    architectIconURL = data[14]
+    architectIconFileName = data[15]
 
   end
   # どちみち
@@ -46,7 +48,7 @@ CSV.foreach("architects.csv") do |data|
 
   if isHeader
     ex_data = [architectID,name,affiliation,addPost,addPref,addCity,addOther,qualifications,
-    bufMessage,policy,goodAtType,bufCareer,suvacoURL,architectURL]
+    bufMessage,policy,goodAtType,bufCareer,suvacoURL,architectURL,architectIconURL,architectIconFileName]
     data_list.push(ex_data)
 
     bufMessage = ""
