@@ -1,11 +1,14 @@
 class CreateHouses < ActiveRecord::Migration
   def change
     create_table :houses do |t|
-      t.string :uuid
-      t.integer :view_count
+      t.string :uuid            # houseID
+      t.integer :view_count     # 閲覧数
       t.integer :liked_count
-      t.text :title
-      t.text :description
+      t.text :title             # house名
+      t.text :description       # 説明
+      t.text :cost              # 値段
+      t.text :area              # 地域
+      t.text :space             # 延べ床面積
 
       t.references :architect
       t.references :favorite_house

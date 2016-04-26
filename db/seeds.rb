@@ -140,9 +140,16 @@ CSV.foreach('sampledata/convertedArchitectsCSV.csv') do |row|
   :liked_count=>123,
   :icon_url=> iconFileName,
   :name=>name,
-  :description=>message)
+  :description=>message,
+  :policy=>policy,
+  :affiliation=>affiliation,
+  :qualifications=>qualifications,
+  :goodAtType=>goodAtType,
+  :career=>career,
+  :homepage_url=>architectURL)
   
   architects.push(architect)
+  
 end
 
 # 家
@@ -163,8 +170,11 @@ CSV.foreach('sampledata/convertedHousesCSV.csv') do |row|
   :uuid=>houseID,
   :view_count=>341,
   :title=>"3×10 Court house",
-  :description=>description);
-  
+  :description=>description,
+  :cost=>cost,
+  :area=>area,
+  :space=>space)
+
   houses.push(house)
   
   # relation
