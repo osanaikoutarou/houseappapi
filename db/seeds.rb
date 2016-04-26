@@ -116,7 +116,7 @@ require "csv"
 
 # 建築家
 architects = Array.new
-CSV.foreach('sampledata/convertedArchitectCSV.csv') do |row|
+CSV.foreach('sampledata/convertedArchitectsCSV.csv') do |row|
   
   architectID   = row[0]
   name          = row[1]
@@ -144,7 +144,7 @@ CSV.foreach('sampledata/convertedArchitectCSV.csv') do |row|
 end
 
 # 家
-houses = Arrat.new
+houses = Array.new
 CSV.foreach('sampledata/convertedHousesCSV.csv') do |row|
   architectID   = row[0]
   architectName = row[1]
@@ -179,12 +179,12 @@ end
 photos = Array.new
 count=0
 CSV.foreach('sampledata/convertedPhotosCSV.csv') do |row|
-  houseID       = data[0]
-  title         = data[1]
-  roomType      = data[2]
-  roomStyle     = data[3]
-  description   = data[4]
-  imageURL      = data[5]
+  houseID       = row[0]
+  title         = row[1]
+  roomType      = row[2]
+  roomStyle     = row[3]
+  description   = row[4]
+  imageURL      = row[5]
 
   photoID = houseID.to_i * 1000 + count
   count+=1
