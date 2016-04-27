@@ -31,6 +31,12 @@ ActiveRecord::Schema.define(version: 20160214124531) do
     t.text     "icon_url"
     t.text     "name"
     t.text     "description"
+    t.text     "policy"
+    t.text     "affiliation"
+    t.text     "qualifications"
+    t.text     "goodAtType"
+    t.text     "career"
+    t.text     "homepage_url"
     t.integer  "favorite_architect_id"
     t.datetime "created_at",            null: false
     t.datetime "updated_at",            null: false
@@ -69,6 +75,9 @@ ActiveRecord::Schema.define(version: 20160214124531) do
     t.integer  "liked_count"
     t.text     "title"
     t.text     "description"
+    t.text     "cost"
+    t.text     "area"
+    t.text     "space"
     t.integer  "architect_id"
     t.integer  "favorite_house_id"
     t.datetime "created_at",        null: false

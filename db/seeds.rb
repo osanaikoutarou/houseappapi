@@ -165,7 +165,7 @@ CSV.foreach('sampledata/convertedHousesCSV.csv') do |row|
   space         = row[7]
   description   = row[8]
   suvacoURL     = row[9]
-  
+    
   house = House.create(
   :uuid=>houseID,
   :view_count=>341,
@@ -179,12 +179,11 @@ CSV.foreach('sampledata/convertedHousesCSV.csv') do |row|
   
   # relation
   architects.each do |architect|
-    if architect.uuid == house.uuid
+    if architect.uuid == architectID
       architect.houses << house
       break
     end
   end
-  
 end
 
 # 写真
@@ -214,7 +213,7 @@ CSV.foreach('sampledata/convertedPhotosCSV.csv') do |row|
   
   # relation
   houses.each do |house|
-    if house.uuid == photo.uuid
+    if house.uuid == houseID
       house.photos << photo
       break
     end

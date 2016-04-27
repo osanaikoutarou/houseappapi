@@ -37,7 +37,7 @@ CSV.foreach("houses.csv") do |data|
   description   = data[8]
 
   if isHeader
-    ex_data = [architectID,architectName,houseNo,name,cost,area,space,bufDescription,suvacoURL]
+    ex_data = [architectID,architectName,houseNo,houseID,name,cost,area,space,bufDescription,suvacoURL]
     data_list.push(ex_data)
 
     bufDescription = ""
@@ -49,7 +49,7 @@ CSV.foreach("houses.csv") do |data|
   c+=1
 end
 
-file_name = "convertedHouseCSV.csv"    #保存するファイル
+file_name = "convertedHousesCSV.csv"    #保存するファイル
 
 File.open(file_name, 'w') {|file|
   data_list.each do |data|
