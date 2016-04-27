@@ -16,7 +16,7 @@ class CreateArchitects < ActiveRecord::Migration
       # 住所は後回し       
       
       t.references :favorite_architect
-
+    
       t.timestamps null: false
     end
     

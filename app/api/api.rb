@@ -87,6 +87,16 @@ class API < Grape::API
 	# 	end
 	# end
 	
+	############# test api
+
+  # photos
+  resource :photos do
+    get '/', jbuilder: 'photos' do
+      @photos = Photo.all
+    end
+  end	
+	
+	############# 
 	
 	####
 	# api/v1/swipe

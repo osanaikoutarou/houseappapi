@@ -1,3 +1,8 @@
 json.photos do
-	json.photo @photos
+
+	json.array!(@photos) do |photo|
+		json.photo photo
+		json.house photo.house
+	end
+	
 end

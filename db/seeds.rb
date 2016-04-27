@@ -200,22 +200,28 @@ CSV.foreach('sampledata/convertedPhotosCSV.csv') do |row|
 
   photoID = houseID.to_i * 1000 + count
   count+=1
-  
+      
   photo = Photo.create(
   :uuid=> photoID,
   :title=> title,
   :image_url=> imageFileName,
   :liked_count=>123,
   :passed_count=>34,
-  :description=>description);
-  
-  photos.push(photo)
+  :description=>description
+  );
   
   # relation
   houses.each do |house|
     if house.uuid == houseID
       house.photos << photo
+      # photo.architect = house.architect
+      photo.house << house
+      
       break
     end
   end
+
+  photos.push(photo)
+  
+  
 end

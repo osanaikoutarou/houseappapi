@@ -13,7 +13,7 @@ class CreatePhotos < ActiveRecord::Migration
       
       t.references :architect
       t.references :house
-      t.references :favorite_photo
+      t.references :favorite_photo     
 
       t.timestamps null: false
     end
