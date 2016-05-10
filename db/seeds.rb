@@ -115,7 +115,7 @@
 require "csv"
 
 # 建築家
-architects = Array.new
+architectArray = Array.new
 CSV.foreach('sampledata/convertedArchitectsCSV.csv') do |row|
   
   architectID   = row[0]
@@ -148,12 +148,12 @@ CSV.foreach('sampledata/convertedArchitectsCSV.csv') do |row|
   :career=>career,
   :homepage_url=>architectURL)
   
-  architects.push(architect)
+  architectArray.push(architect)
   
 end
 
 # 家
-houses = Array.new
+houseArray = Array.new
 CSV.foreach('sampledata/convertedHousesCSV.csv') do |row|
   architectID   = row[0]
   architectName = row[1]
@@ -169,25 +169,26 @@ CSV.foreach('sampledata/convertedHousesCSV.csv') do |row|
   house = House.create(
   :uuid=>houseID,
   :view_count=>341,
-  :title=>"3×10 Court house",
+  :title=>name,
   :description=>description,
   :cost=>cost,
   :area=>area,
   :space=>space)
 
-  houses.push(house)
-  
   # relation
-  architects.each do |architect|
+  architectArray.each do |architect|
     if architect.uuid == architectID
+      #puts("architectみつけた")
       architect.houses << house
       break
     end
   end
+  
+  houseArray.push(house)
 end
 
 # 写真
-photos = Array.new
+photoArray = Array.new
 count=0
 CSV.foreach('sampledata/convertedPhotosCSV.csv') do |row|
   houseID       = row[0]
@@ -211,17 +212,17 @@ CSV.foreach('sampledata/convertedPhotosCSV.csv') do |row|
   );
   
   # relation
-  houses.each do |house|
+  houseArray.each do |house|
     if house.uuid == houseID
+      #puts("houseみつけた")
       house.photos << photo
-      # photo.architect = house.architect
-      photo.house << house
-      
+      # architect = Architect.find(house.architect_id) 
       break
     end
+  
+    
   end
+  
+  photoArray.push(photo)
 
-  photos.push(photo)
-  
-  
 end

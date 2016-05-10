@@ -17,6 +17,5 @@ class CreateHouses < ActiveRecord::Migration
     end
     
     add_index :houses, [:created_at]
-  end
-  
+  end  
 end

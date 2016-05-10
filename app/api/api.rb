@@ -130,9 +130,9 @@ class API < Grape::API
 			end
 
 			@photos = swipePhotos
-			@houses = houses
-			@architects = architects
-			@favorite_photos = favorite_photos
+			# @houses = houses
+			# @architects = architects
+			# @favorite_photos = favorite_photos
 		end
 	
 	end
