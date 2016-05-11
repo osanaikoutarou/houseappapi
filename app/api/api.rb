@@ -53,8 +53,9 @@ class API < Grape::API
 			#Photo.find_by(FavoritePhoto.find_by(:user_id => @current_user.id , :photo_id => Photo.id).eixsts.not)
 			#Photo.includes(:favorite_photos).where(:favorite_photos => {:id => nil})
 			
+			sourcePhotos = Photo.limit(30)
 			@notShowPhotos = Array.new
-			Photo.all.each do |photo|
+			sourcePhotos.each do |photo|
 				if !FavoritePhoto.exists?(photo_uuid:photo.uuid , user_uuid:@current_user.uuid)
 					@notShowPhotos.push(photo)
 				end
@@ -122,12 +123,12 @@ class API < Grape::API
 			houses = Array.new
 			architects = Array.new
 
-			swipePhotos.each do |photo|
-				houses.push(photo.house)
-				architects.push(photo.house.architect)
-				# これヤバそう			
-				favorite_photos.push(FavoritePhoto.find_by(user_uuid: @current_user.uuid , photo_uuid: photo.uuid))
-			end
+			# swipePhotos.each do |photo|
+				# houses.push(photo.house)
+				# architects.push(photo.house.architect)
+				# # これヤバそう			
+				# favorite_photos.push(FavoritePhoto.find_by(user_uuid: @current_user.uuid , photo_uuid: photo.uuid))
+			# end
 
 			@photos = swipePhotos
 			# @houses = houses
