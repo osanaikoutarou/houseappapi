@@ -7,6 +7,10 @@ class CreateFavoriteHouses < ActiveRecord::Migration
       t.boolean :dislike
 
       t.timestamps null: false
+      
+      t.references :house
+      t.references :user
+      
     end
   end
 end

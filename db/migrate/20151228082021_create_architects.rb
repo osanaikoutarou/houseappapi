@@ -14,9 +14,7 @@ class CreateArchitects < ActiveRecord::Migration
       t.text :homepage_url        # ホームページURL
       
       # 住所は後回し       
-      
-      t.references :favorite_architect
-    
+          
       t.timestamps null: false
     end
     

@@ -53,13 +53,18 @@ class API < Grape::API
 			#Photo.find_by(FavoritePhoto.find_by(:user_id => @current_user.id , :photo_id => Photo.id).eixsts.not)
 			#Photo.includes(:favorite_photos).where(:favorite_photos => {:id => nil})
 			
-			sourcePhotos = Photo.limit(30)
+ 		  # sourcePhotos = Photo.includes(:favorite_photo).where(favorite_photos: {user_uuid:@current_user.uuid}).all
+ 		  # sourcePhotos = Photo.joins(:favorite_photo)
+ 		  # sourcePhotos = Photo.joins(:favorite_photo)
+			
+ 			sourcePhotos = Photo.limit(30)
 			@notShowPhotos = Array.new
 			sourcePhotos.each do |photo|
 				if !FavoritePhoto.exists?(photo_uuid:photo.uuid , user_uuid:@current_user.uuid)
 					@notShowPhotos.push(photo)
 				end
 			end
+			@notShowPhotos = sourcePhotos
 			
 			return @notShowPhotos
 		end
@@ -116,24 +121,17 @@ class API < Grape::API
 			authenticate!
 			
 			#TODO			
-			#swipePhotos = Photo.all
+			# swipePhotos = Photo.all
 			swipePhotos = next_swipe_photos
 			
 			favorite_photos = Array.new		#そのユーザーの
-			houses = Array.new
-			architects = Array.new
 
-			# swipePhotos.each do |photo|
-				# houses.push(photo.house)
-				# architects.push(photo.house.architect)
-				# # これヤバそう			
-				# favorite_photos.push(FavoritePhoto.find_by(user_uuid: @current_user.uuid , photo_uuid: photo.uuid))
-			# end
+			swipePhotos.each do |photo|
+				# これヤバそう			
+				favorite_photos.push(FavoritePhoto.find_by(user_uuid: @current_user.uuid , photo_uuid: photo.uuid))
+			end
 
-			@photos = swipePhotos
-			# @houses = houses
-			# @architects = architects
-			# @favorite_photos = favorite_photos
+			@photos = favorite_photos
 		end
 	
 	end
@@ -179,6 +177,10 @@ class API < Grape::API
 						like: true,
 						pass: false,
 					})
+					
+					photo = Photo.find_by(uuid: params[:uuid])
+					photo.favorite_photos << favoritePhoto
+					@current_user.favorite_photos << photo
 				end
 				
 				# response
@@ -212,6 +214,10 @@ class API < Grape::API
 						like: false,
 						pass: true,
 					})
+					
+					photo = Photo.find_by(uuid: params[:uuid])
+          photo.favorite_photos << favoritePhoto
+          @current_user.favorite_photos << favoritePhoto
 				end
 
 				#response
@@ -245,6 +251,10 @@ class API < Grape::API
 						like: false,
 						pass: false,
 					})
+					
+					photo = Photo.find_by(uuid: params[:uuid])
+          photo.favorite_photos << favoritePhoto
+          @current_user.favorite_photos << favoritePhoto
 				end
 
 				#response
@@ -279,13 +289,14 @@ class API < Grape::API
 				authenticate!
 				
 				if FavoriteHouse.exists?(house_uuid:params[:uuid] , user_uuid:@current_user.uuid)
-					puts("in FavoriteHouse exist -> update")
+				  puts("in FavoriteHouse exist -> update")
 					# !をつけるとバリデーションエラーが発生した場合にActiveRecord::RecordInvalidが発生する
 					favoriteHouse = FavoriteHouse.find_by(house_uuid: params[:uuid]).update({
 						like: true,
 						dislike: false,
 					})
-					favoriteArray.push(favorite)
+					#?
+					#favoriteArray.push(favorite)
 				else
 					puts("in FavoriteHouse no -> create")
 					favoriteHouse = FavoriteHouse.create({
@@ -294,12 +305,18 @@ class API < Grape::API
 						like: true,
 						dislike: false,
 					})
-					favoriteArray.push(favorite)
+
+          house = House.find_by(uuid: params[:uuid])
+          house.favorite_houses << favoriteHouse
+          @current_user.favorite_houses << favoriteHouse
+					#?
+					#favoriteArray.push(favorite)
 				end
 				
 				# response
 				@house = House.find_by(uuid: params[:uuid])
-				@favorites = favoriteArray
+				#?
+				#@favorites = favoriteArray
 				@architect = @house.architect
 				
 			end
@@ -326,6 +343,11 @@ class API < Grape::API
 						like: false,
 						dislike: true,
 					})
+					
+					house = House.find_by(uuid: params[:uuid])
+          house.favorite_houses << favoriteHouse
+          @current_user.favorite_houses << favoriteHouse
+
 				end
 				
 				# response
@@ -403,6 +425,10 @@ class API < Grape::API
 						like: true,
 						dislike: false,
 					})
+
+          architect = Architect.find_by(uuid: params[:uuid])
+          architect.favorite_architects << favoriteArchitect
+          @current_user.favorite_architects << favoriteArchitect	
 				end
 				
 				# response 
@@ -432,6 +458,10 @@ class API < Grape::API
 						like: false,
 						dislike: true,
 					})
+					
+					architect = Architect.find_by(uuid: params[:uuid])
+          architect.favorite_architects << favoriteArchitect
+          @current_user.favorite_architects << favoriteArchitect  
 				end
 				
 				# response
@@ -461,6 +491,11 @@ class API < Grape::API
 						like: false,
 						dislike: false,
 					})
+					
+          architect = Architect.find_by(uuid: params[:uuid])
+          architect.favorite_architects << favoriteArchitect
+          @current_user.favorite_architects << favoriteArchitect  
+
 				end
 				
 				# response

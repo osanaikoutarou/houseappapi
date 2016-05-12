@@ -37,9 +37,8 @@ ActiveRecord::Schema.define(version: 20160214124531) do
     t.text     "goodAtType"
     t.text     "career"
     t.text     "homepage_url"
-    t.integer  "favorite_architect_id"
-    t.datetime "created_at",            null: false
-    t.datetime "updated_at",            null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
   end
 
   add_index "architects", ["created_at"], name: "index_architects_on_created_at"
@@ -47,8 +46,10 @@ ActiveRecord::Schema.define(version: 20160214124531) do
   create_table "favorite_architects", force: :cascade do |t|
     t.boolean  "like"
     t.boolean  "dislike"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.integer  "architect_id"
+    t.integer  "user_id"
   end
 
   create_table "favorite_houses", force: :cascade do |t|
@@ -58,6 +59,8 @@ ActiveRecord::Schema.define(version: 20160214124531) do
     t.boolean  "dislike"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "house_id"
+    t.integer  "user_id"
   end
 
   create_table "favorite_photos", force: :cascade do |t|
@@ -67,6 +70,8 @@ ActiveRecord::Schema.define(version: 20160214124531) do
     t.boolean  "pass"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "photo_id"
+    t.integer  "user_id"
   end
 
   create_table "houses", force: :cascade do |t|
@@ -79,9 +84,8 @@ ActiveRecord::Schema.define(version: 20160214124531) do
     t.text     "area"
     t.text     "space"
     t.integer  "architect_id"
-    t.integer  "favorite_house_id"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
   add_index "houses", ["created_at"], name: "index_houses_on_created_at"
@@ -95,9 +99,8 @@ ActiveRecord::Schema.define(version: 20160214124531) do
     t.text     "description"
     t.integer  "architect_id"
     t.integer  "house_id"
-    t.integer  "favorite_photo_id"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -112,11 +115,8 @@ ActiveRecord::Schema.define(version: 20160214124531) do
     t.text     "city"
     t.text     "address1"
     t.text     "address2"
-    t.integer  "favorite_photo_id"
-    t.integer  "favorite_house_id"
-    t.integer  "favorite_architect_id"
-    t.datetime "created_at",            null: false
-    t.datetime "updated_at",            null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
 end

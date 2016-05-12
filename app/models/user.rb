@@ -1,4 +1,8 @@
 class User < ActiveRecord::Base
+  
+  has_many :favorite_photos
+  has_many :favorite_houses
+  has_many :favorite_architects
 		
 	before_create :generate_uuid
 	

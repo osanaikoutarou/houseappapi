@@ -5,6 +5,10 @@ class CreateFavoriteArchitects < ActiveRecord::Migration
       t.boolean :dislike
       
       t.timestamps null: false
+      
+      t.references :architect
+      t.references :user
+      
     end
   end
 end

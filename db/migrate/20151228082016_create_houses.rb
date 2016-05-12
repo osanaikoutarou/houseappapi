@@ -11,7 +11,6 @@ class CreateHouses < ActiveRecord::Migration
       t.text :space             # 延べ床面積
 
       t.references :architect
-      t.references :favorite_house
 
       t.timestamps null: false
     end

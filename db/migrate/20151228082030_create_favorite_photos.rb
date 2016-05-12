@@ -7,6 +7,10 @@ class CreateFavoritePhotos < ActiveRecord::Migration
       t.boolean :pass
       
       t.timestamps null: false
+      
+      t.references :photo
+      t.references :user
+      
     end
   end
 end

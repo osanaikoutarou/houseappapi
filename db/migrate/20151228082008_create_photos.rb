@@ -12,8 +12,7 @@ class CreatePhotos < ActiveRecord::Migration
       # room style -> tag
       
       t.references :architect
-      t.references :house
-      t.references :favorite_photo     
+      t.references :house     
 
       t.timestamps null: false
     end

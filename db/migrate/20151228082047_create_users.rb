@@ -13,10 +13,6 @@ class CreateUsers < ActiveRecord::Migration
       t.text :address1
       t.text :address2
       
-      t.references :favorite_photo
-      t.references :favorite_house
-      t.references :favorite_architect
-
       t.timestamps null: false
     end
   end
