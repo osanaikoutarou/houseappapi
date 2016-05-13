@@ -101,6 +101,54 @@ class API < Grape::API
       @photos = Photo.all
     end
   end	
+  
+  resource :make_favorite_photo do
+    get '/', jbuilder: 'favorite_photos' do
+      
+      count = FavoritePhoto.count 
+      if count == 0 then
+      photo1 = Photo.find_by(id:10)
+      f1 = FavoritePhoto.create({
+            user_uuid: "testuser",
+            photo_uuid: photo1.uuid,
+            like: true,
+            pass: false,
+          })
+      photo1.favorite_photos << f1
+         
+      photo2 = Photo.find_by(id: 20)
+      f2 = FavoritePhoto.create({
+            user_uuid: "testuser",
+            photo_uuid: photo2.uuid,
+            like: true,
+            pass: false,
+          })
+      photo2.favorite_photos << f2
+
+      photo3 = Photo.find_by(id:30)
+      f3 = FavoritePhoto.create({
+            user_uuid: "testuser",
+            photo_uuid: photo3.uuid,
+            like: false,
+            pass: true,
+          })
+      photo3.favorite_photos << f3
+      end
+          
+      @favoritePhotos = FavoritePhoto.all
+      
+    end
+  end
+  
+  # next
+  resource :next do 
+    # get '/', jbuilder: 'photos' do
+    get '/', jbuilder: 'favorite_photos' do
+      # condition = FavoritePhoto.arel_table[:photo_id].eq(Photo.arel_table[:id])
+      condition = Photo.arel_table[:id].eq(FavoritePhoto.arel_table[:photo_id])
+      @favoritePhotos = Photo.eager_load(:favorite_photos).where(Photo.where(condition).exists.not).all
+    end
+  end
 	
 	############# 
 	
