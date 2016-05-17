@@ -56,7 +56,7 @@ class API < Grape::API
  		  # sourcePhotos = Photo.includes(:favorite_photo).where(favorite_photos: {user_uuid:@current_user.uuid}).all
  		  # sourcePhotos = Photo.joins(:favorite_photo)
  		  # sourcePhotos = Photo.joins(:favorite_photo)
-			
+ 		  
  			sourcePhotos = Photo.limit(30)
 			@notShowPhotos = Array.new
 			sourcePhotos.each do |photo|
@@ -140,6 +140,7 @@ class API < Grape::API
     end
   end
   
+  #TODO:やっぱSQLでやろう！
   # next
   resource :next do 
     # get '/', jbuilder: 'photos' do
