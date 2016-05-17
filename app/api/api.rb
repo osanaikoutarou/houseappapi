@@ -56,15 +56,18 @@ class API < Grape::API
  		  # sourcePhotos = Photo.includes(:favorite_photo).where(favorite_photos: {user_uuid:@current_user.uuid}).all
  		  # sourcePhotos = Photo.joins(:favorite_photo)
  		  # sourcePhotos = Photo.joins(:favorite_photo)
- 		  
- 			sourcePhotos = Photo.limit(30)
-			@notShowPhotos = Array.new
-			sourcePhotos.each do |photo|
-				if !FavoritePhoto.exists?(photo_uuid:photo.uuid , user_uuid:@current_user.uuid)
-					@notShowPhotos.push(photo)
-				end
-			end
-			@notShowPhotos = sourcePhotos
+
+      # 参考
+      # condition = Photo.arel_table[:id].eq(FavoritePhoto.arel_table[:photo_id])
+      # @favoritePhotos = Photo.eager_load(:favorite_photos).where(Photo.where(condition).exists.not).all
+      
+      # その人の好み写真データ 		  
+      condition1 = User.arel_table[:id].eq(FavoritePhoto.arel_table[:user_id])
+      usersFavoritePhotos = FavoritePhoto.eager_load(:users).where(condition1)
+      # その人がまだselectしてない写真データ
+      condition2 = Photo.arel_table[:id].eq(usersFavoritePhotos.arel_table[:photo_id])
+      notYetSelectPhotos = Photo.eager_load(:favorite_photos).where(Photo.where(condition2).exists.not).limit(30)
+			@notShowPhotos = notYetSelectPhotos
 			
 			return @notShowPhotos
 		end
@@ -143,9 +146,7 @@ class API < Grape::API
   #TODO:やっぱSQLでやろう！
   # next
   resource :next do 
-    # get '/', jbuilder: 'photos' do
     get '/', jbuilder: 'favorite_photos' do
-      # condition = FavoritePhoto.arel_table[:photo_id].eq(Photo.arel_table[:id])
       condition = Photo.arel_table[:id].eq(FavoritePhoto.arel_table[:photo_id])
       @favoritePhotos = Photo.eager_load(:favorite_photos).where(Photo.where(condition).exists.not).all
     end
@@ -173,19 +174,9 @@ class API < Grape::API
 			# swipePhotos = Photo.all
 			swipePhotos = next_swipe_photos
 			
-			favorite_photos = Array.new		#そのユーザーの
-
-			swipePhotos.each do |photo|
-				# これヤバそう			
-				favorite_photos.push(FavoritePhoto.find_by(user_uuid: @current_user.uuid , photo_uuid: photo.uuid))
-			end
-
-			@photos = favorite_photos
+			@photos = swipePhotos
 		end
-	
 	end
-	
-	
 
 	####
 	# api/v1/photo/:uuid
