@@ -38,7 +38,7 @@ CSV.foreach("architects.csv") do |data|
     suvacoURL     = data[12]
     architectURL  = data[13]
     architectIconURL = data[14]
-    architectIconFileName = data[15]
+    architectIconFileName = data[15]  # ファイル名だけ
 
   end
   # どちみち
@@ -63,7 +63,7 @@ CSV.foreach("architects.csv") do |data|
   c+=1
 end
 
-file_name = "convertedArchitectCSV.csv"    #保存するファイル
+file_name = "convertedArchitectsCSV.csv"    #保存するファイル
 
 File.open(file_name, 'w') {|file|
   data_list.each do |data|

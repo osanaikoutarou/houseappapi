@@ -132,8 +132,14 @@ CSV.foreach('sampledata/convertedArchitectsCSV.csv') do |row|
   career        = row[11]
   suvacoURL     = row[12]
   architectURL  = row[13]
-  iconURL       = row[14]
-  iconFileName  = row[15]
+  iconURL       = row[14]   #これは元ソースのURL
+  iconFileName  = row[15]   #こっちが末尾のファイル名だけ
+
+  puts goodAtType
+  puts suvacoURL
+  puts architectURL
+  puts iconURL
+  puts iconFileName
 
   architect = Architect.create(
   :uuid=>architectID,
