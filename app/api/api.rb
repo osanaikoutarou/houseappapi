@@ -66,7 +66,7 @@ class API < Grape::API
       usersFavoritePhotos = FavoritePhoto.eager_load(:users).where(condition1)
       # その人がまだselectしてない写真データ
       condition2 = Photo.arel_table[:id].eq(usersFavoritePhotos.arel_table[:photo_id])
-      notYetSelectPhotos = Photo.eager_load(:favorite_photos).where(Photo.where(condition2).exists.not).limit(30)
+      notYetSelectPhotos = Photo.eager_load(:favorite_photos).where(Photo.where(condition2).exists.not).order('random()').limit(12)
 			@notShowPhotos = notYetSelectPhotos
 			
 			return @notShowPhotos
@@ -219,6 +219,7 @@ class API < Grape::API
 					})
 					
 					photo = Photo.find_by(uuid: params[:uuid])
+					puts photo
 					photo.favorite_photos << favoritePhoto
 					@current_user.favorite_photos << photo
 				end
