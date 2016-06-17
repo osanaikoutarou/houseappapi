@@ -37,8 +37,17 @@ class API < Grape::API
 		end
 		
 		def current_user
+		  
 			# Access-Token -> ApiKey -> User
 			accessToken = request.headers['Access-Token']
+			
+			#FIXME:for debug
+			if accessToken.blank?
+			  # これローカルのシミュレータのやつ
+			  accessToken = "d674f248f042feb6f96f23ef1bfbe936"
+			end
+			
+			
 			apiKey = ApiKey.where(access_token: accessToken).first
 			if apiKey && !apiKey.expired?
 				@current_user = User.find(apiKey.user_id)
@@ -573,21 +582,23 @@ class API < Grape::API
 		resource :photos do
 			params do
 				optional :offset, type:Integer , default:0
-				optional :limit, type:Integer, default:50
+				optional :limit, type:Integer, default:10000    #あとでpaging
 			end
 			get '/' , jbuilder: 'favorite_photos' do
 				
 				# current_user 準備
 				authenticate!
 				
-				@favoritePhotos = Array.new
-				Photo.all.each do |photo|
-					if FavoritePhoto.exists?(photo_uuid:photo.uuid , user_uuid:@current_user.uuid)
-						@favoritePhotos.push(photo)
-					end
-				end
+				# @favoritePhotos = Array.new
+				# Photo.all.each do |photo|
+					# if FavoritePhoto.exists?(photo_uuid:photo.uuid , user_uuid:@current_user.uuid)
+						# @favoritePhotos.push(photo)
+					# end
+				# end
+				
+				#TODO:limit offset
+				@favoritePhotos = FavoritePhoto.where("user_uuid = ?", @current_user.uuid)
 			
-				#TODO:favoriteどうしよ
 			end
 		end
 		
@@ -600,11 +611,13 @@ class API < Grape::API
 			get '/' , jbuilder: 'favorite_houses' do
 				
 				# current_user 準備
-				# authenticate!
+				authenticate!
 				
-				#######　ここ　ここここ
-				@favoriteHouses = House.all
-								
+				#TODO:limit offset
+        #@favoriteHouses = FavoriteHouse.where("user_uuid = ?", @current_user.uuid)
+        #まだない！><
+        @favoriteHouses = House.all
+        
 			end
 		end
 		
@@ -617,9 +630,11 @@ class API < Grape::API
 			get '/' , jbuilder: 'favorite_architects' do
 				
 				# current_user 準備
-				authenticate!
+				authenticate!				
 				
-				@architects = FavoriteArchitect.where(user_uuid: @current_user.uuid).limit(:limit).offset(:offset)
+				#TODO:limit offset
+        @favoriteArchitects = FavoriteArchitect.where("user_uuid = ?", @current_user.uuid)
+				
 			end
 		end
 
