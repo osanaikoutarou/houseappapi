@@ -1,8 +1,7 @@
 json.favorite_houses do
-
-	json.array!(@favoriteHouses) do |favorite_house|
-		json.favorite_house favorite_house
-		json.photos favorite_house.photos
-		json.architect favorite_house.architect
+	json.array!(@favoriteHouses) do |favoriteHouse|
+		json.favorite_house favoriteHouse
+		json.architect favoriteHouse.architect
+		json.photos favoriteHouse.photos.limit(8)
 	end
 end
