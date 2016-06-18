@@ -4,7 +4,7 @@ worker_processes 2
 working_directory rails_root
 
 listen "#{rails_root}/tmp/unicorn.sock"
-pid "#{rails_root}/tmp/unicorn.pid"
+pid "#{rails_root}/tmp/pids/unicorn.pid"
 
 stderr_path "#{rails_root}/log/unicorn_error.log"
 stdout_path "#{rails_root}/log/unicorn.log"
