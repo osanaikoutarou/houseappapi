@@ -44,7 +44,7 @@ class API < Grape::API
 			#FIXME:for debug
 			if accessToken.blank?
 			  # これローカルのシミュレータのやつ
-			  accessToken = "d674f248f042feb6f96f23ef1bfbe936"
+			  accessToken = "97ab4a0fa7a637af1e93721896b306d9"
 			end
 			
 			
@@ -633,8 +633,9 @@ class API < Grape::API
 				authenticate!				
 				
 				#TODO:limit offset
-        @favoriteArchitects = FavoriteArchitect.where("user_uuid = ?", @current_user.uuid)
-				
+        #@favoriteArchitects = FavoriteArchitect.where("user_uuid = ?", @current_user.uuid)
+        #FIXME:まだない
+				@favoriteArchitects = Architect.all
 			end
 		end
 
