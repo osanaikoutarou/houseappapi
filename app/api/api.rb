@@ -194,12 +194,9 @@ class API < Grape::API
 		route_param :uuid do
 
 			#### API No.20 画像詳細取得  get /photo/:uuid -> Formatter:photo.jbuilder
-			get '/', jbuilder: 'photo' do
-				photo = Photo.find_by(uuid: params[:uuid])
-				@photo = photo
+			get '/', jbuilder: 'photo' do 
+				@photo = Photo.find_by(uuid: params[:uuid])
 				@favorite_photo = FavoritePhoto.find_by(photo_uuid: params[:uuid])
-				@house = photo.house
-				@architect = photo.house.architect
 			end
 			
 			#### API No.11 画像LIKE  patch /photo/:uuid/like -> Formatter:photo
@@ -317,7 +314,6 @@ class API < Grape::API
 						
 		end
 	end	## api/v1/photo/:uuid ##
-
 
 
 	####
