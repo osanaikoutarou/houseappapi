@@ -593,7 +593,7 @@ class API < Grape::API
 				# end
 				
 				#TODO:limit offset
-				@favoritePhotos = FavoritePhoto.where("user_uuid = ?", @current_user.uuid)
+				@favoritePhotos = FavoritePhoto.where("user_uuid = ?", @current_user.uuid).limit(params[:limit]).offset(params[:offset])
 			
 			end
 		end
@@ -612,7 +612,7 @@ class API < Grape::API
 				#TODO:limit offset
         #@favoriteHouses = FavoriteHouse.where("user_uuid = ?", @current_user.uuid)
         #まだない！><
-        @favoriteHouses = House.all
+        @favoriteHouses = House.all.limit(params[:limit]).offset(params[:offset])
         
 			end
 		end

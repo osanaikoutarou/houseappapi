@@ -1,0 +1,500 @@
+   19  rm -rf ~/Library/Caches/com.apple.dt.Xcode
+   20  histor
+   21  history
+   22  ssh -i /Users/osanaikoutarou/Downloads/houseapp.pem ubuntu@ec2-52-88-85-221.us-west-2.compute.amazonaws.com
+   23  sudo ssh -i /Users/osanaikoutarou/Downloads/houseapp.pem ubuntu@ec2-52-88-85-221.us-west-2.compute.amazonaws.com
+   24  ssh -i /Users/osanaikoutarou/houseapp/houseapp.pem ubuntu@ec2-52-88-85-221.us-west-2.compute.amazonaws.com
+   25  ssh -i /Users/osanaikoutarou/houseapp/houseapp.pem ubuntu@ec2-52-88-85-221.us-west-2.compute.amazonaws.com
+   26  ssh -i /Users/osanaikoutarou/houseapp/houseapp.pem ubuntu@ec2-52-88-85-221.us-west-2.compute.amazonaws.com
+   27  pwd
+   28  cd Welby/
+   29  cd welby-bloodpressure-ios/
+   30  ls
+   31  open .
+   32  pwd
+   33  oepn .
+   34  oepn .
+   35  open .
+   36  vim podfile 
+   37  open .
+   38  open .
+   39  pod install
+   40  vim podfile 
+   41  vim podfile 
+   42  pod install
+   43  vim podfile 
+   44  pod install
+   45  open .
+   46  open .
+   47  pwd
+   48  pwd
+   49  cd /Users/osanaikoutarou/Welby/master/
+   50  git branch
+   51  ls
+   52  cd welby-bloodpressure-ios/
+   53  ls
+   54  git branch
+   55  git log
+   56  open .
+   57  gem install mogenerator
+   58  brew install mogenerator
+   59  pwd
+   60  rm -rf ~/Library/Caches/com.apple.dt.Xcode
+   61  defaults delete com.apple.dt.Xcode IDEIndexDisable
+   62  defaults delete ~/Library/Caches/com.apple.dt.Xcode IDEIndexDisable
+   63  cd /Users/osanaikoutarou/Welby/welby-bloodpressure-ios
+   64  git branch
+   65  git log
+   66  git fetch
+   67  git branch
+   68  git brench -a
+   69  git branch -a
+   70  git log remotes/origin/master
+   71  git log remotes/origin/replace
+   72  cd ../welby-bloodpressure-ios_20160419/
+   73  git branch
+   74  git log
+   75  open .
+   76  pod install
+   77  vim podfile 
+   78  vim podfile 
+   79  vim podfile 
+   80  pod install
+   81  open .
+   82  pod install
+   83  open .
+   84  pwd
+   85  cd BloodPressure/
+   86  ls
+   87  cd DB/
+   88  mogenerator --template-var arc=true -m Model.xcdatamodeld -O Machine/
+   89  open .
+   90  open .
+   91  ls
+   92  pwd
+   93  pwd
+   94  pwd
+   95  cd /Users/osanaikoutarou/Welby/welby-bloodpressure-ios_20160419/
+   96  git branch
+   97  open .
+   98  vim podfile 
+   99  git branch
+  100  pwd
+  101  ls
+  102  git status
+  103  git commit -m "グラフデータ作成"
+  104  git add .
+  105  git commit -m "グラフデータ作成"
+  106  git status
+  107  git push origin replace
+  108  git push origin replace
+  109  pwd
+  110  ls
+  111  git branch
+  112  git statsu
+  113  git status
+  114  git add .
+  115  git commit -m "Chartデータ作成"
+  116  git status
+  117  git push
+  118  git push origin replace
+  119  git status
+  120  rm .DS_Store
+  121  git status
+  122  git add .
+  123  git commit -m "グラフデータ展開"
+  124  git branch
+  125  git log
+  126  pwd
+  127  pwd
+  128  git status
+  129  git log
+  130  git add .
+  131  git commit -m "Chartデータ展開"
+  132  git branch
+  133  git push origin replace
+  134  pwd
+  135  git branch
+  136  git pull origin replace
+  137  open .
+  138  open .
+  139  open .
+  140  pod install
+  141  open .
+  142  open .
+  143  git log
+  144  rm -rf ~/Library/Developer/Xcode/DerivedData/*
+  145  history | grep ssh
+  146  ssh -i /Users/osanaikoutarou/houseapp/houseapp.pem ubuntu@ec2-52-88-85-221.us-west-2.compute.amazonaws.com
+  147  pwd
+  148  pwd
+  149  pwd
+  150  cd /Users/osanaikoutarou/houseapp/
+  151  git branch
+  152  ls
+  153  cd houseapp
+  154  ls
+  155  git branch
+  156  git status
+  157  git add .
+  158  git commit -m "一旦"
+  159  git status
+  160  git branch
+  161  git push origin master
+  162  open .
+  163  pwd
+  164  history
+  165  history | grep ssh
+  166  ssh -i /Users/osanaikoutarou/houseapp/houseapp.pem ubuntu@ec2-52-88-85-221.us-west-2.compute.amazonaws.com
+  167  history | grep ssh
+  168  ssh -i /Users/osanaikoutarou/houseapp/houseapp.pem ubuntu@ec2-52-88-85-221.us-west-2.compute.amazonaws.com
+  169  pwd
+  170  pwd
+  171  git status
+  172  git add .
+  173  git commit -m "グラフデータ作成"
+  174  git push origin replace
+  175  git branch
+  176  git add .
+  177  git commit -m "体重グラフ作成"
+  178  git push origin replace
+  179  echo 75*9;
+  180  php -a
+  181  pwd
+  182  git branch
+  183  git status
+  184  git log
+  185  git branch
+  186  git branch
+  187  git status
+  188  git push origin replace_add
+  189  git log
+  190  git branch
+  191  git 
+  192  pwd
+  193  cd ..
+  194  cd ..
+  195  pwd
+  196  s
+  197  ls
+  198  git clone https://github.com/osanaikoutarou/wkwebview-baseview.git
+  199  open .
+  200  cd wkwebview-baseview/
+  201  open .
+  202  git branch
+  203  pwd
+  204  git status
+  205  git log
+  206  cd /Users/osanaikoutarou/
+  207  pwd
+  208  cd Welby/welby-bloodpressure-ios_20160419/
+  209  git branch
+  210  git push origin replace
+  211  git branch
+  212  git status
+  213  open .
+  214  git branch
+  215  git status
+  216  git add .
+  217  git commit -m "編集画面でDatePickerの値がTextFieldと合っていないバグ WBPN-53"
+  218  git branch
+  219  git branch
+  220  git status
+  221  git log
+  222  git push origin master
+  223  git push origin replace
+  224  git status
+  225  git push origin replace
+  226  git branch
+  227  git branch
+  228  pwd
+  229  git branch
+  230  git branch -D replace_add
+  231  git branch
+  232  git checkout -b replace_to_diabets
+  233  git branch
+  234  open .
+  235  git branch
+  236  history | grep mogenerator
+  237  open .
+  238  opcd BloodPressure/DB/
+  239  pwd
+  240  ls
+  241  pwd
+  242  ls
+  243  pwd
+  244  cd BloodPressure/DB/
+  245  mogenerator --template-var arc=true -m Model.xcdatamodeld -O Machine
+  246  mogenerator --template-var arc=true -m Model.xcdatamodeld -O Machine
+  247  git branch
+  248  git status
+  249  git add .
+  250  git commit -m "models"
+  251  git branch
+  252  git checkout replace
+  253  git branch
+  254  git status
+  255  git add .
+  256  cd ..
+  257  pwd
+  258  cd ..
+  259  git branch
+  260  git status
+  261  git add .
+  262  git commit -m "models"
+  263  git branch
+  264  git checkout replace
+  265  git branch
+  266  open .
+  267  git checkout replace_to_diabets
+  268  git branch
+  269  cd BloodPressure/DB/
+  270  mogenerator --template-var arc=true -m Model.xcdatamodeld -O Machine
+  271  open .
+  272  mogenerator --template-var arc=true -m Model.xcdatamodeld -O Machine
+  273  mogenerator --template-var arc=true -m Model.xcdatamodeld -O Machine
+  274  mogenerator --template-var arc=true -m Model.xcdatamodeld -O Machine
+  275  mogenerator --template-var arc=true -m Model.xcdatamodeld -O Machine
+  276  mogenerator --template-var arc=true -m Model.xcdatamodeld -O Machine
+  277  mogenerator --template-var arc=true -m Model.xcdatamodeld -O Machine
+  278  mogenerator --template-var arc=true -m Model.xcdatamodeld -O Machine
+  279  mogenerator --template-var arc=true -m Model.xcdatamodeld -O Machine
+  280  mogenerator --template-var arc=true -m Model.xcdatamodeld -O Machine
+  281  cd ..
+  282  cd ..
+  283  pwd
+  284  git add .
+  285  git commit -m "model"
+  286  git status
+  287  git branch
+  288  git checkout replace
+  289  git branch
+  290  git checkout replace_to_diabets
+  291  git branch
+  292  open .
+  293  mogenerator --template-var arc=true -m Model.xcdatamodeld -O Machine
+  294  open .
+  295  cd BloodPressure/DB
+  296  mogenerator --template-var arc=true -m Model.xcdatamodeld -O Machine
+  297  git add .
+  298  git commit -m "model"
+  299  git branch
+  300  git status
+  301  cd ../../
+  302  git add .
+  303  git commit -m "model"
+  304  git branch
+  305  git status
+  306  git checkout replace
+  307  git branch
+  308  open .
+  309  git checkout replace_to_diabets
+  310  open .
+  311  git branch
+  312  cd BloodPressure/DB/
+  313  mogenerator --template-var arc=true -m Model.xcdatamodeld -O Machine
+  314  mogenerator --template-var arc=true -m Model.xcdatamodeld -O Machine
+  315  mogenerator --template-var arc=true -m Model.xcdatamodeld -O Machine
+  316  mogenerator --template-var arc=true -m Model.xcdatamodeld -O Machine
+  317  mogenerator --template-var arc=true -m Model.xcdatamodeld -O Machine
+  318  pwd
+  319  cd ../..
+  320  git branch
+  321  git add .
+  322  git commit -m "model"
+  323  git status
+  324  pwd
+  325  cd BloodPressure/BD/
+  326  mogenerator --template-var arc=true -m Model.xcdatamodeld -O Machine
+  327  pwd
+  328  cd BloodPressure/BD/
+  329  cd BloodPressure/DB
+  330  mogenerator --template-var arc=true -m Model.xcdatamodeld -O Machine
+  331  mogenerator --template-var arc=true -m Model.xcdatamodeld -O Machine
+  332  mogenerator --template-var arc=true -m Model.xcdatamodeld -O Machine
+  333  cd ../..
+  334  git branch
+  335  git add .
+  336  git commit -m "models"
+  337  git status
+  338  git branch
+  339  pwd
+  340  git checkout replace
+  341  git branch
+  342  git checkout replace_to_diabets
+  343  git checkout -b replace_to_deabetes
+  344  git branch
+  345  git branch -D replace_to_diabets
+  346  git push origin replace_to_deabetes
+  347  git checkout replace
+  348  git branch
+  349  open .
+  350  pwd
+  351  cd BloodPressure/DB/
+  352  history | grep moge
+  353  mogenerator --template-var arc=true -m Model.xcdatamodeld -O Machine
+  354  open .
+  355  git branch
+  356  cd ../..
+  357  git branch
+  358  git status
+  359  git push origin replace
+  360  pwd
+  361  git status
+  362  git branch
+  363  pwd
+  364  git status
+  365  pwd
+  366  open .
+  367  git branch
+  368  git push origin replace
+  369  history | grep mogenerator
+  370  cd BloodPressure/DB/
+  371  mogenerator --template-var arc=true -m Model.xcdatamodeld -O Machine/
+  372  open .
+  373  mogenerator --template-var arc=true -m Model.xcdatamodeld -O Machine/
+  374  owd
+  375  pwd
+  376  mogenerator --template-var arc=true -m Model.xcdatamodeld -O Machine/
+  377  pwd
+  378  cd ../..
+  379  pwd
+  380  git branch
+  381  git push origin replace
+  382  git log
+  383  pwd
+  384  git branch
+  385  vim Podfile
+  386  git --version
+  387  pod --version
+  388  gem update cocoapods
+  389  pod --version
+  390  pod install
+  391  open .
+  392  git diff
+  393  git status
+  394  open .
+  395  vim Podfile
+  396  git branch
+  397  git add .
+  398  git commit -m "GA ビルドエラー修正仮対応"
+  399  git branch
+  400  git status
+  401  git push origin replace
+  402  pwd
+  403  open .
+  404  git branch
+  405  git push origin replace
+  406  git branch
+  407  git status
+  408  git diff
+  409  git branch
+  410  git push origin replace
+  411  pwd
+  412  git branch
+  413  git status
+  414  git status
+  415  owd
+  416  pwd
+  417  pwd
+  418  cd ../
+  419  pwd
+  420  ls
+  421  cd ..
+  422  ls
+  423  cd houseapp/
+  424  pwd
+  425  cd ..
+  426  pwd
+  427  ls
+  428  ls -l
+  429  cd houseapp/
+  430  ls
+  431  cd houseapp_bk/
+  432  open .
+  433  cd houseapp/
+  434  git log
+  435  git pull 
+  436  git branch
+  437  git branch -a
+  438  git checkout architectDetail
+  439  git status
+  440  git brnach
+  441  git checkout .
+  442  git checkout architectDetail
+  443  git log
+  444  git branch
+  445  git status
+  446  git add .
+  447  git commit -m "つもり"
+  448  git push origin architectDetail
+  449  git branch
+  450  git branch
+  451  git pull origin architectDetail
+  452  open .
+  453  open /
+  454  open /Users/osanaikoutarou/
+  455  pwd
+  456  pwd
+  457  git branch
+  458  git log
+  459  git status
+  460  open .
+  461  git branch
+  462  git add .
+  463  git commit -m "遷移"
+  464  git checkout -b develop2
+  465  git push origin develop2
+  466  pwd
+  467  pwd
+  468  git status
+  469  git branch
+  470  git log
+  471  git status
+  472  git commit -m "繊維系"
+  473  git add .
+  474  git commit -m "遷移アニメ"
+  475  git push origin develop2
+  476  open /Users/osanaikoutarou/Library/Developer/CoreSimulator/Devices/8F6C004E-259D-43CC-BED8-3AAE1931D6C5/data/Containers/Bundle/Application/17ABC70B-645B-47FB-894A-E29EBE17358B/
+  477  cd /Users/osanaikoutarou/Library/Developer/CoreSimulator/Devices/8F6C004E-259D-43CC-BED8-3AAE1931D6C5/data/Containers/Data/Application/E719F5A1-1952-4EBA-9F9E-7B28D1945ADB/Library/Application\ Support/BloodPressureDev/
+  478  sqlite3 BloodPressureDev.sqlite
+  479  pwd
+  480  mkdir doujinantena
+  481  cd doujinantena/
+  482  pwd
+  483  mysql
+  484  brew -v
+  485  brew update
+  486  sudo brew update
+  487  brew options mysql
+  488  brew install mysql
+  489  brew info mysql
+  490  mysql --version
+  491  mysql.server start
+  492  mysql -u root -p
+  493  mysql -u root -p
+  494  pwd
+  495  mysql -u root -p
+  496  vim doujinantena.php
+  497  open 
+  498  open .
+  499   
+  500  vim aa
+  501  history
+  502  rails s
+  503  rails s
+  504  history
+  505  mysql -u root -p
+  506  mysql -u root
+  507  mysql -u root -p
+  508  mysql -u root -p
+  509  mysql -u root -p
+  510  mysql.server start
+  511  mysql -u root -p
+  512  sudo mysql -u root -p
+  513  mysql
+  514  mysql -u root -p
+  515  rails s
+  516  pwd
+  517  ls
+  518  history > history.txt
