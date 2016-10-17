@@ -97,6 +97,8 @@ ActiveRecord::Schema.define(version: 20160214124531) do
     t.integer  "liked_count"
     t.integer  "passed_count"
     t.text     "description"
+    t.string   "photo_type"
+    t.integer  "priority"
     t.integer  "architect_id"
     t.integer  "house_id"
     t.datetime "created_at",   null: false

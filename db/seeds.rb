@@ -214,7 +214,9 @@ CSV.foreach('sampledata/convertedPhotosCSV.csv') do |row|
   :image_url=> imageFileName,
   :liked_count=>123,
   :passed_count=>34,
-  :description=>description
+  :description=>description,
+  :photo_type=>"",
+  :priority=>0
   );
   
   # relation
@@ -222,13 +224,28 @@ CSV.foreach('sampledata/convertedPhotosCSV.csv') do |row|
     if house.uuid == houseID
       #puts("houseみつけた")
       house.photos << photo
-      # architect = Architect.find(house.architect_id) 
+      
+      #architect = house.architect
+      #architect.photos << photo
       break
     end
-  
-    
   end
-  
+    
   photoArray.push(photo)
 
 end
+
+=begin
+# 確認
+  architectArray.each do |architect|
+    
+  #    puts(architect.houses.count.to_s)
+    
+  #  architect.houses.each do |h|
+  #    puts("ある？")
+  #    puts(h.photos.count.to_s)
+  #  end
+    puts(architect.photos.count.to_s)
+    
+  end
+=end

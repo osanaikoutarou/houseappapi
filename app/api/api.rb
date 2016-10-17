@@ -227,7 +227,7 @@ class API < Grape::API
 					photo = Photo.find_by(uuid: params[:uuid])
 					puts photo
 					photo.favorite_photos << favoritePhoto
-					@current_user.favorite_photos << photo
+					@current_user.favorite_photos << favoritePhoto
 				end
 				
 				# response
@@ -593,7 +593,7 @@ class API < Grape::API
 				# end
 				
 				#TODO:limit offset
-				@favoritePhotos = FavoritePhoto.where("user_uuid = ?", @current_user.uuid).limit(params[:limit]).offset(params[:offset])
+				@favoritePhotos = FavoritePhoto.where("user_uuid = ?", @current_user.uuid).where(:like => true).limit(params[:limit]).offset(params[:offset])
 			
 			end
 		end
@@ -632,6 +632,7 @@ class API < Grape::API
         #@favoriteArchitects = FavoriteArchitect.where("user_uuid = ?", @current_user.uuid)
         #FIXME:まだない
 				@favoriteArchitects = Architect.all
+												
 			end
 		end
 
