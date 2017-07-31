@@ -1,8 +1,8 @@
 class CreateFavoritePhotos < ActiveRecord::Migration
   def change
     create_table :favorite_photos do |t|
-      t.references :photo
-      t.references :user
+      t.references :user, null: false
+      t.references :photo, null: false
       t.boolean :like
 
       t.timestamps

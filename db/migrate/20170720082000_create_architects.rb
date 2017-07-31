@@ -3,7 +3,7 @@ class CreateArchitects < ActiveRecord::Migration
     create_table :architects do |t|
       t.text :name                # architect name
       t.text :description         # メッセージ？
-      t.text :avatar              # icon file name
+      t.text :avatar              # profile image
       t.text :policy              # こだわり、ポリシー
       t.text :affiliation         # 所属
       t.text :qualifications      # 資格

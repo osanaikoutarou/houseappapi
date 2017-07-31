@@ -3,16 +3,18 @@ class CreateHouses < ActiveRecord::Migration
     create_table :houses do |t|
       t.references :architect
       t.text :title             # house名
-      t.text :description       # 説明
-      t.text :cost              # 値段
-      t.text :space             # 延べ床面積
+      t.text :short_description # 説明
+      t.text :description
+      t.integer :cost_type
+      t.integer :floor_space
+      t.integer :site_area_space
       t.string :zip_code
       t.string :prefecture
       t.string :city
       t.string :address1
       t.string :address2
 
-      t.timestamps null: true
+      t.timestamps null: false
     end
 
     add_index :houses, [:created_at]

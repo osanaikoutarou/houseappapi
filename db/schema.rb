@@ -16,10 +16,22 @@ ActiveRecord::Schema.define(version: 20170729034448) do
   enable_extension "plpgsql"
   enable_extension "uuid-ossp"
 
+  create_table "anonymous_users", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
+    t.json     "preferences"
+    t.string   "device_name"
+    t.string   "device_model"
+    t.string   "device_idfv"
+    t.string   "device_idfa"
+    t.string   "device_gps_adid"
+    t.string   "app_version"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
   create_table "architects", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
-    t.text     "icon_url"
     t.text     "name"
     t.text     "description"
+    t.text     "avatar"
     t.text     "policy"
     t.text     "affiliation"
     t.text     "qualifications"
@@ -28,28 +40,30 @@ ActiveRecord::Schema.define(version: 20170729034448) do
     t.text     "homepage_url"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.uuid     "user_id"
     t.index ["created_at"], name: "index_architects_on_created_at", using: :btree
+    t.index ["user_id"], name: "index_architects_on_user_id", using: :btree
   end
 
   create_table "favorite_architects", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
-    t.uuid     "architect_id"
-    t.uuid     "user_id"
+    t.uuid     "user_id",      null: false
+    t.uuid     "architect_id", null: false
     t.boolean  "like"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "favorite_houses", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
-    t.uuid     "house_id"
-    t.uuid     "user_id"
+    t.uuid     "user_id",    null: false
+    t.uuid     "house_id",   null: false
     t.boolean  "like"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "favorite_photos", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
-    t.uuid     "photo_id"
-    t.uuid     "user_id"
+    t.uuid     "user_id",    null: false
+    t.uuid     "photo_id",   null: false
     t.boolean  "like"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -58,21 +72,27 @@ ActiveRecord::Schema.define(version: 20170729034448) do
   create_table "houses", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.uuid     "architect_id"
     t.text     "title"
+    t.text     "short_description"
     t.text     "description"
-    t.text     "cost"
-    t.text     "area"
-    t.text     "space"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.integer  "price"
+    t.integer  "floor_space"
+    t.integer  "site_area_space"
+    t.string   "zip_code"
+    t.string   "prefecture"
+    t.string   "city"
+    t.string   "address1"
+    t.string   "address2"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
     t.index ["created_at"], name: "index_houses_on_created_at", using: :btree
   end
 
   create_table "photos", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
-    t.uuid     "architect_id"
     t.uuid     "house_id"
     t.string   "image"
     t.string   "title"
     t.text     "description"
+    t.boolean  "featured_photo", default: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -109,11 +129,11 @@ ActiveRecord::Schema.define(version: 20170729034448) do
     t.text     "first_name_kana"
     t.text     "last_name_kana"
     t.string   "gender"
-    t.string   "postal_code"
+    t.string   "zip_code"
     t.string   "prefecture"
-    t.text     "city"
-    t.text     "address1"
-    t.text     "address2"
+    t.string   "city"
+    t.string   "address1"
+    t.string   "address2"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

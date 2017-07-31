@@ -12,11 +12,18 @@ module Api
       # POST /api/v1/auth/anonymous
       api :POST, '/api/v1/auth/anonymous'
       description 'Create new anonymous user with random Email/Password'
-      param :uuid, String
+      param :device_uuid, String
+      param :device_name, String
+      param :device_model, String
+      param :device_idfv, String
+      param :device_idfa, String
+      param :device_gps_adid, String
+      param :app_version, String
 
       def anonymous
-        uuid           = params[:device_uuid] || SecureRandom.uuid
-        @user          = User.where(id: uuid, role: User::ROLE_USER_ANONYMOUS).first_or_initialize
+        @anonymous = AnonymousUser.find
+        device_uuid = params[:device_uuid] || SecureRandom.uuid
+        @user          = AnomynousUser.where(id: uuid, role: User::ROLE_USER_ANONYMOUS).first_or_initialize
         @user.email    = "#{uuid}@temp.me"
         @user.password = SecureRandom.uuid
         @user.save!
