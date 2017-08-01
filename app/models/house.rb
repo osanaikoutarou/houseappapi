@@ -1,4 +1,6 @@
-class House < ActiveRecord::Base
-	belongs_to :architect
-	has_many :photos
+class House < ApplicationRecord
+
+  belongs_to :architect
+  has_many :photos
+
 end

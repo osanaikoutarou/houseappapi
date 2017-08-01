@@ -1,10 +1,9 @@
 
-class Architect < ActiveRecord::Base
-  has_many :houses
-  has_many :photos, through: :houses
-  has_many :favorite_architect
+class Architect < ApplicationRecord
 
   belongs_to :user
+  has_many :houses
+  has_many :photos, through: :houses
 
   mount_uploader :avatar, ArchitectAvatarUploader
 end

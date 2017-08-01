@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170729034448) do
+ActiveRecord::Schema.define(version: 20170801140405) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,6 +28,17 @@ ActiveRecord::Schema.define(version: 20170729034448) do
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
     t.index ["user_id"], name: "index_anonymous_users_on_user_id", using: :btree
+  end
+
+  create_table "architect_views", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
+    t.uuid     "architect_id"
+    t.uuid     "user_id"
+    t.uuid     "anonymous_user_id"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.index ["anonymous_user_id"], name: "index_architect_views_on_anonymous_user_id", using: :btree
+    t.index ["architect_id"], name: "index_architect_views_on_architect_id", using: :btree
+    t.index ["user_id"], name: "index_architect_views_on_user_id", using: :btree
   end
 
   create_table "architects", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
@@ -71,6 +82,26 @@ ActiveRecord::Schema.define(version: 20170729034448) do
     t.datetime "updated_at"
   end
 
+  create_table "house_articles", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
+    t.uuid     "house_id"
+    t.string   "title"
+    t.text     "body"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["house_id"], name: "index_house_articles_on_house_id", using: :btree
+  end
+
+  create_table "house_views", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
+    t.uuid     "architect_id"
+    t.uuid     "user_id"
+    t.uuid     "anonymous_user_id"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.index ["anonymous_user_id"], name: "index_house_views_on_anonymous_user_id", using: :btree
+    t.index ["architect_id"], name: "index_house_views_on_architect_id", using: :btree
+    t.index ["user_id"], name: "index_house_views_on_user_id", using: :btree
+  end
+
   create_table "houses", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.uuid     "architect_id"
     t.text     "title"
@@ -87,6 +118,17 @@ ActiveRecord::Schema.define(version: 20170729034448) do
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
     t.index ["created_at"], name: "index_houses_on_created_at", using: :btree
+  end
+
+  create_table "photo_views", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
+    t.uuid     "photo_id"
+    t.uuid     "user_id"
+    t.uuid     "anonymous_user_id"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.index ["anonymous_user_id"], name: "index_photo_views_on_anonymous_user_id", using: :btree
+    t.index ["photo_id"], name: "index_photo_views_on_photo_id", using: :btree
+    t.index ["user_id"], name: "index_photo_views_on_user_id", using: :btree
   end
 
   create_table "photos", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|

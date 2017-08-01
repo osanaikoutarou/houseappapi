@@ -1,4 +1,6 @@
-class FavoritePhoto < ActiveRecord::Base
-	belongs_to :photo
-	belongs_to :user
+class FavoritePhoto < ApplicationRecord
+
+  belongs_to :photo
+  belongs_to :user
+
 end
