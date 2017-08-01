@@ -85,3 +85,5 @@ pickle-email-*.html
 
 # Custom
 /docker/persistent
+/public/apidocs
+/public/uploads

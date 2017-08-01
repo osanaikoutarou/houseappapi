@@ -1,4 +1,6 @@
 
-class AnonymousUser < ActiveRecord::Base
+class AnonymousUser < ApplicationRecord
+
+  belongs_to :user
 
 end

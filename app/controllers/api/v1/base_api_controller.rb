@@ -1,10 +1,10 @@
+require 'auth_token'
+
 class Api::V1::BaseApiController < ApplicationController
   skip_before_action :verify_authenticity_token
   respond_to :json
-
   rescue_from ::Exception, with: :error_occurred
-
-  require 'auth_token'
+  attr_reader :current_user
 
   protected
 
@@ -39,7 +39,7 @@ class Api::V1::BaseApiController < ApplicationController
     @error.present? ? 400 : 200
   end
 
-  attr_reader :current_user
+
 
   def error_occurred(ex)
     logger.error ex.message

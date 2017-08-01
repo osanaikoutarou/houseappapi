@@ -3,10 +3,10 @@ CarrierWave.configure do |config|
   config.fog_provider = 'fog/aws'
   config.fog_credentials = {
       provider: 'AWS',
-      aws_access_key_id: 'AKIAIEAL4SJNEQ57EIPA',
-      aws_secret_access_key: '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',
-      region:                'ap-northeast-1', # Asia Pacific (Tokyo)
+      aws_access_key_id: 'AKIAJ7WGDVOY6ZC3FNHA',
+      aws_secret_access_key: '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'
   }
+  config.fog_directory = "houseapp-dev" # BUCKET NAME
 
   # if Rails.env.development?
   #   config.fog_directory  = 'photosdev'

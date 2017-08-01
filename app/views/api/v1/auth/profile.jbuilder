@@ -1,6 +1,3 @@
 json.partial! '/api/common'
-if @user.present?
-  json.user @user
-  json.user_profile @user_profile
-  json.expert @expert
-end
+json.partial! '/api/v1/shared/user', user: @user
+json.partial! '/api/v1/shared/user_profile', user_profile: @user.try(:user_profile)

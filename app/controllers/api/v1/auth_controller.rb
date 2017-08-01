@@ -6,70 +6,44 @@ module Api
   module V1
     # Auth logic
     class AuthController < BaseApiController
+      swagger_controller :auth, 'User authentication'
+
       before_action :verify_jwt_token, only: %i[profile update_profile change_password]
 
-      # Create an anonymous user without email
-      # POST /api/v1/auth/anonymous
-      api :POST, '/api/v1/auth/anonymous'
-      description 'Create new anonymous user with random Email/Password'
-      param :device_uuid, String
-      param :device_name, String
-      param :device_model, String
-      param :device_idfv, String
-      param :device_idfa, String
-      param :device_gps_adid, String
-      param :app_version, String
-
-      def anonymous
-        @anonymous = AnonymousUser.find
-        device_uuid = params[:device_uuid] || SecureRandom.uuid
-        @user          = AnomynousUser.where(id: uuid, role: User::ROLE_USER_ANONYMOUS).first_or_initialize
-        @user.email    = "#{uuid}@temp.me"
-        @user.password = SecureRandom.uuid
-        @user.save!
-        @token = AuthToken.sign(user: @user.id)
+      #---------------------------------------------------------
+      # POST /api/v1/auth/register
+      swagger_api :register do
+        summary 'Register new user.'
+        param :form, :email, :string, :required
+        param :form, :password, :string, :required
       end
-
-      #======================================================
-      # Login user
-      # POST /api/auth/register
-      api :POST, '/api/v1/auth/register'
-      description 'Register new user by email and password'
-      param :email, String
-      param :password, String
-
       def register
         email       = params[:email]
         password    = params[:password]
-        device_uuid = params[:device_uuid]
 
-        user = User.where(id: device_uuid, role: User::ROLE_USER_ANONYMOUS).first
-        if user.present?
-          user.email    = email
-          user.password = password
-        else
-          user = User.new(email: email, password: password)
-        end
-        user.role = User::ROLE_USER_REGISTERED
+        user = User.new(email: email,
+                        password: password,
+                        role: User::ROLE_USER_REGISTERED)
 
         if user.save
           @user  = user
-          @token = AuthToken.sign(user: @user.id)
+          @access_token = AuthToken.sign(user: @user.id)
         else
           @error = APIErrors::ATH010
+          @error.message = user.errors
         end
 
         render status: common_http_status
       end
 
-      #======================================================
-      # Login user
-      api :POST, '/api/auth/login/email'
-      description 'Authenticate user by email and password'
-      param :email, String
-      param :password, String
-
-      def email
+      #---------------------------------------------------------
+      # POST /api/v1/auth/login
+      swagger_api :login do
+        summary 'Login with email/password.'
+        param :form, :email, :string, :required
+        param :form, :password, :string, :required
+      end
+      def login
         email    = params[:email]
         password = params[:password]
 
@@ -79,25 +53,17 @@ module Api
           @error = APIErrors::ATH001
         else
           @user  = user
-          @token = AuthToken.sign(user: @user.id)
+          @access_token = AuthToken.sign(user: @user.id)
         end
 
         render '/api/v1/auth/login', status: common_http_status
       end
 
-      #======================================================
-      # POST/DELETE/PUT /api/auth/logout
-      api :POST, '/api/auth/logout'
-
-      def logout
-        # TODO: Update logout status in DB or expire current access_token
-      end
-
-      #======================================================
+      #---------------------------------------------------------
       # GET /api/auth/profile
-      api :GET, '/api/auth/profile'
-      description 'Get current user profile'
-
+      swagger_api :profile do
+        summary 'Get current user profile'
+      end
       def profile
         @user         = current_user
         @user_profile = current_user.try(:user_profile)
@@ -106,13 +72,13 @@ module Api
         render status: common_http_status
       end
 
-      #======================================================
-      # Change password
+      #---------------------------------------------------------
       # PUT /api/auth/password
-      api :PUT, '/api/auth/password'
-      param :password, String
-      param :new_password, String
-
+      swagger_api :profile do
+        summary 'Update current password'
+        param :form, :current_password, :string, :required
+        param :form, :new_password, :string, :required
+      end
       def change_password
         current_password = params[:password]
         new_password     = params[:new_password]
@@ -127,7 +93,11 @@ module Api
         render status: common_http_status
       end
 
+      #---------------------------------------------------------
+
       private
+
+      #---------------------------------------------------------
 
       def verify_password(email, password)
         user = User.find_by_email(email)

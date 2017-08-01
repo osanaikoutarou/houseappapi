@@ -1,2 +1,2 @@
 json.partial! '/api/v1/common'
-json.token @token
+json.access_token @access_token

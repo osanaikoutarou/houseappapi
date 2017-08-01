@@ -1,6 +1,4 @@
-json.partial! '/api/common'
-if @user.present?
-  json.user @user
-  json.user_profile @user.user_profile
-end
-json.token @token
+json.partial! '/api/v1/common'
+json.partial! '/api/v1/shared/user', user: @user
+json.partial! '/api/v1/shared/user_profile', user_profile: @user.try(:user_profile)
+json.access_token @access_token
