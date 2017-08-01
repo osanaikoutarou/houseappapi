@@ -1,23 +1,6 @@
 Houseapp Api
 ================
 
-[![Deploy to Heroku](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
-
-This application was generated with the [rails_apps_composer](https://github.com/RailsApps/rails_apps_composer) gem
-provided by the [RailsApps Project](http://railsapps.github.io/).
-
-Rails Composer is supported by developers who purchase our RailsApps tutorials.
-
-Problems? Issues?
------------
-
-Need help? Ask on Stack Overflow with the tag 'railsapps.'
-
-Your application contains diagnostics in the README file. Please provide a copy of the README file when reporting any issues.
-
-If the application doesn't work as expected, please [report an issue](https://github.com/RailsApps/rails_apps_composer/issues)
-and include the diagnostics.
-
 Ruby on Rails
 -------------
 
@@ -28,23 +11,35 @@ This application requires:
 
 Learn more about [Installing Rails](http://railsapps.github.io/installing-rails.html).
 
-Getting Started
----------------
+Development
+-----------
 
-Documentation and Support
--------------------------
+- [Install Docker](https://docs.docker.com/engine/installation/)
+- Run `docker-componse -p houseapp up -d` to start docker containers
+- Run `docker-componse -p houseapp down` to stop docker containers
+- Execute `docker exec -it houseapp_app_1 bash` to open bash console 
+    + Execute `rake db:migrate` to migrate DB
+    + Execute `rake swagger:docs` to generate api docs
+- Path:
+    + Rails app: `http://localhost:3000`
+    + Admin: `http://localhost:3000/admin`
+    + API Docs:  `http://localhost:3000/api_docs`
+    + PgAdmin:  `http://localhost:5050`
 
-Issues
--------------
 
-Similar Projects
-----------------
+Production
+---------- 
+
+- Use heroku
 
 Contributing
 ------------
+
+Vu Huan (huanvn@gmail.com)
 
 Credits
 -------
 
 License
 -------
+
