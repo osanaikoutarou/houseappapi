@@ -10,7 +10,7 @@ Swagger::Docs::Config.register_apis(
     api_extension_type: :json,
     controller_base_path: '',
     api_file_path: 'public/apidocs',
-    base_path: 'http://localhost:3000',
+    base_path: ENV['BASE_URL'],
     clean_directory: true,
     attributes: {
       info: {

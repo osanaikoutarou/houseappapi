@@ -3,7 +3,6 @@ services:
   app:
     image: huanvn/hosueapp:0.1
     volumes:
-      - ./file_storage:/app/public/system/
       - assets:/app/public/assets/
     environment:
       - SECRET_KEY_BASE=25c3933cdc4bb69c6846da5d1c587b07ccc39e4e37f7f1e55ac5e46f83f6e38845a40f2e32d0b52404684818f82f3c40461c903a6dda70d78aa7822b0bfefa4a

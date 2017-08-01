@@ -22,6 +22,18 @@ Rails.application.routes.draw do
         post  '/profile'        => 'auth#update_profile'
         put   '/password'       => 'auth#change_password'
       end
+
+      scope :houses do
+        get '/:house_id' => 'houses#show'
+        get '/:house_id/photos' => 'houses#photos'
+        get '/:house_id/featured_photos' => 'houses#featured_photos'
+      end
+
+      scope :photos do
+        post '/:photo_id/like' => 'photos#like'
+        post '/:photo_id/pass' => 'photos#pass'
+      end
+
     end
   end
 end

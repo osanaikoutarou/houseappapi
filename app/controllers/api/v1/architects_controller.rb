@@ -1,8 +1,14 @@
 module Api
   module V1
     class ArchitectsController < BaseApiController
+      swagger_controller :architects, 'Manage requests for architect'
 
       # GET /architects/:architect_id
+      swagger_api :show do
+        summary 'Get information about architect'
+        param :path, :architect_id, :string, 'Architect UUID'
+        response :not_found
+      end
       def show
         @architect = Architect.find(params[:architect_id])
       end

@@ -47,8 +47,6 @@ module Api
       end
 
       # POST /api/v1/anonymous/migrate
-      api :POST, '/api/v1/anonymous/migrate'
-      param :user_id, String
       def migrate
         # TODO: create new user
       end
