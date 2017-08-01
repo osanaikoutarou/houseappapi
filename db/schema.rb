@@ -17,6 +17,7 @@ ActiveRecord::Schema.define(version: 20170729034448) do
   enable_extension "uuid-ossp"
 
   create_table "anonymous_users", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
+    t.uuid     "user_id"
     t.json     "preferences"
     t.string   "device_name"
     t.string   "device_model"
@@ -26,6 +27,7 @@ ActiveRecord::Schema.define(version: 20170729034448) do
     t.string   "app_version"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+    t.index ["user_id"], name: "index_anonymous_users_on_user_id", using: :btree
   end
 
   create_table "architects", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
@@ -74,7 +76,7 @@ ActiveRecord::Schema.define(version: 20170729034448) do
     t.text     "title"
     t.text     "short_description"
     t.text     "description"
-    t.integer  "price"
+    t.integer  "cost_type"
     t.integer  "floor_space"
     t.integer  "site_area_space"
     t.string   "zip_code"

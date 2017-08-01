@@ -1,0 +1,21 @@
+FROM ruby:2.4.1
+RUN apt-get update -qq && apt-get install -y build-essential libpq-dev nodejs
+
+# App specific installations are run separatelly so previous is a rehused container
+RUN apt-get install -y imagemagick && rm -rf /var/lib/apt/lists/*
+
+ENV INSTALL_PATH /app
+RUN mkdir -p $INSTALL_PATH
+WORKDIR $INSTALL_PATH
+
+COPY Gemfile Gemfile.lock ./
+RUN gem install bundler && bundle install --jobs 20 --retry 5 --without development test
+
+# Set Rails to run in production
+ENV RAILS_ENV production
+ENV RACK_ENV production
+
+COPY . ./
+
+# Precompile Rails assets. We set a dummy secret key
+RUN bundle exec rake SECRET_KEY_BASE=25c3933cdc4bb69c6846da5d1c587b07ccc39e4e37f7f1e55ac5e46f83f6e38845a40f2e32d0b52404684818f82f3c40461c903a6dda70d78aa7822b0bfefa4a assets:precompile

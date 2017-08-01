@@ -1,24 +1,6 @@
 version: '3'
 services:
 #===============================================================================
-# API
-#===============================================================================
-  rails:
-    build: ./rails
-    command:
-      bash -c "bundle install && bundle exec rails s -p 3000 -b '0.0.0.0'"
-    volumes:
-      - ${API_SRC_PATH}:/rails
-      - ${PERSISTENT_PATH}/rails/usr/local/bundle:/usr/local/bundle
-      - ${PERSISTENT_PATH}/rails/app/tmp:/app/tmp
-    ports:
-      - "3000:3000"
-    depends_on:
-      - postgres
-    networks:
-      - internal
-
-#===============================================================================
 # Database
 #===============================================================================
   postgres:
@@ -34,12 +16,33 @@ services:
       - POSTGRES_ENCODING=UTF8
       - POSTGRES_COLLATE=C
       - POSTGRES_COLLATE_TYPE=C
-    networks:
-      - internal
+  db_backup:
+    image: equinoxone/postgres_backup:0.1
+    depends_on:
+      - postgres
+    volumes:
+      - ${PERSISTENT_PATH}/backup:/backup
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=${POSTGRES_DB}
 
+#===============================================================================
+# API
+#===============================================================================
+  app:
+    build: .
+    command: bash -c "bundle install && bundle exec puma -C config/puma.rb"
+    ports:
+      - "3000:3000"
+    depends_on:
+      - postgres
 #===============================================================================
 # Networks
 #===============================================================================
-networks:
-  internal:
-    driver: 'bridge'
+  nginx:
+    image: nginx
+    depends_on:
+      - app
+    volumes:
+      - ${PERSISTENT_PATH}/logs/nginx:/var/log/nginx

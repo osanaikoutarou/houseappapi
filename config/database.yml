@@ -49,3 +49,7 @@ development:
 test:
   <<: *default
   database: houseapp_test
+
+production:
+  <<: *default
+  database: <%= ENV['POSTGRES_DB']%>
