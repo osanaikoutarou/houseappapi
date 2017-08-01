@@ -1,17 +1,22 @@
 class CreateArchitects < ActiveRecord::Migration
   def change
     create_table :architects do |t|
-      t.text :name                # architect name
-      t.text :description         # メッセージ？
-      t.text :avatar              # profile image
-      t.text :policy              # こだわり、ポリシー
-      t.text :affiliation         # 所属
-      t.text :qualifications      # 資格
-      t.text :speciality          # 得意タイプ
-      t.text :career              # 経歴
-      t.text :homepage_url        # ホームページURL
-
-      # 住所は後回し
+      t.string :name
+      t.text :introduction          # こだわり、ポリシー
+      t.text :message
+      t.string :avatar
+      t.string :affiliation         # 所属
+      t.string :speciality          # 得意タイプ
+      t.text :qualifications        # 資格
+      t.text :career                # 経歴
+      t.string :homepage_url        # ホームページURL
+      t.string :zip_code
+      t.string :prefecture
+      t.string :city
+      t.string :address1
+      t.string :address2
+      t.decimal :latitude, precision: 10, scale: 6
+      t.decimal :longitude, precision: 10, scale: 6
 
       t.timestamps null: true
     end
