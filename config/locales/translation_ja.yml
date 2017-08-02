@@ -1,0 +1,149 @@
+ja:
+  activerecord:
+#    models:
+#      acts_as_taggable_on/tag: タグ付け可能/タグとして動作する  #g
+#      acts_as_taggable_on/tagging: タグ付け可能/タグ付けとして動作する  #g
+#      anonymous_user: 匿名ユーザー  #g
+#      architect: 建築家  #g
+#      architect_view: 建築家の視点  #g
+#      favorite_architect: 好きな建築家  #g
+#      favorite_house: 好きな家  #g
+#      favorite_photo: お気に入りの写真  #g
+#      house: 家  #g
+#      house_article: 家の記事  #g
+#      house_view: 家の眺め  #g
+#      photo: 写真  #g
+#      photo_view: 写真の表示  #g
+#      user: ユーザー  #g
+#      user_profile: ユーザープロフィール  #g
+
+    attributes:
+#      acts_as_taggable_on/tag:
+#        name: 名  #g
+#        taggings: タギング  #g
+#
+#      acts_as_taggable_on/tagging:
+#        context: コンテキスト  #g
+#        tag: :activerecord.models.tag  #g
+#        taggable: :activerecord.models.taggable  #g
+#        taggable_type: タグ付タイプ  #g
+#        tagger: :activerecord.models.tagger  #g
+#        tagger_type: タガタイプ  #g
+
+      anonymous_user:
+        app_version: アプリ版  #g
+        device_gps_adid: デバイスgps adid  #g
+        device_idfa: デバイスIDFA  #g
+        device_idfv: デバイスIDFV  #g
+        device_model: デバイスモデル  #g
+        device_name: 装置名  #g
+        preferences: 設定  #g
+        user: :activerecord.models.user  #g
+
+      architect:
+        address1: 住所（1  #g
+        address2: 住所（2  #g
+        affiliation: 所属会社  #g
+        avatar: アバター  #g
+        career: 経歴  #g
+        city: 市  #g
+        homepage: ホームページ  #g
+        houses: 住宅  #g
+        introduction: ポリシー  #g
+        latitude: 緯度  #g
+        longitude: 経度  #g
+        message: メッセージ  #g
+        name: 名前  #g
+        photos: 写真  #g
+        prefecture: 県  #g
+        qualifications: 資格  #g
+        speciality: 得意領域  #g
+        user: :activerecord.models.user  #g
+        zip_code: 郵便番号  #g
+
+      architect_view:
+        architect: :activerecord.models.architect  #g
+
+      favorite_architect:
+        architect: :activerecord.models.architect  #g
+        like: 好き  #g
+        user: :activerecord.models.user  #g
+
+      favorite_house:
+        house: :activerecord.models.house  #g
+        like: 好き  #g
+        user: :activerecord.models.user  #g
+
+      favorite_photo:
+        like: 好き  #g
+        photo: :activerecord.models.photo  #g
+        user: :activerecord.models.user  #g
+
+      house:
+        address1: 住所（1  #g
+        address2: 住所（2  #g
+        architect: :activerecord.models.architect  #g
+        area: エリア  #g
+        city: 市  #g
+        description: 説明文  #g
+        floor_space: 延床面積  #g
+        latitude: 緯度  #g
+        longitude: 経度  #g
+        name: 物件名・タイトル
+        photos: 写真  #g
+        prefecture: 県  #g
+        rank: ランク  #g
+        site_area_space: 敷地面積  #g
+        zip_code: 郵便番号  #g
+
+      house_article:
+        body: 説明  #g
+        house: :activerecord.models.house  #g
+        title: タイトル  #g
+
+      house_view:
+        house: :activerecord.models.house  #g
+
+      photo:
+        base_tags: ベースタグ  #g
+        description: 説明  #g
+        featured_photo: 注目の写真  #g
+        house: :activerecord.models.house  #g
+        image: 画像  #g
+        place_taggings: タギングスを置く  #g
+        places: 場所  #g
+        tag_taggings: タグのタグ付け  #g
+        taggings: タギング  #g
+        tags: タグ  #g
+        title: タイトル  #g
+
+      photo_view:
+        photo: :activerecord.models.photo  #g
+
+#      user:
+#        current_sign_in_at: 現在のログイン  #g
+#        current_sign_in_ip: 現在の郵便番号  #g
+#        email: Eメール  #g
+#        encrypted_password: 暗号化されたパスワード  #g
+#        last_sign_in_at: 最後にログインする  #g
+#        last_sign_in_ip: ipの最後のサイン  #g
+#        remember_created_at: 作成時の覚え書き  #g
+#        reset_password_sent_at: 送信パスワードのリセット  #g
+#        reset_password_token: パスワードトークンをリセットする  #g
+#        role: 役割  #g
+#        user_profile: :activerecord.models.user_profile  #g
+
+#      user_profile:
+#        address1: 住所（1  #g
+#        address2: 住所（2  #g
+#        city: 市  #g
+#        first_name: ファーストネーム  #g
+#        first_name_kana: 名字  #g
+#        gender: 性別  #g
+#        last_name: 苗字  #g
+#        last_name_kana: 姓がかな  #g
+#        latitude: 緯度  #g
+#        longitude: 経度  #g
+#        prefecture: 県  #g
+#        user: :activerecord.models.user  #g
+#        zip_code: 郵便番号  #g

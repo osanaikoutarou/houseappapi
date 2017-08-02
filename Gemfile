@@ -17,6 +17,7 @@ gem 'devise'
 gem 'dotenv-rails'
 gem 'fog-aws' # S3
 gem 'high_voltage'
+gem 'i18n_generators'
 gem 'jbuilder', '~> 2.5'
 gem 'jquery-rails'
 gem 'jwt'

@@ -42,17 +42,24 @@ ActiveRecord::Schema.define(version: 20170801140405) do
   end
 
   create_table "architects", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
-    t.text     "name"
-    t.text     "description"
-    t.text     "avatar"
-    t.text     "policy"
-    t.text     "affiliation"
+    t.string   "name"
+    t.string   "affiliation"
+    t.string   "zip_code"
+    t.string   "prefecture"
+    t.string   "city"
+    t.string   "address1"
+    t.string   "address2"
+    t.decimal  "latitude",       precision: 10, scale: 6
+    t.decimal  "longitude",      precision: 10, scale: 6
     t.text     "qualifications"
-    t.text     "speciality"
+    t.text     "message"
+    t.text     "introduction"
+    t.string   "speciality"
     t.text     "career"
-    t.text     "homepage_url"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string   "homepage"
+    t.string   "avatar"
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
     t.uuid     "user_id"
     t.index ["created_at"], name: "index_architects_on_created_at", using: :btree
     t.index ["user_id"], name: "index_architects_on_user_id", using: :btree
@@ -104,19 +111,21 @@ ActiveRecord::Schema.define(version: 20170801140405) do
 
   create_table "houses", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.uuid     "architect_id"
-    t.text     "title"
-    t.text     "short_description"
-    t.text     "description"
-    t.integer  "cost_type"
+    t.string   "name"
+    t.integer  "rank"
     t.integer  "floor_space"
     t.integer  "site_area_space"
+    t.string   "area"
     t.string   "zip_code"
     t.string   "prefecture"
     t.string   "city"
     t.string   "address1"
     t.string   "address2"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+    t.decimal  "latitude",        precision: 10, scale: 6
+    t.decimal  "longitude",       precision: 10, scale: 6
+    t.text     "description"
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
     t.index ["created_at"], name: "index_houses_on_created_at", using: :btree
   end
 
@@ -168,18 +177,20 @@ ActiveRecord::Schema.define(version: 20170801140405) do
 
   create_table "user_profiles", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.uuid     "user_id"
-    t.text     "first_name"
-    t.text     "last_name"
-    t.text     "first_name_kana"
-    t.text     "last_name_kana"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "first_name_kana"
+    t.string   "last_name_kana"
     t.string   "gender"
     t.string   "zip_code"
     t.string   "prefecture"
     t.string   "city"
     t.string   "address1"
     t.string   "address2"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.decimal  "latitude",        precision: 10, scale: 6
+    t.decimal  "longitude",       precision: 10, scale: 6
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
   end
 
   create_table "users", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
