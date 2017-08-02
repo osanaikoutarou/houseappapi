@@ -1,5 +1,4 @@
 RailsAdmin.config do |config|
-
   ### Popular gems integration
 
   ## == Devise ==
@@ -38,4 +37,6 @@ RailsAdmin.config do |config|
     # history_index
     # history_show
   end
+
+  config.excluded_models = %w[ArchitectView FavoriteArchitect FavoriteHouse FavoritePhoto HouseView PhotoView]
 end
