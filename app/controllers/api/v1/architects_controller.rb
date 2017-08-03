@@ -14,6 +14,7 @@ module Api
 
       def index
         @architects = Architect.limit(@row).offset(@offset).all
+        @total = Architect.count
       end
 
       #---------------------------------------------------------
@@ -38,6 +39,7 @@ module Api
       end
       def houses
         @houses = House.where(architect_id: params[:architect_id]).limit(@row).offset(@offset).all
+        @total = House.where(architect_id: params[:architect_id]).count
 
         render status: common_http_status
       end
@@ -54,6 +56,7 @@ module Api
       end
       def photos
         @photos = Photo.joins(:house).where('houses.architect_id = ?', params[:architect_id]).limit(@row).offset(@offset).all
+        @total = Photo.joins(:house).where('houses.architect_id = ?', params[:architect_id]).count
         render status: common_http_status
       end
 

@@ -48,6 +48,25 @@
           "method": "get"
         }
       ]
+    },
+    {
+      "path": "/api/v1/houses/{house_id}/featured_photos.json",
+      "operations": [
+        {
+          "summary": "List all photo for a house",
+          "parameters": [
+            {
+              "paramType": "path",
+              "name": "house_id",
+              "type": "string",
+              "description": null,
+              "required": false
+            }
+          ],
+          "nickname": "Api::V1::Houses#featured_photos",
+          "method": "get"
+        }
+      ]
     }
   ],
   "authorizations": null
