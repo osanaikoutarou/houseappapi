@@ -1,2 +1,2 @@
 json.partial! '/api/v1/common'
-json.architect @architect
+json.partial! '/api/v1/shared/architect', architect: @architect

@@ -8,6 +8,7 @@ module Api
 
       before_action :verify_jwt_token
 
+      #---------------------------------------------------------
       # POST /api/photos/:photo_id/like
       swagger_api :like do
         summary 'Marks photo as favorite for current user'
@@ -25,6 +26,7 @@ module Api
         @favorite.save!
       end
 
+      #---------------------------------------------------------
       # POST /api/photos/:photo_id/pass
       swagger_api :pass do
         summary 'Marks photo as no interest for current user'

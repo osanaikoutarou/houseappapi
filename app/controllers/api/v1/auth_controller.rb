@@ -16,8 +16,9 @@ module Api
         summary 'Register new user.'
         param :form, :email, :string, :required
         param :form, :password, :string, :required
+        response :ok
+        response :bad_request
       end
-
       def register
         email    = params[:email]
         password = params[:password]
@@ -43,8 +44,9 @@ module Api
         summary 'Login with email/password.'
         param :form, :email, :string, :required
         param :form, :password, :string, :required
+        response :ok
+        response :bad_request
       end
-
       def login
         email    = params[:email]
         password = params[:password]
@@ -65,8 +67,8 @@ module Api
       # GET /api/auth/profile
       swagger_api :profile do
         summary 'Get current user profile'
+        response :ok
       end
-
       def profile
         @user         = current_user
         @user_profile = current_user.try(:user_profile)
@@ -76,11 +78,10 @@ module Api
 
       #---------------------------------------------------------
       # PUT /api/auth/profile
-      swagger_api :profile do
+      swagger_api :update_profile do
         summary 'Update profile for current login user'
         notes 'Authentication required'
       end
-
       def update_profile
         @user         = current_user
         @user_profile = current_user.user_profile || UserProfile.new(user: current_user)
@@ -91,14 +92,13 @@ module Api
 
       #---------------------------------------------------------
       # PUT /api/auth/password
-      swagger_api :password do
+      swagger_api :change_password do
         summary 'Update current password'
         param :form, :password, :string, :required
         param :form, :new_password, :string, :required
         response :ok
         response :bad_request
       end
-
       def change_password
         password     = params[:password]
         new_password = params[:new_password]

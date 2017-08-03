@@ -22,6 +22,10 @@
     {
       "path": "/apidocs/api/v1/photos.{format}",
       "description": "Manage requests for photo"
+    },
+    {
+      "path": "/apidocs/api/v1/stats.{format}",
+      "description": "Statistic data"
     }
   ],
   "authorizations": null,

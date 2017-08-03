@@ -15,6 +15,9 @@ Rails.application.routes.draw do
 
       scope :architects do
         get '/' => 'architects#index'
+        get '/:architect_id' => 'architects#show'
+        get '/:architect_id/houses' => 'architects#houses'
+        get '/:architect_id/photos' => 'architects#photos'
       end
 
       scope :auth do
@@ -37,6 +40,10 @@ Rails.application.routes.draw do
       scope :photos do
         post '/:photo_id/like' => 'photos#like'
         post '/:photo_id/pass' => 'photos#pass'
+      end
+
+      scope :stats do
+        get '/likes' => 'stats#likes'
       end
 
     end

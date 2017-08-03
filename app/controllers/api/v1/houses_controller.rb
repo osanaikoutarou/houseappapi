@@ -8,6 +8,7 @@ module Api
 
       before_action :load_house, only: %i[show photos]
 
+      #---------------------------------------------------------
       # GET /houses/:house_id
       swagger_api :show do
         summary 'Get detail information about a house'
@@ -20,6 +21,7 @@ module Api
         return head :not_found
       end
 
+      #---------------------------------------------------------
       # GET /houses/:house_id/photos
       swagger_api :photos do
         summary 'List all photo for a house'
@@ -29,6 +31,7 @@ module Api
         @photos = Photo.where(house: @house).limit(20).all
       end
 
+      #---------------------------------------------------------
       # GET /houses/:house_id/featured_photos
       def featured_photos
         @photos = Photo.where(house: @house, featured_photo: true).limit(20).all

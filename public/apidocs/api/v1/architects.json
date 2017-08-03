@@ -22,6 +22,108 @@
           "method": "get"
         }
       ]
+    },
+    {
+      "path": "/api/v1/architects/{architect_id}.json",
+      "operations": [
+        {
+          "summary": "Get information about architect",
+          "parameters": [
+            {
+              "paramType": "path",
+              "name": "architect_id",
+              "type": "string",
+              "description": null,
+              "required": false
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 404,
+              "responseModel": null,
+              "message": "Not Found"
+            }
+          ],
+          "nickname": "Api::V1::Architects#show",
+          "method": "get"
+        }
+      ]
+    },
+    {
+      "path": "/api/v1/architects/{architect_id}/houses.json",
+      "operations": [
+        {
+          "summary": "Get houses from an architect",
+          "parameters": [
+            {
+              "paramType": "path",
+              "name": "architect_id",
+              "type": "string",
+              "description": null,
+              "required": false
+            },
+            {
+              "paramType": "query",
+              "name": "page",
+              "type": "integer",
+              "description": null,
+              "required": false
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 200,
+              "responseModel": null,
+              "message": "Ok"
+            },
+            {
+              "code": 400,
+              "responseModel": null,
+              "message": "Bad Request"
+            }
+          ],
+          "nickname": "Api::V1::Architects#houses",
+          "method": "get"
+        }
+      ]
+    },
+    {
+      "path": "/api/v1/architects/{architect_id}/photos.json",
+      "operations": [
+        {
+          "summary": "Get photos from an architect",
+          "parameters": [
+            {
+              "paramType": "path",
+              "name": "architect_id",
+              "type": "string",
+              "description": null,
+              "required": false
+            },
+            {
+              "paramType": "query",
+              "name": "page",
+              "type": "integer",
+              "description": null,
+              "required": false
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 200,
+              "responseModel": null,
+              "message": "Ok"
+            },
+            {
+              "code": 400,
+              "responseModel": null,
+              "message": "Bad Request"
+            }
+          ],
+          "nickname": "Api::V1::Architects#photos",
+          "method": "get"
+        }
+      ]
     }
   ],
   "authorizations": null
