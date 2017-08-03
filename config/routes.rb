@@ -13,6 +13,10 @@ Rails.application.routes.draw do
         match '/preferences' => 'anonymous#preferences', via: %i[post put]
       end
 
+      scope :architects do
+        get '/' => 'architects#index'
+      end
+
       scope :auth do
         post  '/register' => 'auth#register'
         post  '/login'    => 'auth#login'

@@ -1,0 +1,28 @@
+{
+  "apiVersion": "1.0",
+  "swaggerVersion": "1.2",
+  "basePath": "https://houseapp.herokuapp.com",
+  "resourcePath": "architects",
+  "apis": [
+    {
+      "path": "/api/v1/architects.json",
+      "operations": [
+        {
+          "summary": "Get architect list",
+          "parameters": [
+            {
+              "paramType": "query",
+              "name": "page",
+              "type": "integer",
+              "description": null,
+              "required": false
+            }
+          ],
+          "nickname": "Api::V1::Architects#index",
+          "method": "get"
+        }
+      ]
+    }
+  ],
+  "authorizations": null
+}

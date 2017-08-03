@@ -10,7 +10,7 @@ Swagger::Docs::Config.register_apis(
     api_extension_type: :json,
     controller_base_path: '',
     api_file_path: 'public/apidocs',
-    base_path: ENV['BASE_URL'],
+    base_path: 'https://houseapp.herokuapp.com',
     clean_directory: true,
     attributes: {
       info: {

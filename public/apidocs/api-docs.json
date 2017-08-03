@@ -1,0 +1,34 @@
+{
+  "apiVersion": "1.0",
+  "swaggerVersion": "1.2",
+  "basePath": "https://houseapp.herokuapp.com",
+  "apis": [
+    {
+      "path": "/apidocs/api/v1/anonymous.{format}",
+      "description": "Manage requests from Anonymous users"
+    },
+    {
+      "path": "/apidocs/api/v1/architects.{format}",
+      "description": "Manage requests for architect"
+    },
+    {
+      "path": "/apidocs/api/v1/auth.{format}",
+      "description": "User authentication"
+    },
+    {
+      "path": "/apidocs/api/v1/houses.{format}",
+      "description": "Manage requests for house"
+    },
+    {
+      "path": "/apidocs/api/v1/photos.{format}",
+      "description": "Manage requests for photo"
+    }
+  ],
+  "authorizations": null,
+  "info": {
+    "title": "Swagger Houseapp API",
+    "description": "Swagger Houseapp API.",
+    "license": "Apache 2.0",
+    "licenseUrl": "http://www.apache.org/licenses/LICENSE-2.0.html"
+  }
+}

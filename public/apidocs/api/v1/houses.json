@@ -1,0 +1,54 @@
+{
+  "apiVersion": "1.0",
+  "swaggerVersion": "1.2",
+  "basePath": "https://houseapp.herokuapp.com",
+  "resourcePath": "houses",
+  "apis": [
+    {
+      "path": "/api/v1/houses/{house_id}.json",
+      "operations": [
+        {
+          "summary": "Get detail information about a house",
+          "parameters": [
+            {
+              "paramType": "path",
+              "name": "house_id",
+              "type": "string",
+              "description": null,
+              "required": false
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 404,
+              "responseModel": null,
+              "message": "Not Found"
+            }
+          ],
+          "nickname": "Api::V1::Houses#show",
+          "method": "get"
+        }
+      ]
+    },
+    {
+      "path": "/api/v1/houses/{house_id}/photos.json",
+      "operations": [
+        {
+          "summary": "List all photo for a house",
+          "parameters": [
+            {
+              "paramType": "path",
+              "name": "house_id",
+              "type": "string",
+              "description": null,
+              "required": false
+            }
+          ],
+          "nickname": "Api::V1::Houses#photos",
+          "method": "get"
+        }
+      ]
+    }
+  ],
+  "authorizations": null
+}

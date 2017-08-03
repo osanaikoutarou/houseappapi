@@ -1,0 +1,98 @@
+{
+  "apiVersion": "1.0",
+  "swaggerVersion": "1.2",
+  "basePath": "https://houseapp.herokuapp.com",
+  "resourcePath": "anonymous",
+  "apis": [
+    {
+      "path": "/api/v1/anonymous.json",
+      "operations": [
+        {
+          "summary": "Register new anonymous user.",
+          "notes": "App side should call this in first installation and store uuid, anonymous_token locally",
+          "parameters": [
+            {
+              "paramType": "form",
+              "name": "device_uuid",
+              "type": "string",
+              "description": null,
+              "required": false
+            },
+            {
+              "paramType": "form",
+              "name": "device_name",
+              "type": "string",
+              "description": null,
+              "required": false
+            },
+            {
+              "paramType": "form",
+              "name": "device_model",
+              "type": "string",
+              "description": null,
+              "required": false
+            },
+            {
+              "paramType": "form",
+              "name": "device_idfv",
+              "type": "string",
+              "description": null,
+              "required": false
+            },
+            {
+              "paramType": "form",
+              "name": "device_idfa",
+              "type": "string",
+              "description": null,
+              "required": false
+            },
+            {
+              "paramType": "form",
+              "name": "device_gps_adid",
+              "type": "string",
+              "description": null,
+              "required": false
+            },
+            {
+              "paramType": "form",
+              "name": "app_version",
+              "type": "string",
+              "description": null,
+              "required": false
+            }
+          ],
+          "nickname": "Api::V1::Anonymous#create",
+          "method": "post"
+        }
+      ]
+    },
+    {
+      "path": "/api/v1/anonymous/preferences.json",
+      "operations": [
+        {
+          "summary": "Register new anonymous user.",
+          "notes": "App side should call this in first installation and store uuid, anonymous_token locally",
+          "parameters": [
+            {
+              "paramType": "form",
+              "name": "key",
+              "type": "string",
+              "description": null,
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "value",
+              "type": "string",
+              "description": null,
+              "required": true
+            }
+          ],
+          "nickname": "Api::V1::Anonymous#preferences",
+          "method": "post|put"
+        }
+      ]
+    }
+  ],
+  "authorizations": null
+}
