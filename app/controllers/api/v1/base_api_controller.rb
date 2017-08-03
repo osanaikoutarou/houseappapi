@@ -36,7 +36,7 @@ class Api::V1::BaseApiController < ApplicationController
   end
 
   def common_http_status
-    @error.present? ? 400 : 200
+    @error.present? ? :bad_request : :ok
   end
 
 
@@ -44,7 +44,7 @@ class Api::V1::BaseApiController < ApplicationController
   def error_occurred(ex)
     logger.error ex.message
     ex.backtrace.each { |line| logger.error line }
-    @error = APIErrors::E00000
+    @error = ApiErrors::E00000
     @errors = [ex.message]
     render '/api/v1/error', status: common_http_status
   end

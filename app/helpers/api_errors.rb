@@ -1,4 +1,4 @@
-module APIErrors
+module ApiErrors
 
   #
   class Error

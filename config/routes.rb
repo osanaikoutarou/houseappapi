@@ -18,13 +18,14 @@ Rails.application.routes.draw do
       end
 
       scope :auth do
-        post  '/register' => 'auth#register'
-        post  '/login'    => 'auth#login'
+        post '/register' => 'auth#register'
+        post '/login' => 'auth#login'
 
-        match '/logout'         => 'auth#logout', via: %i[delete post put]
-        get   '/profile'        => 'auth#profile'
-        post  '/profile'        => 'auth#update_profile'
-        put   '/password'       => 'auth#change_password'
+        match '/logout' => 'auth#logout', via: %i[delete post put]
+        get '/profile' => 'auth#profile'
+        match '/profile' => 'auth#update_profile', via: %i[post put]
+        match '/password' => 'auth#change_password', via: %i[post put]
+        #match '/reset_password' => 'auth#reset_password', via: %i[post put] TODO: setup mail server
       end
 
       scope :houses do

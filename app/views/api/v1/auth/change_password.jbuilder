@@ -1,1 +1,1 @@
-json.partial! '/api/common'
+json.partial! '/api/v1/common'
