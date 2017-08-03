@@ -433,6 +433,11 @@ class API < Grape::API
 			
 			end
 		
+			#### API No.34 家の画像 get /house/:uuid/photos -> Formatter:photos.jbuilder
+			get 'photos', jbuilder: 'photos' do
+				# ここ結局ID使ってる
+				@photos = Photo.where(house_id: params[:uuid])
+			end
 		end	
 	end
 			
