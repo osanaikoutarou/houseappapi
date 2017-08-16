@@ -75,14 +75,17 @@ module Api
       end
 
       def like
-        @architect = Architect.find(params[:architect_id])
-        FavoriteArchitect.where(user_id: current_user.id, architect_id: @architect.id).first_or_create
+        architect     = Architect.find(params[:architect_id])
+        favorite      = FavoriteArchitect.first_or_initialize(user_id: current_user.id, architect_id: architect.id)
+        favorite.like = true
+        favorite.save!
+
         render status: common_http_status
       end
 
 
       #---------------------------------------------------------
-      # DELETE /architects/:architect_id/like
+      # POST /architects/:architect_id/unlike
       swagger_api :unlike do |api|
         summary 'Remove architect from favorite list'
         notes 'Login required'
@@ -92,8 +95,10 @@ module Api
       end
 
       def unlike
-        @architect = Architect.find(params[:architect_id])
-        FavoriteArchitect.destroy_all(user_id: current_user.id, architect_id: @architect.id)
+        architect     = Architect.find(params[:architect_id])
+        favorite      = FavoriteArchitect.first_or_initialize(user_id: current_user.id, architect_id: architect.id)
+        favorite.like = false
+        favorite.save!
       end
 
 

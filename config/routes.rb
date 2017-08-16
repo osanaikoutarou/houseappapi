@@ -20,7 +20,7 @@ Rails.application.routes.draw do
         get '/:architect_id/houses' => 'architects#houses'
         get '/:architect_id/photos' => 'architects#photos'
         post '/:architect_id/like' => 'architects#like'
-        delete '/:architect_id/like' => 'architects#unlike'
+        post '/:architect_id/unlike' => 'architects#unlike'
       end
 
       scope :auth do
@@ -38,11 +38,13 @@ Rails.application.routes.draw do
         get '/:house_id' => 'houses#show'
         get '/:house_id/photos' => 'houses#photos'
         get '/:house_id/featured_photos' => 'houses#featured_photos'
+        post '/:house_id/like' => 'houses#like'
+        post '/:house_id/unlike' => 'houses#unlike'
       end
 
       scope :photos do
         post '/:photo_id/like' => 'photos#like'
-        post '/:photo_id/pass' => 'photos#pass'
+        post '/:photo_id/unlike' => 'photos#unlike'
       end
 
       scope :stats do
