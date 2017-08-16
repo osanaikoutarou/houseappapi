@@ -27,4 +27,5 @@ SwaggerUiEngine.configure do |config|
   config.swagger_url = {
     v1: '/apidocs/api-docs.json'
   }
+  config.request_headers = true
 end

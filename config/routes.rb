@@ -10,6 +10,7 @@ Rails.application.routes.draw do
 
       scope :anonymous do
         post '/' => 'anonymous#create'
+        get '/:id' => 'anonymous#show'
         match '/preferences' => 'anonymous#preferences', via: %i[post put]
       end
 

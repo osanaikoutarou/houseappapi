@@ -15,21 +15,21 @@
               "paramType": "form",
               "name": "device_uuid",
               "type": "string",
-              "description": null,
+              "description": "Device UUID",
               "required": false
             },
             {
               "paramType": "form",
               "name": "device_name",
               "type": "string",
-              "description": null,
+              "description": "Android / iOS",
               "required": false
             },
             {
               "paramType": "form",
               "name": "device_model",
               "type": "string",
-              "description": null,
+              "description": "iPhone 7",
               "required": false
             },
             {
@@ -59,6 +59,13 @@
               "type": "string",
               "description": null,
               "required": false
+            },
+            {
+              "paramType": "form",
+              "name": "preferences",
+              "type": "string",
+              "description": null,
+              "required": false
             }
           ],
           "nickname": "Api::V1::Anonymous#create",
@@ -67,11 +74,31 @@
       ]
     },
     {
+      "path": "/api/v1/anonymous/{id}.json",
+      "operations": [
+        {
+          "summary": "Get current anonymous device information",
+          "notes": "Anonymous access_token is required",
+          "parameters": [
+            {
+              "paramType": "path",
+              "name": "id",
+              "type": "required",
+              "description": null,
+              "required": false
+            }
+          ],
+          "nickname": "Api::V1::Anonymous#show",
+          "method": "get"
+        }
+      ]
+    },
+    {
       "path": "/api/v1/anonymous/preferences.json",
       "operations": [
         {
           "summary": "Register new anonymous user.",
-          "notes": "App side should call this in first installation and store uuid, anonymous_token locally",
+          "notes": "App side should call this in first installation and store uuid, anonymous_access_token locally",
           "parameters": [
             {
               "paramType": "form",

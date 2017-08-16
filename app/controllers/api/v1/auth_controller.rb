@@ -67,7 +67,10 @@ module Api
       # GET /api/auth/profile
       swagger_api :profile do
         summary 'Get current user profile'
+        param :header, 'Authorization', :string, :required, 'Bearer AccessToken'
         response :ok
+        response :bad_request
+        response :unauthorized
       end
       def profile
         @user         = current_user
@@ -80,7 +83,11 @@ module Api
       # PUT /api/auth/profile
       swagger_api :update_profile do
         summary 'Update profile for current login user'
+        param :header, 'Authorization', :string, :required, 'Bearer AccessToken'
         notes 'Authentication required'
+        response :ok
+        response :bad_request
+        response :unauthorized
       end
       def update_profile
         @user         = current_user
@@ -94,10 +101,12 @@ module Api
       # PUT /api/auth/password
       swagger_api :change_password do
         summary 'Update current password'
+        param :header, 'Authorization', :string, :required, 'Bearer AccessToken'
         param :form, :password, :string, :required
         param :form, :new_password, :string, :required
         response :ok
         response :bad_request
+        response :unauthorized
       end
       def change_password
         password     = params[:password]
@@ -119,6 +128,8 @@ module Api
       swagger_api :reset_password do
         summary 'Send email to reset current password'
         param :form, :email, :string, :required
+        response :ok
+        response :bad_request
       end
       def reset_password
         email = params[:email]
