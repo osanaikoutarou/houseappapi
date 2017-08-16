@@ -124,6 +124,94 @@
           "method": "get"
         }
       ]
+    },
+    {
+      "path": "/api/v1/architects/{architect_id}/like.json",
+      "operations": [
+        {
+          "summary": "Add architect to favorite list",
+          "notes": "Login required",
+          "parameters": [
+            {
+              "paramType": "path",
+              "name": "architect_id",
+              "type": "string",
+              "description": null,
+              "required": false
+            },
+            {
+              "paramType": "header",
+              "name": "Authorization",
+              "type": "string",
+              "description": "Bearer AccessToken",
+              "required": true
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 200,
+              "responseModel": null,
+              "message": "Ok"
+            },
+            {
+              "code": 400,
+              "responseModel": null,
+              "message": "Bad Request"
+            },
+            {
+              "code": 401,
+              "responseModel": null,
+              "message": "Unauthorized"
+            }
+          ],
+          "nickname": "Api::V1::Architects#like",
+          "method": "post"
+        }
+      ]
+    },
+    {
+      "path": "/api/v1/architects/{architect_id}/unlike.json",
+      "operations": [
+        {
+          "summary": "Remove architect from favorite list",
+          "notes": "Login required",
+          "parameters": [
+            {
+              "paramType": "path",
+              "name": "architect_id",
+              "type": "string",
+              "description": null,
+              "required": false
+            },
+            {
+              "paramType": "header",
+              "name": "Authorization",
+              "type": "string",
+              "description": "Bearer AccessToken",
+              "required": true
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 200,
+              "responseModel": null,
+              "message": "Ok"
+            },
+            {
+              "code": 400,
+              "responseModel": null,
+              "message": "Bad Request"
+            },
+            {
+              "code": 401,
+              "responseModel": null,
+              "message": "Unauthorized"
+            }
+          ],
+          "nickname": "Api::V1::Architects#unlike",
+          "method": "post"
+        }
+      ]
     }
   ],
   "authorizations": null

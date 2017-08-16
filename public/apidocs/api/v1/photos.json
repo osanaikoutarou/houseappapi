@@ -37,7 +37,7 @@
       ]
     },
     {
-      "path": "/api/v1/photos/{photo_id}/pass.json",
+      "path": "/api/v1/photos/{photo_id}/unlike.json",
       "operations": [
         {
           "summary": "Marks photo as no interest for current user",
@@ -63,7 +63,7 @@
               "message": "Not Found"
             }
           ],
-          "nickname": "Api::V1::Photos#pass",
+          "nickname": "Api::V1::Photos#unlike",
           "method": "post"
         }
       ]

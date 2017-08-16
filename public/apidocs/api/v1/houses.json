@@ -40,7 +40,14 @@
               "paramType": "path",
               "name": "house_id",
               "type": "string",
-              "description": null,
+              "description": "House uuid",
+              "required": false
+            },
+            {
+              "paramType": "query",
+              "name": "page",
+              "type": "integer",
+              "description": "Page number",
               "required": false
             }
           ],
@@ -59,12 +66,93 @@
               "paramType": "path",
               "name": "house_id",
               "type": "string",
-              "description": null,
-              "required": false
+              "description": "House uuid",
+              "required": true
             }
           ],
           "nickname": "Api::V1::Houses#featured_photos",
           "method": "get"
+        }
+      ]
+    },
+    {
+      "path": "/api/v1/houses/{house_id}/like.json",
+      "operations": [
+        {
+          "summary": "Add house to favorite list",
+          "notes": "Login required",
+          "parameters": [
+            {
+              "paramType": "header",
+              "name": "Authorization",
+              "type": "string",
+              "description": "Bearer AccessToken",
+              "required": true
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 200,
+              "responseModel": null,
+              "message": "Ok"
+            },
+            {
+              "code": 400,
+              "responseModel": null,
+              "message": "Bad Request"
+            },
+            {
+              "code": 401,
+              "responseModel": null,
+              "message": "Unauthorized"
+            }
+          ],
+          "nickname": "Api::V1::Houses#like",
+          "method": "post"
+        }
+      ]
+    },
+    {
+      "path": "/api/v1/houses/{house_id}/unlike.json",
+      "operations": [
+        {
+          "summary": "Remove house from favorite list",
+          "notes": "Login required",
+          "parameters": [
+            {
+              "paramType": "path",
+              "name": "house_id",
+              "type": "string",
+              "description": "Architect UUID",
+              "required": true
+            },
+            {
+              "paramType": "header",
+              "name": "Authorization",
+              "type": "string",
+              "description": "Bearer AccessToken",
+              "required": true
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 200,
+              "responseModel": null,
+              "message": "Ok"
+            },
+            {
+              "code": 400,
+              "responseModel": null,
+              "message": "Bad Request"
+            },
+            {
+              "code": 401,
+              "responseModel": null,
+              "message": "Unauthorized"
+            }
+          ],
+          "nickname": "Api::V1::Houses#unlike",
+          "method": "post"
         }
       ]
     }
