@@ -39,7 +39,8 @@ module Api
       swagger_api :show do
         summary 'Get current anonymous device information'
         notes 'Anonymous access_token is required'
-        param :path, :id, :required, 'Device anonymous ID'
+        param :path, :id, :string, :required, 'Device anonymous ID'
+        response :ok
       end
       def show
 

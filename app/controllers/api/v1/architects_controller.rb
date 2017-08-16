@@ -3,7 +3,7 @@ module Api
     class ArchitectsController < BaseApiController
       swagger_controller :architects, 'Manage requests for architect'
 
-      before_action :paginate, only: %i[index houses photos]
+      before_action :verify_jwt_token, only: %i[like unlike]
 
       #---------------------------------------------------------
       # GET /architects
@@ -13,8 +13,8 @@ module Api
       end
 
       def index
-        @architects = Architect.limit(@row).offset(@offset).all
-        @total = Architect.count
+        @architects = Architect.page(params[:page]).all
+        @total      = Architect.count
       end
 
       #---------------------------------------------------------
@@ -24,6 +24,7 @@ module Api
         param :path, :architect_id, :string, 'Architect UUID'
         response :not_found
       end
+
       def show
         @architect = Architect.find(params[:architect_id])
       end
@@ -37,9 +38,10 @@ module Api
         response :ok
         response :bad_request
       end
+
       def houses
-        @houses = House.where(architect_id: params[:architect_id]).limit(@row).offset(@offset).all
-        @total = House.where(architect_id: params[:architect_id]).count
+        @houses = House.where(architect_id: params[:architect_id]).page(params[:page]).all
+        @total  = House.where(architect_id: params[:architect_id]).count
 
         render status: common_http_status
       end
@@ -54,20 +56,53 @@ module Api
         response :ok
         response :bad_request
       end
+
       def photos
-        @photos = Photo.joins(:house).where('houses.architect_id = ?', params[:architect_id]).limit(@row).offset(@offset).all
-        @total = Photo.joins(:house).where('houses.architect_id = ?', params[:architect_id]).count
+        @photos = Photo.joins(:house).where('houses.architect_id = ?', params[:architect_id]).page(params[:page]).all
+        @total  = Photo.joins(:house).where('houses.architect_id = ?', params[:architect_id]).count
         render status: common_http_status
       end
 
+
+      #---------------------------------------------------------
+      # POST /architects/:architect_id/like
+      swagger_api :like do |api|
+        summary 'Add architect to favorite list'
+        notes 'Login required'
+        param :path, :architect_id, :string, 'Architect UUID'
+        BaseApiController::add_swagger_auth_params(api)
+        BaseApiController::add_swagger_common_params(api)
+      end
+
+      def like
+        @architect = Architect.find(params[:architect_id])
+        FavoriteArchitect.where(user_id: current_user.id, architect_id: @architect.id).first_or_create
+        render status: common_http_status
+      end
+
+
+      #---------------------------------------------------------
+      # DELETE /architects/:architect_id/like
+      swagger_api :unlike do |api|
+        summary 'Remove architect from favorite list'
+        notes 'Login required'
+        param :path, :architect_id, :string, 'Architect UUID'
+        BaseApiController::add_swagger_auth_params(api)
+        BaseApiController::add_swagger_common_params(api)
+      end
+
+      def unlike
+        @architect = Architect.find(params[:architect_id])
+        FavoriteArchitect.destroy_all(user_id: current_user.id, architect_id: @architect.id)
+      end
+
+
+      #---------------------------------------------------------
+
       private
 
-      def paginate
-        @row = 20
-        @page   = (params[:page].to_i || 1).to_i
-        @page   = 1 if @page < 1
-        @offset = (@page - 1) * 20
-      end
+      #---------------------------------------------------------
+
     end
   end
 end

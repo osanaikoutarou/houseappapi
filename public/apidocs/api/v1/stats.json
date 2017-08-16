@@ -25,6 +25,32 @@
           "method": "get"
         }
       ]
+    },
+    {
+      "path": "/api/v1/stats/home.json",
+      "operations": [
+        {
+          "summary": "Get data to display in home screen",
+          "parameters": [
+            {
+              "paramType": "query",
+              "name": "page",
+              "type": "integer",
+              "description": null,
+              "required": false
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 200,
+              "responseModel": null,
+              "message": "Ok"
+            }
+          ],
+          "nickname": "Api::V1::Stats#home",
+          "method": "get"
+        }
+      ]
     }
   ],
   "authorizations": null

@@ -6,7 +6,11 @@ class Api::V1::BaseApiController < ApplicationController
   rescue_from ::Exception, with: :error_occurred
   attr_reader :current_user
 
+  #---------------------------------------------------------
+
   protected
+
+  #---------------------------------------------------------
 
   ##
   # This method can be used as a before filter to protect
@@ -35,19 +39,27 @@ class Api::V1::BaseApiController < ApplicationController
     head :unauthorized
   end
 
+  #---------------------------------------------------------
+
   def common_http_status
     @error.present? ? :bad_request : :ok
   end
+
+  #---------------------------------------------------------
 
   def self.add_swagger_common_params(api)
     api.response :ok
     api.response :bad_request
   end
 
+  #---------------------------------------------------------
+
   def self.add_swagger_auth_params(api)
     api.param :header, 'Authorization', :string, :required, 'Bearer AccessToken'
     api.response :unauthorized
   end
+
+  #---------------------------------------------------------
 
   def error_occurred(ex)
     logger.error ex.message

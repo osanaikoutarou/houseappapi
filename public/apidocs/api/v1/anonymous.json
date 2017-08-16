@@ -83,9 +83,16 @@
             {
               "paramType": "path",
               "name": "id",
-              "type": "required",
-              "description": null,
-              "required": false
+              "type": "string",
+              "description": "Device anonymous ID",
+              "required": true
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 200,
+              "responseModel": null,
+              "message": "Ok"
             }
           ],
           "nickname": "Api::V1::Anonymous#show",
