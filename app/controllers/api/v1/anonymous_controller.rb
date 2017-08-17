@@ -18,9 +18,10 @@ module Api
         param :form, :app_version, :string, :optional
         param :form, :preferences, :string, :optional
       end
+
       def create
-        uuid                       = params[:device_uuid] || SecureRandom.uuid
-        @anonymous                 = AnonymousUser.where(id: uuid).first_or_initialize
+        uuid       = params[:device_uuid] || SecureRandom.uuid
+        @anonymous = AnonymousUser.where(id: uuid).first_or_initialize
 
         @anonymous.device_name     = params[:device_name]
         @anonymous.device_model    = params[:device_model]
@@ -42,6 +43,7 @@ module Api
         param :path, :id, :string, :required, 'Device anonymous ID'
         response :ok
       end
+
       def show
 
         @anonymous = AnonymousUser.find(params[:id])
@@ -55,6 +57,7 @@ module Api
         param :form, :key, :string, :required
         param :form, :value, :string, :required
       end
+
       def preferences
         preferences               = @anonymous.preferences || {}
         preferences[params[:key]] = params[:value]

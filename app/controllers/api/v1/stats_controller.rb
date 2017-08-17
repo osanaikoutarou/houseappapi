@@ -26,7 +26,7 @@ module Api
       # GET /home
       swagger_api :home do
         summary 'Get data to display in home screen'
-        param :query, :page, :integer, 'Page to show'
+        param :query, :page, :integer, :optional, 'Page to show'
         response :ok
       end
 

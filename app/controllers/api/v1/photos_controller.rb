@@ -17,11 +17,12 @@ module Api
         response :unauthorized
         response :not_found
       end
+
       def like
         photo_id = params[:photo_id]
         head status: :not_found && return unless Photo.exists?(photo_id)
 
-        @favorite = FavoritePhoto.find_or_initialize_by(photo_id: photo_id, user_id: @current_user.id)
+        @favorite      = FavoritePhoto.find_or_initialize_by(photo_id: photo_id, user_id: @current_user.id)
         @favorite.like = true
         @favorite.save!
       end
@@ -35,11 +36,12 @@ module Api
         response :unauthorized
         response :not_found
       end
+
       def unlike
         photo_id = params[:photo_id]
         head status: :not_found && return unless Photo.exists?(photo_id)
 
-        @favorite = FavoritePhoto.find_or_initialize_by(photo_id: photo_id, user_id: @current_user.id)
+        @favorite      = FavoritePhoto.find_or_initialize_by(photo_id: photo_id, user_id: @current_user.id)
         @favorite.like = false
         @favorite.save!
       end

@@ -36,7 +36,7 @@
               "paramType": "query",
               "name": "page",
               "type": "integer",
-              "description": null,
+              "description": "Page to show",
               "required": false
             }
           ],
