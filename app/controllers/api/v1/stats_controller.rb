@@ -14,9 +14,9 @@ module Api
 
       def likes
         @stats = {
-            photo_liked_count:     FavoritePhoto.where(like: true).count,
-            house_liked_count:     FavoriteHouse.where(like: true).count,
-            architect_liked_count: FavoriteArchitect.where(like: true).count
+            photo_likes_count:     FavoritePhoto.where(like: true).count,
+            house_likes_count:     FavoriteHouse.where(like: true).count,
+            architect_likes_count: FavoriteArchitect.where(like: true).count
         }
         render status: common_http_status
       end
@@ -33,9 +33,9 @@ module Api
       def home
 
         @stats = {
-            photo_liked_count:     FavoritePhoto.where(like: true).count,
-            house_liked_count:     FavoriteHouse.where(like: true).count,
-            architect_liked_count: FavoriteArchitect.where(like: true).count
+            photo_likes_count:     FavoritePhoto.where(like: true).count,
+            house_likes_count:     FavoriteHouse.where(like: true).count,
+            architect_likes_count: FavoriteArchitect.where(like: true).count
         }
 
         @architects = Architect.page(params[:page]).order('created_at DESC').all
