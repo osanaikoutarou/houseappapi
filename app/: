@@ -697,29 +697,7 @@ class API < Grape::API
 				optional :limit, type:Integer, default:50
 			end
 			get '/' , jbuilder: 'photos' do
-				@photos = Photo.all.limit(params[:limit]).offset(params[:offset])
-			end
-		end
-
-		### API No.xx 検索 家
-		resource :houses do
-			params do
-				optional :offset, type:Integer, default:0
-				optional :limit, type:Integer, default:50
-			end
-			get '/' , jbuilder: 'houses' do
-				@houses = House.all.limit(params[:limit]).offset(params[:offset])
-			end
-		end
-
-		### API No.xx 検索 建築家
-		resource :architects do
-			params do
-				optional :offset, type:Integer, default:0
-				optional :limit, type:Integer, default:50
-			end
-			get '/' , jbuilder: 'architects' do
-				@architects = Architect.all.limit(params[:limit]).offset(params[:offset])
+				@photos = Photo.where(true).limit(:limit).offset(:offset)
 			end
 		end
 	end
