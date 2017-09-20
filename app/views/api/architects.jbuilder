@@ -1,5 +1,5 @@
 json.architects do
-	@architects.each do |architect|
+	json.array!(@architects) do |architect|
 		json.architect architect
 		json.houses architect.houses
 		json.photos architect.photos

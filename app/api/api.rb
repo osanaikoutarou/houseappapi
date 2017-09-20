@@ -450,9 +450,9 @@ class API < Grape::API
 		route_param :uuid do
 
 			#### API No.40 建築家詳細取得  get /architect/:uuid  -> Formatter:architect.jbuilder
-			get '/' , jbuilder: 'artchitect' do
+			get '/' , jbuilder: 'architect' do
 				@architect = Architect.find_by(uuid: params[:uuid])
-				@favorite_architect = FavoriteArchitect.find_by(architect_uuid: params[:uuid])
+				@favorite_architect = FavoriteArchitect.find_by(architect_id: params[:uuid])
 			end
 			
 			#### API No.41 建築家LIKE  patch /architect/:uuid/like -> Formatter:architect.jbuilder
