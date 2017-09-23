@@ -53,6 +53,12 @@ Rails.application.routes.draw do
         post '/:photo_id/unlike' => 'photos#unlike'
       end
 
+      scope :search do
+
+        get '/matched_architects' => 'search#matched_architects'
+
+      end
+
       scope :stats do
         get '/likes' => 'stats#likes'
         get '/home' => 'stats#home'

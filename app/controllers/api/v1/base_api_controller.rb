@@ -2,6 +2,7 @@ require 'auth_token'
 
 class Api::V1::BaseApiController < ApplicationController
   skip_before_action :verify_authenticity_token
+  before_action :load_user
   respond_to :json
   rescue_from ::Exception, with: :error_occurred
   attr_reader :current_user
@@ -11,6 +12,17 @@ class Api::V1::BaseApiController < ApplicationController
   protected
 
   #---------------------------------------------------------
+
+  def load_user
+    return if request.headers['Authorization'].blank?
+
+    token = request.headers['Authorization'].split(' ').last
+    return if token.nil?
+
+    payload = AuthToken.payload(token)
+    user_id = payload.first['user']
+    @current_user = User.find(user_id) if user_id
+  end
 
   ##
   # This method can be used as a before filter to protect

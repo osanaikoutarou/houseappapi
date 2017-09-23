@@ -1,6 +1,8 @@
 class FavoriteArchitect < ApplicationRecord
 
+  include Likable
+  include UserFilterable
+
   belongs_to :architect
-  belongs_to :user
 
 end

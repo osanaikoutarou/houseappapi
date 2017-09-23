@@ -18,6 +18,7 @@ if architect.present?
     json.career architect.career
     json.homepage architect.homepage
     json.avatar architect.avatar.url
+    json.featured_photo architect.featured_photo
 
     json.house_count architect.house_count
     json.house_likes_count architect.house_likes_count
