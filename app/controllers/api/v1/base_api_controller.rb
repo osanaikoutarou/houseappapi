@@ -20,7 +20,7 @@ class Api::V1::BaseApiController < ApplicationController
     return if token.nil?
 
     payload = AuthToken.payload(token)
-    user_id = payload.first['user']
+    user_id = payload.first['user'] unless payload.nil?
     @current_user = User.find(user_id) if user_id
   end
 
