@@ -12,7 +12,7 @@ module Api
         summary 'Get random photos for matching. Default: 30 photos per request'
       end
       def matching_photos
-        @photos = User.limit(30).order('RANDOM()')
+        @photos = Photo.limit(30).order('RANDOM()')
         render status: common_http_status
       end
 
