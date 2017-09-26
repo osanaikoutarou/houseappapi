@@ -1,0 +1,45 @@
+{
+  "apiVersion": "1.0",
+  "swaggerVersion": "1.2",
+  "basePath": "https://houseapp.herokuapp.com",
+  "resourcePath": "search",
+  "apis": [
+    {
+      "path": "/api/v1/search/matched_architects.json",
+      "operations": [
+        {
+          "summary": "Get data to display in home screen",
+          "parameters": [
+            {
+              "paramType": "query",
+              "name": "page",
+              "type": "integer",
+              "description": "Page to show",
+              "required": false
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 200,
+              "responseModel": null,
+              "message": "Ok"
+            }
+          ],
+          "nickname": "Api::V1::Search#matched_architects",
+          "method": "get"
+        }
+      ]
+    },
+    {
+      "path": "/api/v1/search/matching_photos.json",
+      "operations": [
+        {
+          "summary": "Get random photos for matching. Default: 30 photos per request",
+          "nickname": "Api::V1::Search#matching_photos",
+          "method": "get"
+        }
+      ]
+    }
+  ],
+  "authorizations": null
+}

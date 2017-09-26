@@ -24,8 +24,8 @@
       "description": "Manage requests for photo"
     },
     {
-      "path": "/apidocs/api/v1/stats.{format}",
-      "description": "Statistic data"
+      "path": "/apidocs/api/v1/search.{format}",
+      "description": "Search for architect, house, photo"
     }
   ],
   "authorizations": null,

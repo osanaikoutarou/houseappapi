@@ -5,8 +5,19 @@ module Api
     class SearchController < BaseApiController
       swagger_controller :search, 'Search for architect, house, photo'
 
+
       #---------------------------------------------------------
-      # GET /matching
+      # GET /matching_photos
+      swagger_api :matching_photos do
+        summary 'Get random photos for matching. Default: 30 photos per request'
+      end
+      def matching_photos
+        @photos = User.limit(30).order('RANDOM()')
+        render status: common_http_status
+      end
+
+      #---------------------------------------------------------
+      # GET /matched_architects
       swagger_api :matched_architects do
         summary 'Get data to display in home screen'
         param :query, :page, :integer, :optional, 'Page to show'

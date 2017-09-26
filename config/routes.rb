@@ -34,12 +34,6 @@ Rails.application.routes.draw do
         #match '/reset_password' => 'auth#reset_password', via: %i[post put] TODO: setup mail server
       end
 
-      scope :matching do
-
-        get '/' => 'matching#index'
-
-      end
-
       scope :houses do
         get '/:house_id' => 'houses#show'
         get '/:house_id/photos' => 'houses#photos'
@@ -56,6 +50,7 @@ Rails.application.routes.draw do
       scope :search do
 
         get '/matched_architects' => 'search#matched_architects'
+        get '/matching_photos' => 'search#matching_photos'
 
       end
 
