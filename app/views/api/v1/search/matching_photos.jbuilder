@@ -1,2 +1,2 @@
 json.partial! '/api/v1/common'
-json.photos @photos
+json.partial! '/api/v1/shared/photos', photos: @photos

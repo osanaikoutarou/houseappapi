@@ -1,8 +1,8 @@
 namespace :testdata do
   desc 'Import test data (from csv)'
-  task import: :environment do
+  task import_20170927: :environment do
     architects = {}
-    CSV.foreach('sampledata/import/architects.csv', headers: true) do |row|
+    CSV.foreach('sampledata/20170927/architects.csv', headers: true) do |row|
       architect_id = row[0]
       avatar_name = row[3]
       name = row[4]
@@ -32,7 +32,7 @@ namespace :testdata do
     end
 
     houses = {}
-    CSV.foreach('sampledata/import/houses.csv', headers: true) do |row|
+    CSV.foreach('sampledata/20170927/houses.csv', headers: true) do |row|
       house_id = row[0]
       name = row[4]
       description = row[5]
@@ -58,7 +58,7 @@ namespace :testdata do
     end
 
     photos = {}
-    CSV.foreach('sampledata/import/photos.csv', headers: true) do |row|
+    CSV.foreach('sampledata/20170927/photos.csv', headers: true) do |row|
       photo_id = row[0]
       title = row[2]
       image_name = row[3]
