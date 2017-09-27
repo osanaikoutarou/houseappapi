@@ -91,41 +91,50 @@ namespace :testdata do
     end
     # Import into DB
 
-    ActiveRecord::Base.transaction do
+    architect_count = 0
+    architects.each_pair do |architect_id, hash|
+      a = Architect.create(hash['architect'])
       begin
-        architects.each_pair do |architect_id, hash|
-          a = Architect.create(hash['architect'])
-          a.remote_avatar_url = "https://houseapp.s3.amazonaws.com/photos/#{hash['architect']['avatar']}" unless hash['architect']['avatar'].blank?
-          a.save!
+        a.remote_avatar_url = "https://houseapp.s3.amazonaws.com/photos/#{hash['architect']['avatar']}" unless hash['architect']['avatar'].blank?
+      rescue
+        puts " ... (failed to upload image) ..."
+      end
 
-          puts "Imported new architect #{a.id}"
+      a.save!
+      architect_count += 1
+      puts "---------------------------------------"
+      puts "Imported new architect #{a.id} (#{architect_count} / #{architects.length})"
 
-          hash['houses'].each_pair do |house_id, house|
-            h = House.new()
-            h.architect_id = a.id
-            h.name = house['name']
-            h.description = house['description']
-            h.area = house['area']
-            h.floor_space = house['floor_space']
+      house_count = 0
+      hash['houses'].each_pair do |house_id, house|
+        h = House.new()
+        h.architect_id = a.id
+        h.name = house['name']
+        h.description = house['description']
+        h.area = house['area']
+        h.floor_space = house['floor_space']
 
-            h.save!
+        h.save!
 
-            puts "Saved new house for architect #{a.id}. Start uploading photos (#{house['photos'].length} photos)"
+        house_count += 1
+        puts "Saved new house (#{house_count} / #{architects[architect_id]['houses'].length}) for architect #{a.id}. Start uploading photos (#{house['photos'].length} photos)"
 
-            photo_count = 0
-            houses[house_id]['photos'].each_pair do |house_id, photo|
-              puts " -> upload #{photo_count} / #{house['photos'].length}"
-              p = Photo.new()
-              p.house_id = h.id
-              p.title = photo['title']
-              p.description = photo['description']
-              p.remote_image_url = "https://houseapp.s3.amazonaws.com/photos/#{photo['image_name']}" unless photo['image_name'].blank?
-              p.save!
-              photo_count = photo_count + 1
-            end
-            puts "Uploaded photos for architect #{a.id} ---|"
+        photo_count = 0
+        houses[house_id]['photos'].each_pair do |house_id, photo|
+          puts " -> uploading #{photo_count} / #{house['photos'].length}"
+          p = Photo.new()
+          p.house_id = h.id
+          p.title = photo['title']
+          p.description = photo['description']
+          begin
+            p.remote_image_url = "https://houseapp.s3.amazonaws.com/photos/#{photo['image_name']}" unless photo['image_name'].blank?
+          rescue
+            puts " ... (failed to upload image) ..."
           end
+          p.save!
+          photo_count += 1
         end
+        puts "Uploaded photos for architect #{a.id} ---|"
       end
     end
   end
