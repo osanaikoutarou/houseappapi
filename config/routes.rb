@@ -44,7 +44,7 @@ Rails.application.routes.draw do
 
       scope :photos do
         post '/:photo_id/like' => 'photos#like'
-        post '/:photo_id/unlike' => 'photos#unlike'
+        post '/:photo_id/pass' => 'photos#pass'
       end
 
       scope :search do

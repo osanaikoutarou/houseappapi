@@ -28,8 +28,8 @@ module Api
       end
 
       #---------------------------------------------------------
-      # POST /api/photos/:photo_id/unlike
-      swagger_api :unlike do
+      # POST /api/photos/:photo_id/pass
+      swagger_api :pass do
         summary 'Marks photo as no interest for current user'
         notes 'User must be logged in'
         param :path, :photo_id, :string, :required
@@ -37,7 +37,7 @@ module Api
         response :not_found
       end
 
-      def unlike
+      def pass
         photo_id = params[:photo_id]
         head status: :not_found && return unless Photo.exists?(photo_id)
 
