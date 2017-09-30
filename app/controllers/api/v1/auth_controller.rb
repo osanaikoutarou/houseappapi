@@ -28,15 +28,18 @@ module Api
         end
       end
       def create_guest_user
-        @device_uuid = params[:device_uuid] || SecureRandom.uuid
+        @device_uuid = params[:device_uuid]
+        if @device_uuid.blank?
+          @device_uuid = SecureRandom.uuid
+        end
         email = "#{@device_uuid}@temp.me"
-        @user = User.first_or_initialize(email: email)
+        @user = User.where(email: email).first_or_initialize
         @user.email = email
         @user.password = @device_uuid
         @user.role = User::ROLE_USER_ANONYMOUS
 
         @user.save!
-        @access_token = AuthToken.sign(user: @user.id)
+        @access_token = AuthToken.sign(user: @user.id, device: @device_uuid)
 
         render 'api/v1/auth/register', status: common_http_status
       end

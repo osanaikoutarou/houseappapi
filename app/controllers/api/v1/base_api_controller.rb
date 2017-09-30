@@ -30,12 +30,7 @@ class Api::V1::BaseApiController < ApplicationController
   # valid JWT.
   def verify_jwt_token
     # Verify header
-    head(:unauthorized) && return if request.headers['Authorization'].blank?
-
-    # Verify Bearer token
-    token = request.headers['Authorization'].split(' ').last
-    head(:unauthorized) && return if token.nil?
-    payload = AuthToken.payload(token)
+    payload = jwt_payload
     head(:unauthorized) && return if payload.nil? || payload.empty?
 
     user_id = payload.first['user']
@@ -49,6 +44,16 @@ class Api::V1::BaseApiController < ApplicationController
   rescue => ex
     logger.error ex.inspect
     head :unauthorized
+  end
+
+  def jwt_payload
+    return nil if request.headers['Authorization'].blank?
+    token = request.headers['Authorization'].split(' ').last
+    return nil if token.nil?
+    payload = AuthToken.payload(token)
+    return nil if payload.nil? || payload.empty?
+
+    payload
   end
 
   #---------------------------------------------------------
