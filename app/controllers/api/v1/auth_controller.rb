@@ -32,14 +32,16 @@ module Api
         if @device_uuid.blank?
           @device_uuid = SecureRandom.uuid
         end
+
         email = "#{@device_uuid}@temp.me"
         @user = User.where(email: email).first_or_initialize
         @user.email = email
         @user.password = @device_uuid
+        @user.device_uuid = @device_uuid
         @user.role = User::ROLE_USER_ANONYMOUS
 
         @user.save!
-        @access_token = AuthToken.sign(user: @user.id, device: @device_uuid)
+        @access_token = AuthToken.sign(user: @user.id, device: @device_uuid, scope: 'guest')
 
         render 'api/v1/auth/register', status: common_http_status
       end
@@ -49,22 +51,23 @@ module Api
         summary 'Register new user.'
         param :form, :email, :string, :required
         param :form, :password, :string, :required
+        param :form, :device_uuid, :string, :optional
         response :ok
         response :bad_request
       end
       def register
         email = params[:email]
         password = params[:password]
-        uuid = params[:device_uuid] || SecureRandom.uuid
 
-        user = User.first_or_initialize(id: uuid)
+        user = User.first_or_initialize(device_uuid: params[:device_uuid])
         user.email = email
         user.password = password
         user.role = User::ROLE_USER_REGISTERED
+        user.device_uuid = SecureRandom.uuid unless @user.device_uuid?
 
         if user.save
           @user = user
-          @access_token = AuthToken.sign(user: @user.id)
+          @access_token = AuthToken.sign(user: @user.id, device: @user.device_uuid, scope: 'user')
         else
           @error = ApiErrors::ATH010
           @error.message = user.errors
@@ -92,7 +95,8 @@ module Api
           @error = ApiErrors::ATH001
         else
           @user = user
-          @access_token = AuthToken.sign(user: @user.id)
+          @user.device_uuid = SecureRandom.uuid unless @user.device_uuid?
+          @access_token = AuthToken.sign(user: @user.id, device: @user.device_uuid, scope: 'user')
         end
 
         render '/api/v1/auth/login', status: common_http_status
