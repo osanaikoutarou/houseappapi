@@ -10,7 +10,7 @@ Swagger::Docs::Config.register_apis(
     api_extension_type: :json,
     controller_base_path: '',
     api_file_path: 'public/apidocs',
-    base_path: 'https://houseapp.herokuapp.com',
+    base_path: Rails.env.production? ? 'https://houseapp.herokuapp.com' : 'http://localhost:3000',
     clean_directory: true,
     attributes: {
       info: {
@@ -19,13 +19,25 @@ Swagger::Docs::Config.register_apis(
         'license' => 'Apache 2.0',
         'licenseUrl' => 'http://www.apache.org/licenses/LICENSE-2.0.html'
       }
+    },
+    authorizations: {
+        api_key: {
+            type: 'apiKey',
+            in: 'header',
+            name: 'X-API-Key'
+        },
+        access_token: {
+            type: 'apiKey',
+            in: 'header',
+            name: 'X-API-Key'
+        }
     }
   }
 )
 
 SwaggerUiEngine.configure do |config|
   config.swagger_url = {
-    v1: '/apidocs/api-docs.json'
+    v1: '/api/specs'
   }
   config.request_headers = true
 end

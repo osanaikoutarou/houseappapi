@@ -260,6 +260,7 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
+    swagger-blocks (2.0.2)
     swagger-docs (0.2.9)
       activesupport (>= 3)
       rails (>= 3)
@@ -326,6 +327,7 @@ DEPENDENCIES
   sass-rails (~> 5.0)
   spring
   spring-watcher-listen (~> 2.0.0)
+  swagger-blocks
   swagger-docs
   swagger_ui_engine
   turbolinks (~> 5)

@@ -6,10 +6,40 @@ module Api
   module V1
     # Auth logic
     class AuthController < BaseApiController
-      swagger_controller :auth, 'User authentication'
+      include Swagger::Blocks
 
       before_action :verify_jwt_token, only: %i[profile update_profile change_password]
 
+      #---------------------------------------------------------
+      swagger_path '/api/v1/auth/guest' do
+        operation :post do
+          key :summary, 'Create guest user'
+          key :description, 'App side should call this in first installation and store uuid and access token locally'
+          parameter do
+            key :name, :device_uuid
+            key :in, :body
+            key :type, :string
+            key :description, 'Unique device UUID'
+            key :required, false
+          end
+          response 200 do
+            key :description, 'Guest user login'
+          end
+        end
+      end
+      def create_guest_user
+        @device_uuid = params[:device_uuid] || SecureRandom.uuid
+        email = "#{@device_uuid}@temp.me"
+        @user = User.first_or_initialize(email: email)
+        @user.email = email
+        @user.password = @device_uuid
+        @user.role = User::ROLE_USER_ANONYMOUS
+
+        @user.save!
+        @access_token = AuthToken.sign(user: @user.id)
+
+        render 'api/v1/auth/register', status: common_http_status
+      end
       #---------------------------------------------------------
       # POST /api/v1/auth/register
       swagger_api :register do
@@ -20,18 +50,20 @@ module Api
         response :bad_request
       end
       def register
-        email    = params[:email]
+        email = params[:email]
         password = params[:password]
+        uuid = params[:device_uuid] || SecureRandom.uuid
 
-        user = User.new(email:    email,
-                        password: password,
-                        role:     User::ROLE_USER_REGISTERED)
+        user = User.first_or_initialize(id: uuid)
+        user.email = email
+        user.password = password
+        user.role = User::ROLE_USER_REGISTERED
 
         if user.save
-          @user         = user
+          @user = user
           @access_token = AuthToken.sign(user: @user.id)
         else
-          @error         = ApiErrors::ATH010
+          @error = ApiErrors::ATH010
           @error.message = user.errors
         end
 
@@ -48,7 +80,7 @@ module Api
         response :bad_request
       end
       def login
-        email    = params[:email]
+        email = params[:email]
         password = params[:password]
 
         user = verify_password(email, password)
@@ -56,7 +88,7 @@ module Api
         if user.nil?
           @error = ApiErrors::ATH001
         else
-          @user         = user
+          @user = user
           @access_token = AuthToken.sign(user: @user.id)
         end
 
@@ -73,7 +105,7 @@ module Api
         response :unauthorized
       end
       def profile
-        @user         = current_user
+        @user = current_user
         @user_profile = current_user.try(:user_profile)
 
         render status: common_http_status
@@ -90,7 +122,7 @@ module Api
         response :unauthorized
       end
       def update_profile
-        @user         = current_user
+        @user = current_user
         @user_profile = current_user.user_profile || UserProfile.new(user: current_user)
         @user_profile.update(user_profile_params)
 
@@ -109,13 +141,13 @@ module Api
         response :unauthorized
       end
       def change_password
-        password     = params[:password]
+        password = params[:password]
         new_password = params[:new_password]
 
         if current_user.valid_password?(password)
-          current_user.password              = new_password
+          current_user.password = new_password
           current_user.password_confirmation = new_password
-          @error                             = ApiErrors::ATH091 unless current_user.save
+          @error = ApiErrors::ATH091 unless current_user.save
         else
           @error = ApiErrors::ATH090
         end
@@ -140,7 +172,6 @@ module Api
 
         render status: common_http_status
       end
-
 
 
       #---------------------------------------------------------

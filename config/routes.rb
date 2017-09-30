@@ -5,14 +5,10 @@ Rails.application.routes.draw do
 
   mount SwaggerUiEngine::Engine, at: '/api_docs'
 
+  resources :apidocs, path: '/api/specs', only: [:index]
+
   namespace :api do
     namespace :v1 do
-
-      scope :anonymous do
-        post '/' => 'anonymous#create'
-        get '/:id' => 'anonymous#show'
-        match '/preferences' => 'anonymous#preferences', via: %i[post put]
-      end
 
       scope :architects do
         get '/' => 'architects#index'
@@ -24,6 +20,7 @@ Rails.application.routes.draw do
       end
 
       scope :auth do
+        post '/guest' => 'auth#create_guest_user'
         post '/register' => 'auth#register'
         post '/login' => 'auth#login'
 
