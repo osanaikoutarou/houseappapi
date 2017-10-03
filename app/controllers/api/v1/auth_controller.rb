@@ -63,7 +63,7 @@ module Api
         user.email = email
         user.password = password
         user.role = User::ROLE_USER_REGISTERED
-        user.device_uuid = SecureRandom.uuid unless @user.device_uuid?
+        user.device_uuid = SecureRandom.uuid unless user.device_uuid?
 
         if user.save
           @user = user
