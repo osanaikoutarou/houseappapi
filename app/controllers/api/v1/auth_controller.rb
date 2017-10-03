@@ -59,14 +59,17 @@ module Api
         email = params[:email]
         password = params[:password]
 
-        user = User.first_or_initialize(device_uuid: params[:device_uuid])
+        user = User.new
         user.email = email
         user.password = password
         user.role = User::ROLE_USER_REGISTERED
-        user.device_uuid = SecureRandom.uuid unless user.device_uuid?
+        user.device_uuid = SecureRandom.uuid
+
+        # TODO: migrate data from existing guest user
 
         if user.save
           @user = user
+          @device_uuid = user.device_uuid
           @access_token = AuthToken.sign(user: @user.id, device: @user.device_uuid, scope: 'user')
         else
           @error = ApiErrors::ATH010
