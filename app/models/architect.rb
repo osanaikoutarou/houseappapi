@@ -27,7 +27,7 @@ class Architect < ApplicationRecord
   end
 
   def featured_photo
-    photos.where(featured_photo: true).first
+    photos.where(featured_photo: true).first || photos.first
   end
 
   def photo_count

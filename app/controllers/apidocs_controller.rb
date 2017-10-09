@@ -18,7 +18,13 @@ class ApidocsController < ActionController::Base
     key :host, Rails.env.production? ? 'https://houseapp.herokuapp.com' : 'http://localhost:3000'
     key :basePath, '/'
     key :consumes, ['application/json']
-    key :produces, ['application/json']
+
+    security_definition :login_required_auth do
+      key :type, :apiKey
+      key :name, :api_key
+      key :in, :header
+    end
+
   end
 
   # A list of all classes that have swagger_* declarations.

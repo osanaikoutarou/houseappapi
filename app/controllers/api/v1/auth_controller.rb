@@ -156,6 +156,11 @@ module Api
           key :summary, 'Get profile for current login user.'
           key :description, ''
           key :tags, ['auth']
+
+          security do
+            key :login_required_auth, []
+          end
+
           response 200 do
             schema do
               property :user, '$ref' => :User
