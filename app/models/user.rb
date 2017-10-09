@@ -16,4 +16,12 @@ class User < ApplicationRecord
   def guest_user?
     self.role == User::ROLE_USER_ANONYMOUS
   end
+
+  swagger_schema :User do
+    key :required, [:id]
+    property :id, type: :string, description: 'Unique UUID'
+    property :email, type: :string
+    property :role, type: :integer, description: '0: guest user, 10: registered user, 11: architecture'
+    property :device_uuid, type: :string, description: 'Unique device UUID'
+  end
 end

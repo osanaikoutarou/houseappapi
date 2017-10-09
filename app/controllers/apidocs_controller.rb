@@ -6,7 +6,7 @@ class ApidocsController < ActionController::Base
     info do
       key :version, '1.0.0'
       key :title, 'Houseapp API'
-      key :description, 'A sample API that uses a petstore as an example to demonstrate features in the swagger-2.0 specification'
+      key :description, ''
       contact do
         key :name, 'House app'
       end
@@ -15,7 +15,7 @@ class ApidocsController < ActionController::Base
       end
     end
 
-    key :host, Rails.env.production? ? '' : 'http://localhost:3000'
+    key :host, Rails.env.production? ? 'https://houseapp.herokuapp.com' : 'http://localhost:3000'
     key :basePath, '/'
     key :consumes, ['application/json']
     key :produces, ['application/json']
@@ -25,6 +25,7 @@ class ApidocsController < ActionController::Base
   SWAGGERED_CLASSES = [
       Api::V1::AuthController,
       User,
+      UserProfile,
       self,
   ].freeze
 

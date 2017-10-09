@@ -15,15 +15,19 @@ module Api
         operation :post do
           key :summary, 'Create guest user'
           key :description, 'App side should call this in first installation and store uuid and access token locally'
-          parameter do
-            key :name, :device_uuid
-            key :in, :body
-            key :type, :string
-            key :description, 'Unique device UUID'
-            key :required, false
-          end
+          key :tags, ['auth']
+          parameter paramType: :body,
+                    type: :string,
+                    name: :device_uuid,
+                    description: 'Unique device UUID',
+                    required: false
           response 200 do
-            key :description, 'Guest user login'
+            key :description, 'Create new guest user'
+            schema do
+              property :user, '$ref' => :User
+              property :access_token, type: :string
+              property :device_uuid, type: :string
+            end
           end
         end
       end
@@ -47,13 +51,35 @@ module Api
       end
       #---------------------------------------------------------
       # POST /api/v1/auth/register
-      swagger_api :register do
-        summary 'Register new user.'
-        param :form, :email, :string, :required
-        param :form, :password, :string, :required
-        param :form, :device_uuid, :string, :optional
-        response :ok
-        response :bad_request
+      swagger_path '/api/v1/auth/register' do
+        operation :post do
+          key :summary, 'Create new user with email and address. '
+          key :description, 'If device UUID is included in request body, server will migrate exising device UUID with new created user'
+          key :tags, ['auth']
+          parameter paramType: :body,
+                    type: :string,
+                    name: :email,
+                    description: 'Email to register',
+                    required: true
+          parameter paramType: :body,
+                    type: :string,
+                    name: :password,
+                    description: 'Password to register',
+                    required: true
+          parameter paramType: :body,
+                    type: :string,
+                    name: :device_uuid,
+                    description: 'Device UUID for guest user',
+                    required: false
+          response 200 do
+            key :description, 'Create new guest user'
+            schema do
+              property :user, '$ref' => :User
+              property :access_token, type: :string
+              property :device_uuid, type: :string
+            end
+          end
+        end
       end
       def register
         email = params[:email]
@@ -81,12 +107,30 @@ module Api
 
       #---------------------------------------------------------
       # POST /api/v1/auth/login
-      swagger_api :login do
-        summary 'Login with email/password.'
-        param :form, :email, :string, :required
-        param :form, :password, :string, :required
-        response :ok
-        response :bad_request
+      swagger_path '/api/v1/auth/login' do
+        operation :post do
+          key :summary, 'Login with email and address. '
+          key :description, ''
+          key :tags, ['auth']
+          parameter paramType: :body,
+                    type: :string,
+                    name: :email,
+                    description: 'Email to register',
+                    required: true
+          parameter paramType: :body,
+                    type: :string,
+                    name: :password,
+                    description: 'Password to register',
+                    required: true
+          response 200 do
+            key :description, 'Create new guest user'
+            schema do
+              property :user, '$ref' => :User
+              property :access_token, type: :string
+              property :device_uuid, type: :string
+            end
+          end
+        end
       end
       def login
         email = params[:email]
@@ -107,12 +151,18 @@ module Api
 
       #---------------------------------------------------------
       # GET /api/auth/profile
-      swagger_api :profile do
-        summary 'Get current user profile'
-        param :header, 'Authorization', :string, :required, 'Bearer AccessToken'
-        response :ok
-        response :bad_request
-        response :unauthorized
+      swagger_path '/api/v1/auth/profile' do
+        operation :get do
+          key :summary, 'Get profile for current login user.'
+          key :description, ''
+          key :tags, ['auth']
+          response 200 do
+            schema do
+              property :user, '$ref' => :User
+              property :user_profile, '$ref' => :UserProfile
+            end
+          end
+        end
       end
       def profile
         @user = current_user
