@@ -1,5 +1,5 @@
-INSERT INTO "architects"("id", "name", "affiliation", "zip_code", "prefecture", "city", "address1", "address2", "latitude", "longitude", "qualifications", "message", "introduction", "speciality", "career", "homepage", "avatar", "created_at", "updated_at", "user_id") VALUES ('d5155516-3cd8-4358-aee4-e09981116717', '石川淳', '株式会社石川淳建築設計事務所', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '一級建築士', NULL, 'シンプルな白い外観と白い室内。在来工法を使うことで無駄な工事費をかけず、どの工務店でも施工が可能な建築をめざしています。', '狭小住宅 / 木造 / 2世帯住宅', NULL, 'http://www.jun-ar.info/', 'mgMU0dC3Cn-240x240.jpg', '2017-09-26 15:52:05.369885', '2017-09-26 15:52:06.05887', NULL);
-INSERT INTO "architects"("id", "name", "affiliation", "zip_code", "prefecture", "city", "address1", "address2", "latitude", "longitude", "qualifications", "message", "introduction", "speciality", "career", "homepage", "avatar", "created_at", "updated_at", "user_id") VALUES ('503efb56-d9cd-422c-ab6e-0f6cf91e11e8', 'NAOI', '株式会社　直井建築設計事務所', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '一級建築士', '
+INSERT INTO "architects"("id", "name", "affiliation", "zip_code", "prefecture", "city", "address1", "address2", "latitude", "longitude", "qualifications", "message", "introduction", "speciality", "career", "homepage", "avatar", "created_at", "updated_at", "user_id") VALUES ('f237771e-ed9a-4127-ae9e-00723e580cdc', '石川淳', '株式会社石川淳建築設計事務所', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '一級建築士', NULL, 'シンプルな白い外観と白い室内。在来工法を使うことで無駄な工事費をかけず、どの工務店でも施工が可能な建築をめざしています。', '狭小住宅 / 木造 / 2世帯住宅', NULL, 'http://www.jun-ar.info/', 'mgMU0dC3Cn-240x240.jpg', '2017-10-22 08:03:51.462702', '2017-10-22 08:03:51.61557', NULL);
+INSERT INTO "architects"("id", "name", "affiliation", "zip_code", "prefecture", "city", "address1", "address2", "latitude", "longitude", "qualifications", "message", "introduction", "speciality", "career", "homepage", "avatar", "created_at", "updated_at", "user_id") VALUES ('b6c8b184-c2da-440f-b38f-5b049966e208', 'NAOI', '株式会社　直井建築設計事務所', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '一級建築士', '
 性能や環境といったキーワードが溢れていますが、それらを満たすのは住宅としては当然のことです。
 
 そんなことよりも、好きなデザインの洋服を着ると素敵な気分になるように、素敵なデザインの家で暮らす生活はとても豊かな気持ちになるものです。
@@ -13,8 +13,8 @@ INSERT INTO "architects"("id", "name", "affiliation", "zip_code", "prefecture", 
 2002年　石川淳建築設計事務所設立_
 2009年～東京理科大学工学部建築学科非常勤講師_
 2010年　株式会社 石川淳建築設計事務所として法人化
-', 'http://www.naoi-a.com/', 'YLAOrWugWU-240x240.jpg', '2017-09-26 16:00:50.410676', '2017-09-26 16:00:51.086027', NULL);
-INSERT INTO "architects"("id", "name", "affiliation", "zip_code", "prefecture", "city", "address1", "address2", "latitude", "longitude", "qualifications", "message", "introduction", "speciality", "career", "homepage", "avatar", "created_at", "updated_at", "user_id") VALUES ('26cc5a5e-521a-47c3-b7a6-1962571d9f8b', '安藤毅', 'エアスケープ建築設計事務所', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '一級建築士、AFP', '
+', 'http://www.naoi-a.com/', 'YLAOrWugWU-240x240.jpg', '2017-10-22 08:04:45.283126', '2017-10-22 08:04:45.412264', NULL);
+INSERT INTO "architects"("id", "name", "affiliation", "zip_code", "prefecture", "city", "address1", "address2", "latitude", "longitude", "qualifications", "message", "introduction", "speciality", "career", "homepage", "avatar", "created_at", "updated_at", "user_id") VALUES ('f983ffea-264a-4413-9af4-d38ed50787e6', '安藤毅', 'エアスケープ建築設計事務所', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '一級建築士、AFP', '
 
 
 
@@ -22,8 +22,8 @@ INSERT INTO "architects"("id", "name", "affiliation", "zip_code", "prefecture", 
 2000/奥村和幸建築設計室2002/直井建築設計事務所設立2012/株式会社直井建築設計事務所に改組　代表取締役 東洋大学非常勤講師
 直井 徳子 / Noriko Naoi （一級建築士/第0282403号）
 1972/東京都生まれ1994/東京家政学院大学家政学部住居学科卒業/スタジオ4設計1996/インターデザインアソシエイツ2002/直井建築設計事務所設立2012/株式会社直井建築設計事務所に改組
-', 'http://airscape.cc/', 'NjQ9EJYi7w-240x240.jpg', '2017-09-26 16:10:36.386982', '2017-09-26 16:10:37.045123', NULL);
-INSERT INTO "architects"("id", "name", "affiliation", "zip_code", "prefecture", "city", "address1", "address2", "latitude", "longitude", "qualifications", "message", "introduction", "speciality", "career", "homepage", "avatar", "created_at", "updated_at", "user_id") VALUES ('a1eddf16-0169-42d6-acb3-f349318e8175', '古谷俊一', '古谷デザイン建築設計事務所', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '一級建築士', 'それを「カタチ」に創りあげていきます。
+', 'http://airscape.cc/', 'NjQ9EJYi7w-240x240.jpg', '2017-10-22 08:05:33.517213', '2017-10-22 08:05:33.836526', NULL);
+INSERT INTO "architects"("id", "name", "affiliation", "zip_code", "prefecture", "city", "address1", "address2", "latitude", "longitude", "qualifications", "message", "introduction", "speciality", "career", "homepage", "avatar", "created_at", "updated_at", "user_id") VALUES ('fcd07e72-d2bc-470f-ad63-f18da146c25a', '古谷俊一', '古谷デザイン建築設計事務所', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '一級建築士', 'それを「カタチ」に創りあげていきます。
 「家づくり」を一緒に楽しみましょう。
 
 
@@ -31,8 +31,8 @@ INSERT INTO "architects"("id", "name", "affiliation", "zip_code", "prefecture", 
 1997-2001 岡部憲明アーキテクチャーネットワーク
 2001-04 ミリグラムスタジオ一級建築士事務所
 2004 エアスケープ建築設計事務所設立
-', 'http://www.furuyadesign.com/', '6e4ed50c31-240x240.jpg', '2017-09-26 16:19:02.595791', '2017-09-26 16:19:03.207326', NULL);
-INSERT INTO "architects"("id", "name", "affiliation", "zip_code", "prefecture", "city", "address1", "address2", "latitude", "longitude", "qualifications", "message", "introduction", "speciality", "career", "homepage", "avatar", "created_at", "updated_at", "user_id") VALUES ('409cc24e-6f0e-44f6-b835-29c609111c36', '粕谷淳司/粕谷奈緒子', 'カスヤアーキテクツオフィス', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '一級建築士', '一遍の布のような心地良い住宅を作りたい、と思っています。
+', 'http://www.furuyadesign.com/', '6e4ed50c31-240x240.jpg', '2017-10-22 08:06:13.825114', '2017-10-22 08:06:13.97255', NULL);
+INSERT INTO "architects"("id", "name", "affiliation", "zip_code", "prefecture", "city", "address1", "address2", "latitude", "longitude", "qualifications", "message", "introduction", "speciality", "career", "homepage", "avatar", "created_at", "updated_at", "user_id") VALUES ('0effe6e9-230d-425b-ad30-71cfd6ca5264', '粕谷淳司/粕谷奈緒子', 'カスヤアーキテクツオフィス', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '一級建築士', '一遍の布のような心地良い住宅を作りたい、と思っています。
 
 土地とはつまり、場所、環境、風土。
 住宅は、何処にでも建ち得る、誰でも住み得るような建物ではないはず。
@@ -58,8 +58,8 @@ INSERT INTO "architects"("id", "name", "affiliation", "zip_code", "prefecture", 
 
 
 
-', 'http://www.k-a-o.com/', 'Asuw05Wx59-240x240.jpg', '2017-09-26 16:38:48.074584', '2017-09-26 16:38:48.649281', NULL);
-INSERT INTO "architects"("id", "name", "affiliation", "zip_code", "prefecture", "city", "address1", "address2", "latitude", "longitude", "qualifications", "message", "introduction", "speciality", "career", "homepage", "avatar", "created_at", "updated_at", "user_id") VALUES ('cef894a8-78f8-46be-b62c-8a7201f20b5c', '井手孝太郎', 'アールテクニック一級建築士事務所', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '一級建築士', '
+', 'http://www.k-a-o.com/', 'Asuw05Wx59-240x240.jpg', '2017-10-22 08:08:41.712222', '2017-10-22 08:08:41.874851', NULL);
+INSERT INTO "architects"("id", "name", "affiliation", "zip_code", "prefecture", "city", "address1", "address2", "latitude", "longitude", "qualifications", "message", "introduction", "speciality", "career", "homepage", "avatar", "created_at", "updated_at", "user_id") VALUES ('6efef2d3-93d4-48d9-8912-ca4577c3756c', '井手孝太郎', 'アールテクニック一級建築士事務所', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '一級建築士', '
 かつて多く存在した、里山の風景や鎮守の森のように、
 四季折々の自然と人々が作る建築との幸せな関係を礎として、
 時代性を捉えながら人々が本当に心地良いと思える、
@@ -91,8 +91,8 @@ INSERT INTO "architects"("id", "name", "affiliation", "zip_code", "prefecture", 
 2000年株式会社 ID_E 入社
 2006年株式会社都市デザインシステム入社
 2009年古谷デザイン建築設計事務所を設立
-', 'http://www.artechnic.jp/', 'UAkDFgByzI-240x240.jpg', '2017-09-26 16:20:10.893389', '2017-09-26 16:20:11.444484', NULL);
-INSERT INTO "architects"("id", "name", "affiliation", "zip_code", "prefecture", "city", "address1", "address2", "latitude", "longitude", "qualifications", "message", "introduction", "speciality", "career", "homepage", "avatar", "created_at", "updated_at", "user_id") VALUES ('99e8e1c9-71e1-411e-ac97-fdadeffd7a85', 'とりやまあきこ', '一級建築士事務所あとりえ', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '一級建築士一級建築士(登録番号 第313912号　登録年月日　平成16年３月25日)', '設計は最初から最後までコンピューター上で３次元的に行います。
+', 'http://www.artechnic.jp/', 'UAkDFgByzI-240x240.jpg', '2017-10-22 08:06:24.099563', '2017-10-22 08:06:24.296118', NULL);
+INSERT INTO "architects"("id", "name", "affiliation", "zip_code", "prefecture", "city", "address1", "address2", "latitude", "longitude", "qualifications", "message", "introduction", "speciality", "career", "homepage", "avatar", "created_at", "updated_at", "user_id") VALUES ('0c408a5d-cc78-437b-bc21-993d1657df32', 'とりやまあきこ', '一級建築士事務所あとりえ', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '一級建築士一級建築士(登録番号 第313912号　登録年月日　平成16年３月25日)', '設計は最初から最後までコンピューター上で３次元的に行います。
 世界的3次元CADソフトのパッケージに自作が採用されているように、世界的にも先駆的な設計手法を実践しています。
 施主打合せも全て3次元ビューの中で行いますので、とても理解しやすいと好評頂いています。
 
@@ -100,8 +100,8 @@ INSERT INTO "architects"("id", "name", "affiliation", "zip_code", "prefecture", 
 ～1994　横河設計工房勤務
 1994～アールテクニック一級建築士事務所
 2011～日本大学理工学部非常勤講師
-', 'http://atolie.com/', 'FWeOmamEdV-240x240.jpg', '2017-09-26 16:21:02.994312', '2017-09-26 16:21:03.527271', NULL);
-INSERT INTO "architects"("id", "name", "affiliation", "zip_code", "prefecture", "city", "address1", "address2", "latitude", "longitude", "qualifications", "message", "introduction", "speciality", "career", "homepage", "avatar", "created_at", "updated_at", "user_id") VALUES ('800f8457-9fd4-4ee9-a04d-4ccd0338463b', '安河内 健司/西岡 久実', '一級建築士事務所 group-scoop', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '一級建築士', '
+', 'http://atolie.com/', 'FWeOmamEdV-240x240.jpg', '2017-10-22 08:06:30.709701', '2017-10-22 08:06:30.848392', NULL);
+INSERT INTO "architects"("id", "name", "affiliation", "zip_code", "prefecture", "city", "address1", "address2", "latitude", "longitude", "qualifications", "message", "introduction", "speciality", "career", "homepage", "avatar", "created_at", "updated_at", "user_id") VALUES ('9a921be5-605c-42b1-b366-e7003990e74c', '安河内 健司/西岡 久実', '一級建築士事務所 group-scoop', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '一級建築士', '
 
 
 
@@ -113,8 +113,19 @@ INSERT INTO "architects"("id", "name", "affiliation", "zip_code", "prefecture", 
 　　　初年度に一級建築士取得
 　2006年４月　独立。一級建築士事務所あとりえ設立
 　社団法人　東京建築士会 会員
-', 'http://www.group-scoop.com/', 'M6RWJ57LI7-240x240.jpg', '2017-09-26 16:25:41.471121', '2017-09-26 16:25:42.173289', NULL);
-INSERT INTO "architects"("id", "name", "affiliation", "zip_code", "prefecture", "city", "address1", "address2", "latitude", "longitude", "qualifications", "message", "introduction", "speciality", "career", "homepage", "avatar", "created_at", "updated_at", "user_id") VALUES ('b0e6559e-4b56-4367-99ca-95ff9ef1a73b', '黒崎敏', '株式会社APOLLO一級建築士事務所', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '一級建築士', '青い空、鮮やかな緑、柔らかな光、爽やかな風に満ち、素材感あふれる、飽きのこないシンプルな空間とプラスαの遊び心をもちあわせた建物が好きです。
+', 'http://www.group-scoop.com/', 'M6RWJ57LI7-240x240.jpg', '2017-10-22 08:07:30.839595', '2017-10-22 08:07:30.970041', NULL);
+INSERT INTO "architects"("id", "name", "affiliation", "zip_code", "prefecture", "city", "address1", "address2", "latitude", "longitude", "qualifications", "message", "introduction", "speciality", "career", "homepage", "avatar", "created_at", "updated_at", "user_id") VALUES ('fb947ebd-5268-4f50-8dad-a053cb799d50', 'ジェームス・ランビアーシ／林　謙太郎', 'ランビアーシ＆林アーキテクツ株式会社', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '一級建築士／ニューヨーク州登録建築家', '
+
+
+
+
+', 'メガネ', NULL, '1997年　同大学工学系研究科建築学専攻修士課程修了
+1997～2003年　ナスカ勤務（古谷誠章・八木佐千子に師事）
+2003年～　津野建築設計室主宰
+2009年～　東洋大学非常勤講師
+2013年～　東京工芸大学非常勤講師
+', 'http://lh-arch.com/J-profile.html', '6zd1tHk0Pp-240x240.jpg', '2017-10-22 08:18:43.742848', '2017-10-22 08:18:43.918457', NULL);
+INSERT INTO "architects"("id", "name", "affiliation", "zip_code", "prefecture", "city", "address1", "address2", "latitude", "longitude", "qualifications", "message", "introduction", "speciality", "career", "homepage", "avatar", "created_at", "updated_at", "user_id") VALUES ('b4ad6446-1828-4fb7-9978-5d689013f6e8', '黒崎敏', '株式会社APOLLO一級建築士事務所', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '一級建築士', '青い空、鮮やかな緑、柔らかな光、爽やかな風に満ち、素材感あふれる、飽きのこないシンプルな空間とプラスαの遊び心をもちあわせた建物が好きです。
 外部環境に恵まれないと思われがちな都市の密集地であっても、空という素晴らしい窓が必ずあります。
 屋内に居ても屋外を感じられる、世界にひとつしかないワクワクするような居場所を一緒に創りましょう。
 
@@ -138,8 +149,8 @@ INSERT INTO "architects"("id", "name", "affiliation", "zip_code", "prefecture", 
 2000年 ［西岡］同大学絵画学科版画研究室
 2003年 ［西岡］design pit group-scoop
 2010年 ［西岡］一級建築士事務所group-scoop
-', 'http://www.kurosakisatoshi.com/', 'JOUWIKkrQ3-240x240.jpg', '2017-09-26 16:29:10.831123', '2017-09-26 16:29:11.331052', NULL);
-INSERT INTO "architects"("id", "name", "affiliation", "zip_code", "prefecture", "city", "address1", "address2", "latitude", "longitude", "qualifications", "message", "introduction", "speciality", "career", "homepage", "avatar", "created_at", "updated_at", "user_id") VALUES ('de37d4d2-7d8b-4136-8a4d-e7a3fceecf3a', '山中祐一郎', 'S.O.Y.建築環境研究所', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'RIBA（英国王立建築家協会）part1', '　人間や自然、あらゆる人工物との関わりの中から導き出される空間は、社会や環境と結び付きながら時代と共に緩やかに進化し、それに呼応するように人々も変化を遂げます。このようなゆらぎのある生命体との共存こそが建築の本質的な役割であり、設計における導線のあり方や光の扱い方、風の導き方や素材の選択手法などのデザインを決定付ける大きな要因となることでしょう。
+', 'http://www.kurosakisatoshi.com/', 'JOUWIKkrQ3-240x240.jpg', '2017-10-22 08:07:55.865187', '2017-10-22 08:07:56.087329', NULL);
+INSERT INTO "architects"("id", "name", "affiliation", "zip_code", "prefecture", "city", "address1", "address2", "latitude", "longitude", "qualifications", "message", "introduction", "speciality", "career", "homepage", "avatar", "created_at", "updated_at", "user_id") VALUES ('7013c6cd-78a5-45a7-bc39-d8238d5f2a03', '山中祐一郎', 'S.O.Y.建築環境研究所', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'RIBA（英国王立建築家協会）part1', '　人間や自然、あらゆる人工物との関わりの中から導き出される空間は、社会や環境と結び付きながら時代と共に緩やかに進化し、それに呼応するように人々も変化を遂げます。このようなゆらぎのある生命体との共存こそが建築の本質的な役割であり、設計における導線のあり方や光の扱い方、風の導き方や素材の選択手法などのデザインを決定付ける大きな要因となることでしょう。
 　大胆さと繊細さの両極を意識し、人間としての視野を広げ、洞察を深めながら、時に流されることのない品格のある建築を目指して、一つひとつの建築に丁寧に向かい合いたいと思います。
 
 
@@ -161,8 +172,8 @@ INSERT INTO "architects"("id", "name", "affiliation", "zip_code", "prefecture", 
 一級建築士（国土交通大臣 No.282853）、管理建築士
 統括設計 専攻建築士（専門分野：戸建住宅 集合住宅 No.1131001715）
 APECアーキテクト（Asia-Pacific Economic Cooperation ARCHITECT）
-', 'http://www.soylabo.net/', 'iLaNgm48iM-240x240.jpg', '2017-09-26 16:37:14.195748', '2017-09-26 16:37:15.09312', NULL);
-INSERT INTO "architects"("id", "name", "affiliation", "zip_code", "prefecture", "city", "address1", "address2", "latitude", "longitude", "qualifications", "message", "introduction", "speciality", "career", "homepage", "avatar", "created_at", "updated_at", "user_id") VALUES ('0fd29b29-dc8a-4821-824a-ace0149bd03f', '玉上貴人', 'タカトタマガミデザイン', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '一級建築士', '
+', 'http://www.soylabo.net/', 'iLaNgm48iM-240x240.jpg', '2017-10-22 08:08:34.006941', '2017-10-22 08:08:34.155604', NULL);
+INSERT INTO "architects"("id", "name", "affiliation", "zip_code", "prefecture", "city", "address1", "address2", "latitude", "longitude", "qualifications", "message", "introduction", "speciality", "career", "homepage", "avatar", "created_at", "updated_at", "user_id") VALUES ('133783a5-8201-4e94-889c-2919d221498f', '玉上貴人', 'タカトタマガミデザイン', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '一級建築士', '
 
 
 
@@ -196,8 +207,8 @@ INSERT INTO "architects"("id", "name", "affiliation", "zip_code", "prefecture", 
 1996～2002　武田光史建築デザイン事務所
 2005　カスヤアーキテクツオフィス（KAO）共同主宰　現在に至る
 現在　東洋大学・文化学園大学・湘北短期大学非常勤講師
-', 'http://www.takatotamagami.net/', '5h1ppOhWMV-240x240.jpg', '2017-09-26 16:41:50.690296', '2017-09-26 16:41:51.115481', NULL);
-INSERT INTO "architects"("id", "name", "affiliation", "zip_code", "prefecture", "city", "address1", "address2", "latitude", "longitude", "qualifications", "message", "introduction", "speciality", "career", "homepage", "avatar", "created_at", "updated_at", "user_id") VALUES ('5a3b69d5-4669-4180-b3ea-630e3e75d229', '廣部剛司', '株式会社　廣部剛司建築研究所', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '一級建築士', '建築家は施主の想いをより良いかたちで実現するための存在だと考えています。
+', 'http://www.takatotamagami.net/', '5h1ppOhWMV-240x240.jpg', '2017-10-22 08:08:52.249519', '2017-10-22 08:08:52.430112', NULL);
+INSERT INTO "architects"("id", "name", "affiliation", "zip_code", "prefecture", "city", "address1", "address2", "latitude", "longitude", "qualifications", "message", "introduction", "speciality", "career", "homepage", "avatar", "created_at", "updated_at", "user_id") VALUES ('56204a30-9be6-44df-8a24-2f7476c8174a', '廣部剛司', '株式会社　廣部剛司建築研究所', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '一級建築士', '建築家は施主の想いをより良いかたちで実現するための存在だと考えています。
 そのため私たちはお施主様が納得のいくものができるまでとことんお付き合い致します。
 建築をつくる過程、完成後もそれに関わる人たちとのお付き合いを大切にし、豊かな関係を築いていきたいと思っています。
 
@@ -209,8 +220,8 @@ INSERT INTO "architects"("id", "name", "affiliation", "zip_code", "prefecture", 
 ・2000 ～　フリーで活動　
 ・2002 　一級建築士事務所タカトタマガミデザイン設立　
 ・2009 ～　日本大学理工学部 非常勤講師
-', 'http://www.hirobe.net/', 'NCUEnSCEqS-240x240.jpg', '2017-09-26 16:53:06.290782', '2017-09-26 16:53:06.876508', NULL);
-INSERT INTO "architects"("id", "name", "affiliation", "zip_code", "prefecture", "city", "address1", "address2", "latitude", "longitude", "qualifications", "message", "introduction", "speciality", "career", "homepage", "avatar", "created_at", "updated_at", "user_id") VALUES ('11519754-d890-42dd-a6e0-4457330a3d24', '鈴木宏幸', 'アトリエ137一級建築士事務所', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '一級建築士', '
+', 'http://www.hirobe.net/', 'NCUEnSCEqS-240x240.jpg', '2017-10-22 08:09:38.681892', '2017-10-22 08:09:38.830854', NULL);
+INSERT INTO "architects"("id", "name", "affiliation", "zip_code", "prefecture", "city", "address1", "address2", "latitude", "longitude", "qualifications", "message", "introduction", "speciality", "career", "homepage", "avatar", "created_at", "updated_at", "user_id") VALUES ('31864412-73fb-47c2-bb2a-0cefb4a64a8c', '鈴木宏幸', 'アトリエ137一級建築士事務所', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '一級建築士', '
 
 昔から趣味で音楽をやっていることもあって、曲をつくるように建築を設計しています。そういうと不思議なことに感じるかも知れませんが、私にとっては「建築」は音楽に似ている、と感じたところがこの道に進んだきっかけだったので自然なことなのです。
 建築は建つ場所（地球）にしっかりと腰を据えていますが、地球そのものが動いてくれることで、１日の中でも様々な光が刻々と差し込み、季節によってもそれは変化していきます。建築の中に佇み、地球の動きを感じていられるということは、そこで過ごす人に「自分自身は地球の一部なのだ」と語りかけてくれます。尊厳を持って人がその空間に身を置くために、そういった感覚が持てるということが、とても大切なことなのではないかと感じています。
@@ -226,8 +237,8 @@ INSERT INTO "architects"("id", "name", "affiliation", "zip_code", "prefecture", 
 
 
 
-', 'http://www.atelier137-archi.com/', '5ba1bc82c9-240x240.jpg', '2017-09-26 16:55:44.042677', '2017-09-26 16:55:44.597189', NULL);
-INSERT INTO "architects"("id", "name", "affiliation", "zip_code", "prefecture", "city", "address1", "address2", "latitude", "longitude", "qualifications", "message", "introduction", "speciality", "career", "homepage", "avatar", "created_at", "updated_at", "user_id") VALUES ('8fd75a7c-d388-4d7f-a994-af857291458a', '成瀬友梨/猪熊純', '株式会社　成瀬・猪熊建築設計事務所', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '一級建築士', '
+', 'http://www.atelier137-archi.com/', '5ba1bc82c9-240x240.jpg', '2017-10-22 08:09:57.083548', '2017-10-22 08:09:57.258367', NULL);
+INSERT INTO "architects"("id", "name", "affiliation", "zip_code", "prefecture", "city", "address1", "address2", "latitude", "longitude", "qualifications", "message", "introduction", "speciality", "career", "homepage", "avatar", "created_at", "updated_at", "user_id") VALUES ('5b3e1415-94bd-47f4-ac53-965bbc98510f', '成瀬友梨/猪熊純', '株式会社　成瀬・猪熊建築設計事務所', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '一級建築士', '
 
 
 
@@ -235,8 +246,8 @@ INSERT INTO "architects"("id", "name", "affiliation", "zip_code", "prefecture", 
 95 同 大学院修士課程 建設工学専攻 修了
 設計事務所勤務を経て
 03 アトリエ137 創業
-', 'http://www.narukuma.com/', 'ASkRz3YlQG-240x240.jpg', '2017-09-26 17:06:17.355016', '2017-09-26 17:06:17.801085', NULL);
-INSERT INTO "architects"("id", "name", "affiliation", "zip_code", "prefecture", "city", "address1", "address2", "latitude", "longitude", "qualifications", "message", "introduction", "speciality", "career", "homepage", "avatar", "created_at", "updated_at", "user_id") VALUES ('0c9c66a8-a6a2-455b-9983-c336b2963dce', '篠崎弘之', '篠崎弘之建築設計事務所', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '一級建築士', 'こうした考え方に共感し、最近ではシェアハウス、イノベーションセンター、コミュニティカフェなど、これまであまり無かった、新しい考え方によって人が集まる施設も設計するようになりましたが、その根本にあるのは、家の原点である住宅です。
+', 'http://www.narukuma.com/', 'ASkRz3YlQG-240x240.jpg', '2017-10-22 08:11:05.401684', '2017-10-22 08:11:05.570134', NULL);
+INSERT INTO "architects"("id", "name", "affiliation", "zip_code", "prefecture", "city", "address1", "address2", "latitude", "longitude", "qualifications", "message", "introduction", "speciality", "career", "homepage", "avatar", "created_at", "updated_at", "user_id") VALUES ('93e63c3d-16c5-4ca2-871c-4cd907bd2e51', '篠崎弘之', '篠崎弘之建築設計事務所', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '一級建築士', 'こうした考え方に共感し、最近ではシェアハウス、イノベーションセンター、コミュニティカフェなど、これまであまり無かった、新しい考え方によって人が集まる施設も設計するようになりましたが、その根本にあるのは、家の原点である住宅です。
 
 
 
@@ -274,8 +285,8 @@ INSERT INTO "architects"("id", "name", "affiliation", "zip_code", "prefecture", 
 2008-09　東京理科大学非常勤講師�
 2009　　　東京大学特任助教�
 2010　　　東京大学助教
-', 'http://www.shnzk.com/', 'NXQ43zPkK8-240x240.jpg', '2017-09-26 17:11:42.16811', '2017-09-26 17:11:42.719695', NULL);
-INSERT INTO "architects"("id", "name", "affiliation", "zip_code", "prefecture", "city", "address1", "address2", "latitude", "longitude", "qualifications", "message", "introduction", "speciality", "career", "homepage", "avatar", "created_at", "updated_at", "user_id") VALUES ('806104fe-e86f-48c7-ac47-3674f51d266c', '各務謙司', 'カガミ建築計画/カガミ・デザインリフォーム', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '一級建築士　マンションリフォームマネジャー', '
+', 'http://www.shnzk.com/', 'NXQ43zPkK8-240x240.jpg', '2017-10-22 08:11:37.387734', '2017-10-22 08:11:37.618124', NULL);
+INSERT INTO "architects"("id", "name", "affiliation", "zip_code", "prefecture", "city", "address1", "address2", "latitude", "longitude", "qualifications", "message", "introduction", "speciality", "career", "homepage", "avatar", "created_at", "updated_at", "user_id") VALUES ('c7329223-b449-44df-a12b-e8962770426c', '各務謙司', 'カガミ建築計画/カガミ・デザインリフォーム', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '一級建築士　マンションリフォームマネジャー', '
 そこに住まう人にとって快適で豊かな世界を一から創りだすこと、それが新しい価値観を、様々な関係性をつくる一歩だと考えています。そして、それがそこに住まう人だけではなく、その環境や文化に将来にわたってつながっていくことを目指しています
 
 これまでわたしたちが慣れ親しんできた価値や関係性を再考し、「これからのひとと環境にとって豊かな場所」を新しく築きあうことができたらと考えています
@@ -283,8 +294,8 @@ INSERT INTO "architects"("id", "name", "affiliation", "zip_code", "prefecture", 
 2002年～2009年　伊東豊雄建築設計事務所　
 2009年　篠崎弘之建築設計事務所設立
 
-', 'http://www.kagami-reform.com/', '4ctaryxmEw-240x240.jpg', '2017-09-26 17:16:58.043408', '2017-09-26 17:16:58.561845', NULL);
-INSERT INTO "architects"("id", "name", "affiliation", "zip_code", "prefecture", "city", "address1", "address2", "latitude", "longitude", "qualifications", "message", "introduction", "speciality", "career", "homepage", "avatar", "created_at", "updated_at", "user_id") VALUES ('b442c2be-288d-426d-bd76-456e272666df', '溝部公寛', '寛建築工房', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '一級建築士、一級建築施工管理技士、宅地建物取引主任者、震災建築物応急危険度判定士', '既存建物の特性、ご用意くださった予算、ご希望の使い方等、多様な設計条件を考慮しながら、最も重要である住み手の個性、その人が魅力的に感じる空間デザインを一緒に探し出して行くことを心掛けています。よりよい空間について共に話し一緒に悩み、考えて、なるべく多くの時間を共有することを大切にしています。 数多くの打合せや提案を重ねる中で、空間のあり方についての様々なアイデアが生まれ、理想的な空間が導き出されてくると信じています。
+', 'http://www.kagami-reform.com/', '4ctaryxmEw-240x240.jpg', '2017-10-22 08:12:13.061106', '2017-10-22 08:12:13.206137', NULL);
+INSERT INTO "architects"("id", "name", "affiliation", "zip_code", "prefecture", "city", "address1", "address2", "latitude", "longitude", "qualifications", "message", "introduction", "speciality", "career", "homepage", "avatar", "created_at", "updated_at", "user_id") VALUES ('ff99a198-3df0-45c0-b304-8677e833d13c', '溝部公寛', '寛建築工房', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '一級建築士、一級建築施工管理技士、宅地建物取引主任者、震災建築物応急危険度判定士', '既存建物の特性、ご用意くださった予算、ご希望の使い方等、多様な設計条件を考慮しながら、最も重要である住み手の個性、その人が魅力的に感じる空間デザインを一緒に探し出して行くことを心掛けています。よりよい空間について共に話し一緒に悩み、考えて、なるべく多くの時間を共有することを大切にしています。 数多くの打合せや提案を重ねる中で、空間のあり方についての様々なアイデアが生まれ、理想的な空間が導き出されてくると信じています。
 こちらには今までカガミ建築計画が設計してきたデザインリフォームを纏めたものを掲載しています。一つ一つのリフォーム・リノベーションには、設計の際にお施主様と一緒に考えたアイデア、思い出が詰まっています。全体を通したデザインの集まりというより、小さなエピソードが詰まった短編小説集のように思って見ていただければ幸いです。
 
 
@@ -296,8 +307,8 @@ INSERT INTO "architects"("id", "name", "affiliation", "zip_code", "prefecture", 
 1994年10月～翌05月
 　　　　　　　　　　欧州・中近東旅行
 1995年06月～カガミ建築計画開設
-', 'http://www.kuturoginoie.com/toppage2.html', 'BKiG1B4qm4-240x240.jpg', '2017-09-26 17:24:44.090557', '2017-09-26 17:24:44.905806', NULL);
-INSERT INTO "architects"("id", "name", "affiliation", "zip_code", "prefecture", "city", "address1", "address2", "latitude", "longitude", "qualifications", "message", "introduction", "speciality", "career", "homepage", "avatar", "created_at", "updated_at", "user_id") VALUES ('3c601b45-777b-473b-9d5e-27ff5b19148d', '相坂研介', '相坂研介設計アトリエ', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '一級建築士', 'まずは永く住む場として、ご自身の将来、そして理想の生活像を思い描くところからはじめて下さい。
+', 'http://www.kuturoginoie.com/toppage2.html', 'BKiG1B4qm4-240x240.jpg', '2017-10-22 08:12:54.4836', '2017-10-22 08:12:54.644044', NULL);
+INSERT INTO "architects"("id", "name", "affiliation", "zip_code", "prefecture", "city", "address1", "address2", "latitude", "longitude", "qualifications", "message", "introduction", "speciality", "career", "homepage", "avatar", "created_at", "updated_at", "user_id") VALUES ('997be372-9612-49f9-94ee-6a98c509e87d', '相坂研介', '相坂研介設計アトリエ', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '一級建築士', 'まずは永く住む場として、ご自身の将来、そして理想の生活像を思い描くところからはじめて下さい。
 
 
 
@@ -305,8 +316,8 @@ INSERT INTO "architects"("id", "name", "affiliation", "zip_code", "prefecture", 
 １９８６年～１９９５年　設計事務所勤務
 １９９５年　寛建築工房設立、主宰
 ２０１１年～法政大学デザイン工学部兼任講師
-', 'http://www.aisaka.info/', 'a3vXoM4v4P-240x240.jpg', '2017-09-26 17:27:03.186563', '2017-09-26 17:27:03.775448', NULL);
-INSERT INTO "architects"("id", "name", "affiliation", "zip_code", "prefecture", "city", "address1", "address2", "latitude", "longitude", "qualifications", "message", "introduction", "speciality", "career", "homepage", "avatar", "created_at", "updated_at", "user_id") VALUES ('6944b1e4-96dd-4124-93c4-b8ffd52d4828', '高橋昌宏', '株式会社エムズ・アーキテクツ', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '一級建築士', 'カタログやモデルルームの数少ない選択肢の中から「選ぶ」ようなものであってはならないと思います。
+', 'http://www.aisaka.info/', 'a3vXoM4v4P-240x240.jpg', '2017-10-22 08:13:26.348146', '2017-10-22 08:13:26.511498', NULL);
+INSERT INTO "architects"("id", "name", "affiliation", "zip_code", "prefecture", "city", "address1", "address2", "latitude", "longitude", "qualifications", "message", "introduction", "speciality", "career", "homepage", "avatar", "created_at", "updated_at", "user_id") VALUES ('8d06c50b-65bd-482b-a4d8-5ed9e08da632', '高橋昌宏', '株式会社エムズ・アーキテクツ', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '一級建築士', 'カタログやモデルルームの数少ない選択肢の中から「選ぶ」ようなものであってはならないと思います。
 我々は「長く住み続けられる家」を、既成概念でも流行でもなく、「本質」に基づき、
 施主様と共に設計したいと思っています。
 
@@ -326,8 +337,8 @@ INSERT INTO "architects"("id", "name", "affiliation", "zip_code", "prefecture", 
 　　　　　 日本建築家協会　正会員
 　　　　　 東京建築士会　正会員
 2013 日本建築家協会　デザイン部会　副部会長
-', 'http://www.ms-archi.com/', 'nhi7qCHi4x-240x240.jpg', '2017-09-26 17:31:56.329502', '2017-09-26 17:31:56.826764', NULL);
-INSERT INTO "architects"("id", "name", "affiliation", "zip_code", "prefecture", "city", "address1", "address2", "latitude", "longitude", "qualifications", "message", "introduction", "speciality", "career", "homepage", "avatar", "created_at", "updated_at", "user_id") VALUES ('c7270ac4-1d1b-4d72-8e55-810921c417f5', '桑原聡', '桑原聡建築研究所', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '一級建築士', '
+', 'http://www.ms-archi.com/', 'nhi7qCHi4x-240x240.jpg', '2017-10-22 08:13:52.374995', '2017-10-22 08:13:52.520468', NULL);
+INSERT INTO "architects"("id", "name", "affiliation", "zip_code", "prefecture", "city", "address1", "address2", "latitude", "longitude", "qualifications", "message", "introduction", "speciality", "career", "homepage", "avatar", "created_at", "updated_at", "user_id") VALUES ('51882d63-117e-4777-b901-864771c7e5ad', '桑原聡', '桑原聡建築研究所', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '一級建築士', '
 
 
 
@@ -335,15 +346,15 @@ INSERT INTO "architects"("id", "name", "affiliation", "zip_code", "prefecture", 
 2005年　一級建築士事務所エムズ・アーキテクツ　設立
 2011年　株式会社エムズ・アーキテクツ　設立
 2009～2011年　日本大学非常勤講師
-', 'http://www.s-kuwahara.com/', 'XnQI8gGxsl-240x240.jpg', '2017-09-26 17:43:25.672127', '2017-09-26 17:43:26.16844', NULL);
-INSERT INTO "architects"("id", "name", "affiliation", "zip_code", "prefecture", "city", "address1", "address2", "latitude", "longitude", "qualifications", "message", "introduction", "speciality", "career", "homepage", "avatar", "created_at", "updated_at", "user_id") VALUES ('b79562b5-6bad-46e1-bc04-830a12777cbb', '仲摩邦彦', '仲摩邦彦建築設計事務所', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '一級建築士', '
+', 'http://www.s-kuwahara.com/', 'XnQI8gGxsl-240x240.jpg', '2017-10-22 08:15:02.856931', '2017-10-22 08:15:02.982222', NULL);
+INSERT INTO "architects"("id", "name", "affiliation", "zip_code", "prefecture", "city", "address1", "address2", "latitude", "longitude", "qualifications", "message", "introduction", "speciality", "career", "homepage", "avatar", "created_at", "updated_at", "user_id") VALUES ('4e4f4a08-92cf-4718-8e05-be09b6cc7231', '仲摩邦彦', '仲摩邦彦建築設計事務所', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '一級建築士', '
 
 
 ', NULL, '狭小住宅 / 2世帯住宅 / 変形地', '（初見学研究室） 1986年3月東京芸術大学美術学部大学院建築科修了
 （藤木忠善研究室） 1986年4月株式会社リクルートコスモス設計監理部 1992年7月株式会社コスモスモア設計部 1994年9月桑原聡建築研究所設立 2007年4月株式会社唯アソシエイツ共同設立
 （家具デザイン・制作） 2011年4月東京理科大学理工学部建築学科　非常勤講師
-', 'http://www.ac.auone-net.jp/~k.nakama/', '5HfWvr3auW-240x240.jpg', '2017-09-26 17:46:31.330135', '2017-09-26 17:46:31.903844', NULL);
-INSERT INTO "architects"("id", "name", "affiliation", "zip_code", "prefecture", "city", "address1", "address2", "latitude", "longitude", "qualifications", "message", "introduction", "speciality", "career", "homepage", "avatar", "created_at", "updated_at", "user_id") VALUES ('e73cb264-2afc-4694-96c9-2c5cc81bbcef', 'LDKHOME', '株式会社LDKホーム', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '
+', 'http://www.ac.auone-net.jp/~k.nakama/', '5HfWvr3auW-240x240.jpg', '2017-10-22 08:15:29.869702', '2017-10-22 08:15:30.172889', NULL);
+INSERT INTO "architects"("id", "name", "affiliation", "zip_code", "prefecture", "city", "address1", "address2", "latitude", "longitude", "qualifications", "message", "introduction", "speciality", "career", "homepage", "avatar", "created_at", "updated_at", "user_id") VALUES ('c0b97f87-e1d1-4c7f-857b-61b6268be3ee', 'LDKHOME', '株式会社LDKホーム', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '
 
 
 
@@ -355,12 +366,12 @@ INSERT INTO "architects"("id", "name", "affiliation", "zip_code", "prefecture", 
 1997年 株式会社セルスペース一級建築士事務所
 1998年 株式会社自由工房
 2000年 仲摩邦彦建築設計事務所
-', 'http://ldkhome.co.jp/', '1CuF4VJdiv-240x240.jpg', '2017-09-26 17:55:15.082297', '2017-09-26 17:55:15.690444', NULL);
-INSERT INTO "architects"("id", "name", "affiliation", "zip_code", "prefecture", "city", "address1", "address2", "latitude", "longitude", "qualifications", "message", "introduction", "speciality", "career", "homepage", "avatar", "created_at", "updated_at", "user_id") VALUES ('f05a4c9e-1125-4c48-a541-03393f72e9df', '瀬下直樹/ 瀬下淳子', 'セシモ設計', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '米国一級建築士（NCARB公認）、一級建築士', NULL, NULL, NULL, NULL, 'http://seshimos.com/', 'PqEjhc9Kf9-240x240.jpg', '2017-09-26 17:56:53.153819', '2017-09-26 17:56:53.666283', NULL);
-INSERT INTO "architects"("id", "name", "affiliation", "zip_code", "prefecture", "city", "address1", "address2", "latitude", "longitude", "qualifications", "message", "introduction", "speciality", "career", "homepage", "avatar", "created_at", "updated_at", "user_id") VALUES ('78657db3-38ee-4d0d-a95d-6782cb0b7269', '矢板久明 / 矢板直子', '株式会社 矢板建築設計研究所', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '矢板久明', '全てのデザインプロセスに共通してまず初めに行うことは、敷地や素材に潜在する可能性について、できる限り多くのものを見出す作業です。そこから生まれてくるアイディアは、必然的に一つ一つ異なり、結果として世界に一つしかない特別なかたちを提供できると考えております。私達の創るかたちによって、そこに今までと違うどのような時間が流れるのか、常にいろいろと想像しながら設計作業に取り組んでいます。
+', 'http://ldkhome.co.jp/', '1CuF4VJdiv-240x240.jpg', '2017-10-22 08:16:36.247846', '2017-10-22 08:16:36.369363', NULL);
+INSERT INTO "architects"("id", "name", "affiliation", "zip_code", "prefecture", "city", "address1", "address2", "latitude", "longitude", "qualifications", "message", "introduction", "speciality", "career", "homepage", "avatar", "created_at", "updated_at", "user_id") VALUES ('4c38ce75-b0bb-42d7-938d-f136b8a9bf87', '瀬下直樹/ 瀬下淳子', 'セシモ設計', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '米国一級建築士（NCARB公認）、一級建築士', NULL, NULL, NULL, NULL, 'http://seshimos.com/', 'PqEjhc9Kf9-240x240.jpg', '2017-10-22 08:16:49.144178', '2017-10-22 08:16:49.302428', NULL);
+INSERT INTO "architects"("id", "name", "affiliation", "zip_code", "prefecture", "city", "address1", "address2", "latitude", "longitude", "qualifications", "message", "introduction", "speciality", "career", "homepage", "avatar", "created_at", "updated_at", "user_id") VALUES ('98cb9b9f-4081-4fba-93ad-1b69bd8d8047', '矢板久明 / 矢板直子', '株式会社 矢板建築設計研究所', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '矢板久明', '全てのデザインプロセスに共通してまず初めに行うことは、敷地や素材に潜在する可能性について、できる限り多くのものを見出す作業です。そこから生まれてくるアイディアは、必然的に一つ一つ異なり、結果として世界に一つしかない特別なかたちを提供できると考えております。私達の創るかたちによって、そこに今までと違うどのような時間が流れるのか、常にいろいろと想像しながら設計作業に取り組んでいます。
 ', '建て主の心を写した豊かな空間の創造を目指しています。', NULL, '
-', 'http://www.yaita-associates.com/', 'a0g8SRx4lM-240x240.jpg', '2017-09-26 17:57:14.858413', '2017-09-26 17:57:15.533271', NULL);
-INSERT INTO "architects"("id", "name", "affiliation", "zip_code", "prefecture", "city", "address1", "address2", "latitude", "longitude", "qualifications", "message", "introduction", "speciality", "career", "homepage", "avatar", "created_at", "updated_at", "user_id") VALUES ('acff49ec-bc1c-4350-a469-21c36e5a1262', '庄野健太郎', '庄野健太郎建築設計事務所_s.k.a.o.', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '一級建築士', '美しく映える空間をつくりたいと考えています。
+', 'http://www.yaita-associates.com/', 'a0g8SRx4lM-240x240.jpg', '2017-10-22 08:16:51.431985', '2017-10-22 08:16:51.708524', NULL);
+INSERT INTO "architects"("id", "name", "affiliation", "zip_code", "prefecture", "city", "address1", "address2", "latitude", "longitude", "qualifications", "message", "introduction", "speciality", "career", "homepage", "avatar", "created_at", "updated_at", "user_id") VALUES ('0006885a-933c-4320-a6c1-9886b1a90809', '庄野健太郎', '庄野健太郎建築設計事務所_s.k.a.o.', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '一級建築士', '美しく映える空間をつくりたいと考えています。
 
 
 
@@ -386,8 +397,8 @@ INSERT INTO "architects"("id", "name", "affiliation", "zip_code", "prefecture", 
 1982 - 2002　株式会社アーキブレーン建築研究所
 2002 　　　　有限会社内田直子建築研究所設立
 2005 　　　　株式会社矢板建築設計研究所共同主宰
-', 'http://www.enocoro.com/skao/', 'eFutwdfWrx-240x240.jpg', '2017-09-26 18:07:00.667911', '2017-09-26 18:07:01.332229', NULL);
-INSERT INTO "architects"("id", "name", "affiliation", "zip_code", "prefecture", "city", "address1", "address2", "latitude", "longitude", "qualifications", "message", "introduction", "speciality", "career", "homepage", "avatar", "created_at", "updated_at", "user_id") VALUES ('6a07f633-03c7-468b-b2ea-2a65719787ca', '津野恵美子', '津野建築設計室', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '一級建築士', '皆さんライフスタイルも違うし、家族構成も違う。建てる場所も違う。この違うことをお互いに楽しんで受け容れられるおおらかな家づくりをしたいと思っています。家は建つまでに時間がかかりますが、その後その何十倍もの時間を過ごす場所です。その後の変化も楽しめ、時間と共にますます愛着が沸いてくる、そんなおおらかな家づくりのお手伝いをしたいと思っています。
+', 'http://www.enocoro.com/skao/', 'eFutwdfWrx-240x240.jpg', '2017-10-22 08:18:00.933395', '2017-10-22 08:18:01.08384', NULL);
+INSERT INTO "architects"("id", "name", "affiliation", "zip_code", "prefecture", "city", "address1", "address2", "latitude", "longitude", "qualifications", "message", "introduction", "speciality", "career", "homepage", "avatar", "created_at", "updated_at", "user_id") VALUES ('198346c2-46c5-4a02-b2aa-94bdc16b100f', '津野恵美子', '津野建築設計室', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '一級建築士', '皆さんライフスタイルも違うし、家族構成も違う。建てる場所も違う。この違うことをお互いに楽しんで受け容れられるおおらかな家づくりをしたいと思っています。家は建つまでに時間がかかりますが、その後その何十倍もの時間を過ごす場所です。その後の変化も楽しめ、時間と共にますます愛着が沸いてくる、そんなおおらかな家づくりのお手伝いをしたいと思っています。
 
 
 
@@ -399,19 +410,8 @@ INSERT INTO "architects"("id", "name", "affiliation", "zip_code", "prefecture", 
 1998年　　　手塚建築研究所入社
 2000年　　　ステュディオ ハン デザイン入社
 2003年　　　庄野健太郎建築設計事務所_s.k.a.o.設立
-', 'http://www.t-troom.com/', 'KTI4mIBQcQ-240x240.jpg', '2017-09-26 18:10:01.375926', '2017-09-26 18:10:01.950987', NULL);
-INSERT INTO "architects"("id", "name", "affiliation", "zip_code", "prefecture", "city", "address1", "address2", "latitude", "longitude", "qualifications", "message", "introduction", "speciality", "career", "homepage", "avatar", "created_at", "updated_at", "user_id") VALUES ('a034e272-5bb3-4638-b2d4-c92ee4a0becf', 'ジェームス・ランビアーシ／林　謙太郎', 'ランビアーシ＆林アーキテクツ株式会社', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '一級建築士／ニューヨーク州登録建築家', '
-
-
-
-
-', 'メガネ', NULL, '1997年　同大学工学系研究科建築学専攻修士課程修了
-1997～2003年　ナスカ勤務（古谷誠章・八木佐千子に師事）
-2003年～　津野建築設計室主宰
-2009年～　東洋大学非常勤講師
-2013年～　東京工芸大学非常勤講師
-', 'http://lh-arch.com/J-profile.html', '6zd1tHk0Pp-240x240.jpg', '2017-09-26 18:13:18.74561', '2017-09-26 18:13:19.312404', NULL);
-INSERT INTO "architects"("id", "name", "affiliation", "zip_code", "prefecture", "city", "address1", "address2", "latitude", "longitude", "qualifications", "message", "introduction", "speciality", "career", "homepage", "avatar", "created_at", "updated_at", "user_id") VALUES ('f43b13df-755a-429f-b2a6-9e17dde4bbef', '奥野公章', '奥野公章建築設計室', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '一級建築士', 'それぞれの文化的背景の違いを活かし、洋の東西を超えた快適な空間づくりを心がけています。
+', 'http://www.t-troom.com/', 'KTI4mIBQcQ-240x240.jpg', '2017-10-22 08:18:23.651278', '2017-10-22 08:18:23.80892', NULL);
+INSERT INTO "architects"("id", "name", "affiliation", "zip_code", "prefecture", "city", "address1", "address2", "latitude", "longitude", "qualifications", "message", "introduction", "speciality", "career", "homepage", "avatar", "created_at", "updated_at", "user_id") VALUES ('ae9b1ad6-acdc-4c40-b847-3d0150871ef6', '奥野公章', '奥野公章建築設計室', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '一級建築士', 'それぞれの文化的背景の違いを活かし、洋の東西を超えた快適な空間づくりを心がけています。
 また異質な素材の組合せや繊細なディテールを積み重ねて、穏やかで居心地の良い住空間を創ることを目指しています。
 
 
@@ -451,8 +451,8 @@ INSERT INTO "architects"("id", "name", "affiliation", "zip_code", "prefecture", 
 1995 筑波大学芸術専門学群 卒業
 1972 広島市 生、福岡県 出身
 資格：一級建築士
-', 'http://okuno-room.com/', 'HRoCELZKmZ-240x240.jpg', '2017-09-26 18:18:00.532132', '2017-09-26 18:18:01.134902', NULL);
-INSERT INTO "architects"("id", "name", "affiliation", "zip_code", "prefecture", "city", "address1", "address2", "latitude", "longitude", "qualifications", "message", "introduction", "speciality", "career", "homepage", "avatar", "created_at", "updated_at", "user_id") VALUES ('b92020ac-6409-4714-83c9-8e75ae3fcdd2', '中西ヒロツグ', 'イン・ハウス建築計画', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '一級建築士', '
+', 'http://okuno-room.com/', 'HRoCELZKmZ-240x240.jpg', '2017-10-22 08:19:14.756067', '2017-10-22 08:19:14.939447', NULL);
+INSERT INTO "architects"("id", "name", "affiliation", "zip_code", "prefecture", "city", "address1", "address2", "latitude", "longitude", "qualifications", "message", "introduction", "speciality", "career", "homepage", "avatar", "created_at", "updated_at", "user_id") VALUES ('8d61b4af-c85c-43c5-8d77-707a5fe83d3e', '中西ヒロツグ', 'イン・ハウス建築計画', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '一級建築士', '
 それぞれに違う「居心地の良さ」を対話の中でみつけ共感することから設計をはじめます。時にはお酒を飲みながら、時には散歩をしながら、いろんなお話ができればと思います。
 
 広い視野を持って、様々なアイデアを出しながら、その「居心地」に形を与え、住まい手と供に年をとり、長く愛される住宅をつくっていきたいと思います。
@@ -468,8 +468,8 @@ INSERT INTO "architects"("id", "name", "affiliation", "zip_code", "prefecture", 
 2002　 建築、家具設計ユニット ホワイトベース共同設立
 2004　 一級建築士事務所 奥野公章建築設計室設立
 2006～東洋大学ライフデザイン学部科非常勤講師
-', 'http://inh-arch.p2.weblife.me/', 'yhqnCBdMfU-240x240.jpg', '2017-09-26 18:22:20.955722', '2017-09-26 18:22:21.535104', NULL);
-INSERT INTO "architects"("id", "name", "affiliation", "zip_code", "prefecture", "city", "address1", "address2", "latitude", "longitude", "qualifications", "message", "introduction", "speciality", "career", "homepage", "avatar", "created_at", "updated_at", "user_id") VALUES ('b74de372-d130-40e3-a76f-391aa2716261', '久保和樹', 'H2DO一級建築士事務所', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '一級建築士', '
+', 'http://inh-arch.p2.weblife.me/', 'yhqnCBdMfU-240x240.jpg', '2017-10-22 08:19:49.68424', '2017-10-22 08:19:49.905498', NULL);
+INSERT INTO "architects"("id", "name", "affiliation", "zip_code", "prefecture", "city", "address1", "address2", "latitude", "longitude", "qualifications", "message", "introduction", "speciality", "career", "homepage", "avatar", "created_at", "updated_at", "user_id") VALUES ('c01305e0-9b87-4dd5-ac35-7f234cdd8de3', '久保和樹', 'H2DO一級建築士事務所', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '一級建築士', '
 
 
 
@@ -477,4 +477,4 @@ INSERT INTO "architects"("id", "name", "affiliation", "zip_code", "prefecture", 
 1986-99　菊竹清訓建築設計事務所
 1999-　イン・ハウス建築計画
 2000-07　 文化女子大学非常勤講師
-', 'http://www.h2do.net/', 'Y8WosQB190-240x240.jpg', '2017-09-26 18:25:37.62759', '2017-09-26 18:25:38.152859', NULL);
+', 'http://www.h2do.net/', 'Y8WosQB190-240x240.jpg', '2017-10-22 08:20:16.123879', '2017-10-22 08:20:16.268569', NULL);

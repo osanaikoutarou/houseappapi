@@ -1,6 +1,10 @@
 namespace :testdata do
   desc 'Import test data (from csv)'
   task import_20170927: :environment do
+
+    SAMPLE_PHOTO_PATH = 'https://s3-ap-northeast-1.amazonaws.com/kenchikukatachi/development/photo/image'
+    SAMPLE_ARCHITECT_PHOTO_PATH = 'https://s3-ap-northeast-1.amazonaws.com/kenchikukatachi/development/architect'
+
     architects = {}
     CSV.foreach('sampledata/20170927/architects.csv', headers: true) do |row|
       architect_id = row[0]
@@ -95,9 +99,12 @@ namespace :testdata do
     architects.each_pair do |architect_id, hash|
       a = Architect.create(hash['architect'])
       begin
-        a.remote_avatar_url = "https://houseapp.s3.amazonaws.com/photos/#{hash['architect']['avatar']}" unless hash['architect']['avatar'].blank?
+
+        a.remote_avatar_url = "#{SAMPLE_ARCHITECT_PHOTO_PATH}/#{hash['architect']['avatar']}" unless hash['architect']['avatar'].blank?
+        a.save!
       rescue
-        puts " ... (failed to upload image) ..."
+        puts " ... (failed to upload image) ... #{a.remote_avatar_url}"
+        a.remote_avatar_url = nil
       end
 
       a.save!
@@ -127,9 +134,11 @@ namespace :testdata do
           p.title = photo['title']
           p.description = photo['description']
           begin
-            p.remote_image_url = "https://houseapp.s3.amazonaws.com/photos/#{photo['image_name']}" unless photo['image_name'].blank?
+            p.remote_image_url = "#{SAMPLE_PHOTO_PATH}/#{photo['image_name']}" unless photo['image_name'].blank?
+            p.save!
           rescue
-            puts " ... (failed to upload image) ..."
+            puts " ... (failed to upload image) ... #{p.remote_image_url}"
+            p.remote_image_url = nil
           end
           p.save!
           photo_count += 1

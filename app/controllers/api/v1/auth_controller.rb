@@ -178,13 +178,22 @@ module Api
 
       #---------------------------------------------------------
       # PUT /api/auth/profile
-      swagger_api :update_profile do
-        summary 'Update profile for current login user'
-        param :header, 'Authorization', :string, :required, 'Bearer AccessToken'
-        notes 'Authentication required'
-        response :ok
-        response :bad_request
-        response :unauthorized
+      swagger_path '/api/v1/auth/profile' do
+        operation :put do
+          key :summary, 'Update profile for current login user'
+
+          security do
+            key :login_required_auth, []
+          end
+
+          response 200 do
+            schema do
+              property :user, '$ref' => :User
+              property :user_profile, '$ref' => :UserProfile
+            end
+          end
+        end
+
       end
       def update_profile
         @user = current_user
