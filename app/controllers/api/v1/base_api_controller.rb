@@ -21,7 +21,13 @@ class Api::V1::BaseApiController < ApplicationController
 
     payload = AuthToken.payload(token)
     user_id = payload.first['user'] unless payload.nil?
-    @current_user = User.find(user_id) if user_id
+    begin
+      @current_user = User.find(user_id) if user_id
+    rescue => ex
+      @current_user = nil
+      logger.error ex.message
+    end
+
   end
 
   ##
