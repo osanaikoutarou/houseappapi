@@ -165,6 +165,7 @@ module Api
             schema do
               property :user, '$ref' => :User
               property :user_profile, '$ref' => :UserProfile
+              # property :user_state, '$ref' => :UserState
             end
           end
         end
@@ -172,6 +173,7 @@ module Api
       def profile
         @user = current_user
         @user_profile = current_user.try(:user_profile)
+        # @user_state = current_user.try(:user_state)
 
         render status: common_http_status
       end
@@ -190,6 +192,7 @@ module Api
             schema do
               property :user, '$ref' => :User
               property :user_profile, '$ref' => :UserProfile
+              # property :user_state, '$ref' => :UserState
             end
           end
         end
@@ -200,8 +203,12 @@ module Api
         @user_profile = current_user.user_profile || UserProfile.new(user: current_user)
         @user_profile.update(user_profile_params)
 
+        # @user_state = current_user.user_state || UserState.new(user: current_user)
+        # @user_state.update(user_state_params)
+
         render status: common_http_status
       end
+      
 
       #---------------------------------------------------------
       # PUT /api/auth/password
@@ -274,6 +281,25 @@ module Api
                       :city,
                       :address1,
                       :address2
+        )
+
+      end
+      
+      def user_state_params
+        params.permit(:displayed_tutorial,
+                      :gender,
+                      :year_of_birth,
+                      :want_to_live_pref_name,
+                      :have_own_land,
+                      :user_states_for_architect,
+                      :contents_of_request,
+                      :price_policy,
+                      :resident_num,
+                      :child_num,
+                      :elderly_num,
+                      :pet_dog,
+                      :pet_cat,
+                      :pet_other
         )
 
       end

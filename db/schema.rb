@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170930060108) do
+ActiveRecord::Schema.define(version: 20171030114547) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -191,6 +191,26 @@ ActiveRecord::Schema.define(version: 20170930060108) do
     t.decimal  "longitude",       precision: 10, scale: 6
     t.datetime "created_at",                               null: false
     t.datetime "updated_at",                               null: false
+  end
+
+  create_table "user_states", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
+    t.uuid     "user_id"
+    t.boolean  "displayed_tutorial"
+    t.integer  "year_of_birth"
+    t.string   "want_to_live_pref_name"
+    t.boolean  "have_own_land"
+    t.string   "user_states_for_architect"
+    t.string   "contents_of_request"
+    t.string   "price_policy"
+    t.string   "resident_num"
+    t.string   "child_num"
+    t.string   "elderly_num"
+    t.string   "pet_dog"
+    t.string   "pet_cat"
+    t.string   "pet_other"
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.index ["user_id"], name: "index_user_states_on_user_id", using: :btree
   end
 
   create_table "users", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
