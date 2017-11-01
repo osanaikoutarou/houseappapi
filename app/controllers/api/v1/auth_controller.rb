@@ -273,7 +273,21 @@ module Api
                       :prefecture,
                       :city,
                       :address1,
-                      :address2
+                      :address2,
+                      
+                      :displayed_tutorial,
+                      :year_of_birth,
+                      :want_to_live_pref_name,
+                      :have_own_land,
+                      :user_states_for_architect,
+                      :contents_of_request,
+                      :price_policy,
+                      :resident_num,
+                      :child_num,
+                      :elderly_num,
+                      :pet_dog,
+                      :pet_cat,
+                      :pet_other
         )
 
       end
