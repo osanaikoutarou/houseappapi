@@ -274,7 +274,6 @@ module Api
                       :city,
                       :address1,
                       :address2,
-                      
                       :displayed_tutorial,
                       :year_of_birth,
                       :want_to_live_pref_name,
