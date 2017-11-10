@@ -21,7 +21,7 @@ gem 'i18n_generators'
 gem 'jbuilder', '~> 2.5'
 gem 'jquery-rails'
 gem 'jwt'
-gem 'kaminari'
+gem 'kaminari' # pagination
 gem 'koala'
 gem 'lograge'
 gem 'logstash-event'

@@ -41,6 +41,7 @@ Rails.application.routes.draw do
       end
 
       scope :photos do
+        get '/likes' => 'photos#likes'
         post '/:photo_id/like' => 'photos#like'
         post '/:photo_id/pass' => 'photos#pass'
       end
