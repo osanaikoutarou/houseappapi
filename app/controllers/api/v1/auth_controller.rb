@@ -149,6 +149,47 @@ module Api
         render '/api/v1/auth/login', status: common_http_status
       end
 
+
+      #---------------------------------------------------------
+      swagger_path '/api/v1/auth/token/facebook' do
+        operation :post do
+          key :summary, 'Login with Facebook access token.'
+          key :description, ''
+          key :tags, ['auth']
+
+          parameter paramType: :body,
+                    type: :string,
+                    name: :access_token,
+                    description: 'Access token from Facebook SDK',
+                    required: true
+
+          response 200 do
+            key :description, 'Successfully authenticate with FB access token'
+            schema do
+              property :user, '$ref' => :User
+              property :access_token, type: :string
+              property :device_uuid, type: :string
+            end
+          end
+        end
+      end
+      def auth_facebook
+
+        token = params[:access_token]
+        device_uuid = params[:device_uuid]
+
+        # Try to verify facebook's access token
+        user = verify_facebook_token(token, device_uuid)
+
+        unless user.nil?
+          @user = user
+          @access_token = AuthToken.sign(user: @user.id, device: @user.device_uuid, scope: 'user')
+          @device_uuid = user.device_uuid
+        end
+
+        render '/api/v1/auth/register', :status => common_http_status
+      end
+
       #---------------------------------------------------------
       # GET /api/auth/profile
       swagger_path '/api/v1/auth/profile' do
@@ -254,10 +295,49 @@ module Api
 
       #---------------------------------------------------------
 
+      private
       def verify_password(email, password)
         user = User.find_by_email(email)
         return user if user && user.valid_password?(password)
         return nil
+      rescue => ex
+        logger.error ex.inspect
+        return nil
+      end
+
+      def verify_facebook_token(token, device_uuid)
+        graph = Koala::Facebook::API.new(token)
+
+        # https://developers.facebook.com/docs/graph-api/reference/user/
+        profile = graph.get_object('me?fields=id,name,email,picture.width(800).height(800),cover')
+        logger.debug "[API::Authenticate::Facebook] Login user: #{profile.inspect}"
+
+        user = User.where(facebook_id: profile['id']).first
+        if user.nil?
+          user = User.new
+          user.password = SecureRandom.base64
+          user.email = profile['email']
+          user.facebook_id = profile['id']
+          user.facebook_access_token = token
+          user.device_uuid = device_uuid || SecureRandom.uuid
+          user.save!
+
+          user_profile = user.user_profile || UserProfile.new(user: user)
+          user_profile.first_name = profile['first_name']
+          user_profile.last_name = profile['last_name']
+          user_profile.save!
+          user.user_profile = user_profile # Rebind user-profile if it was null
+
+        elsif user.email != profile['email']
+            #Existing users, return error and ask user if they want to link-account
+            @error = ApiErrors::ATH030
+            return nil
+        else
+          # TODO: Update info from Facebook?
+        end
+
+        return user
+
       rescue => ex
         logger.error ex.inspect
         return nil

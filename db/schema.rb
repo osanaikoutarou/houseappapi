@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170930060108) do
+ActiveRecord::Schema.define(version: 20171110113317) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -208,8 +208,11 @@ ActiveRecord::Schema.define(version: 20170930060108) do
     t.datetime "updated_at",                          null: false
     t.integer  "role",                   default: 0
     t.uuid     "device_uuid"
+    t.string   "facebook_id"
+    t.string   "facebook_access_token"
     t.index ["device_uuid"], name: "index_users_on_device_uuid", using: :btree
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
+    t.index ["facebook_id"], name: "index_users_on_facebook_id", using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 

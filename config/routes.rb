@@ -23,6 +23,7 @@ Rails.application.routes.draw do
         post '/guest' => 'auth#create_guest_user'
         post '/register' => 'auth#register'
         post '/login' => 'auth#login'
+        post '/token/facebook' => 'auth#auth_facebook'
 
         match '/logout' => 'auth#logout', via: %i[delete post put]
         get '/profile' => 'auth#profile'
