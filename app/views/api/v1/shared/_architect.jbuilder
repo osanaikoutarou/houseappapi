@@ -22,5 +22,5 @@ if architect.present?
   end
 
   json.house_count architect.house_count
-  json.house_likes_count architect.house_likes_count
+  json.photo_count architect.photo_count
 end

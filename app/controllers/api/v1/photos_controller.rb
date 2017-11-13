@@ -4,18 +4,68 @@ module Api
     # Controller to handle photo requests
     #
     class PhotosController < BaseApiController
-      swagger_controller :photos, 'Manage requests for photo'
+      include Swagger::Blocks
 
       before_action :verify_jwt_token
 
       #---------------------------------------------------------
+      # GET /api/photos/likes
+      swagger_path '/api/v1/photos/:photo_id/likes' do
+        operation :post do
+          key :summary, 'Get favorite photos'
+          key :description, ''
+          key :tags, ['photo']
+
+          parameter paramType: :query,
+                    type: :string,
+                    name: :per_page,
+                    description: 'Number of records',
+                    required: false
+
+          parameter paramType: :query,
+                    type: :string,
+                    name: :page,
+                    description: 'Current page',
+                    required: false
+
+          security do
+            key :login_required_auth, []
+          end
+
+          response 200 do
+          end
+        end
+      end
+      def likes
+
+        @page = params[:page] || 1
+        @per_page = params[:per_page] || 25
+        @total = Photo.find_by_user(@current_user.id).count
+        @photos = Photo.find_by_user(@current_user.id).page(@page).per(@per_page).all
+
+      end
+
+      #---------------------------------------------------------
       # POST /api/photos/:photo_id/like
-      swagger_api :like do
-        summary 'Marks photo as favorite for current user'
-        notes 'User must be logged in'
-        param :path, :photo_id, :string, :required
-        response :unauthorized
-        response :not_found
+      swagger_path '/api/v1/photos/:photo_id/like' do
+        operation :post do
+          key :summary, 'Marks photo as favorite for current user'
+          key :description, ''
+          key :tags, ['photo']
+
+          parameter paramType: :path,
+                    type: :string,
+                    name: :photo_id,
+                    description: 'Photo UUID',
+                    required: true
+
+          security do
+            key :login_required_auth, []
+          end
+
+          response 200 do
+          end
+        end
       end
 
       def like
@@ -29,12 +79,25 @@ module Api
 
       #---------------------------------------------------------
       # POST /api/photos/:photo_id/pass
-      swagger_api :pass do
-        summary 'Marks photo as no interest for current user'
-        notes 'User must be logged in'
-        param :path, :photo_id, :string, :required
-        response :unauthorized
-        response :not_found
+      swagger_path '/api/v1/photos/:photo_id/pass' do
+        operation :post do
+          key :summary, 'Marks photo as no interest for current user'
+          key :description, ''
+          key :tags, ['photo']
+
+          parameter paramType: :path,
+                    type: :string,
+                    name: :photo_id,
+                    description: 'Photo UUID',
+                    required: true
+
+          security do
+            key :login_required_auth, []
+          end
+
+          response 200 do
+          end
+        end
       end
 
       def pass

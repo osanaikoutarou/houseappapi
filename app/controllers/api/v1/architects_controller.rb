@@ -1,6 +1,8 @@
 module Api
   module V1
     class ArchitectsController < BaseApiController
+      include Swagger::Blocks
+
       swagger_controller :architects, 'Manage requests for architect'
 
       before_action :verify_jwt_token, only: %i[like unlike]
@@ -31,14 +33,25 @@ module Api
 
       #---------------------------------------------------------
       # GET /architects/:architect_id/houses?page=xxx
-      swagger_api :houses do
-        summary 'Get houses from an architect'
-        param :path, :architect_id, :string, 'Architect UUID'
-        param :query, :page, :integer, 'Page number. Default: 1'
-        response :ok
-        response :bad_request
+      swagger_path '/api/v1/architects/{architect_id}/houses' do
+        operation :get do
+          key :summary, 'Get houses from an architect'
+          key :description, ''
+          key :tags, ['architect']
+          parameter paramType: :path,
+                    type: :string,
+                    name: :architect_id,
+                    description: 'Architect UUID',
+                    required: true
+          response 200 do
+            key :description, 'List of houses'
+            schema do
+              property :total
+              property :houses, '$ref' => :House
+            end
+          end
+        end
       end
-
       def houses
         @houses = House.where(architect_id: params[:architect_id]).page(params[:page]).all
         @total  = House.where(architect_id: params[:architect_id]).count

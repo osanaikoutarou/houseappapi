@@ -1,9 +1,4 @@
-json.partial! '/api/v1/common'
-json.page @page
-json.total @total
-
-json.houses @houses do |house|
-
+if house.present?
   json.id house.id
   json.archtect_id house.architect_id
   json.rank house.rank

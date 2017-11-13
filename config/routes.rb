@@ -23,6 +23,7 @@ Rails.application.routes.draw do
         post '/guest' => 'auth#create_guest_user'
         post '/register' => 'auth#register'
         post '/login' => 'auth#login'
+        post '/token/facebook' => 'auth#auth_facebook'
 
         match '/logout' => 'auth#logout', via: %i[delete post put]
         get '/profile' => 'auth#profile'
@@ -40,6 +41,7 @@ Rails.application.routes.draw do
       end
 
       scope :photos do
+        get '/likes' => 'photos#likes'
         post '/:photo_id/like' => 'photos#like'
         post '/:photo_id/pass' => 'photos#pass'
       end
