@@ -26,7 +26,6 @@ class UserProfile < ApplicationRecord
     property :want_to_live_pref_name, type: :string
     property :have_own_land, type: :bool
     property :user_states_for_architect, type: :string
-    property :contents_of_request, type: :string
     property :price_policy, type: :string
     property :resident_num, type: :int
     property :child_num, type: :int
@@ -34,5 +33,12 @@ class UserProfile < ApplicationRecord
     property :pet_dog, type: :string
     property :pet_cat, type: :string
     property :pet_other, type: :string
+    property :nickname, type: :string
+    property :contents_of_request do
+      key :type, :array
+      items do
+        key :type, :string
+      end
+    end
   end
 end

@@ -286,7 +286,8 @@ module Api
                       :elderly_num,
                       :pet_dog,
                       :pet_cat,
-                      :pet_other
+                      :pet_other,
+                      :nickname
         )
 
       end
