@@ -187,10 +187,24 @@ ActiveRecord::Schema.define(version: 20171110113317) do
     t.string   "city"
     t.string   "address1"
     t.string   "address2"
-    t.decimal  "latitude",        precision: 10, scale: 6
-    t.decimal  "longitude",       precision: 10, scale: 6
-    t.datetime "created_at",                               null: false
-    t.datetime "updated_at",                               null: false
+    t.decimal  "latitude",                  precision: 10, scale: 6
+    t.decimal  "longitude",                 precision: 10, scale: 6
+    t.datetime "created_at",                                                      null: false
+    t.datetime "updated_at",                                                      null: false
+    t.boolean  "displayed_tutorial"
+    t.integer  "year_of_birth"
+    t.string   "want_to_live_pref_name"
+    t.boolean  "have_own_land"
+    t.string   "user_states_for_architect"
+    t.string   "price_policy"
+    t.string   "resident_num"
+    t.string   "child_num"
+    t.string   "elderly_num"
+    t.string   "pet_dog"
+    t.string   "pet_cat"
+    t.string   "pet_other"
+    t.string   "nickname"
+    t.string   "contents_of_request",                                default: [],              array: true
   end
 
   create_table "users", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
