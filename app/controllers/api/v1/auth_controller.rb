@@ -222,6 +222,7 @@ module Api
       swagger_path '/api/v1/auth/profile' do
         operation :put do
           key :summary, 'Update profile for current login user'
+          key :tags, ['auth']
 
           security do
             key :login_required_auth, []

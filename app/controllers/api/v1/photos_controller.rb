@@ -9,43 +9,6 @@ module Api
       before_action :verify_jwt_token
 
       #---------------------------------------------------------
-      # GET /api/photos/likes
-      swagger_path '/api/v1/photos/:photo_id/likes' do
-        operation :post do
-          key :summary, 'Get favorite photos'
-          key :description, ''
-          key :tags, ['photo']
-
-          parameter paramType: :query,
-                    type: :string,
-                    name: :per_page,
-                    description: 'Number of records',
-                    required: false
-
-          parameter paramType: :query,
-                    type: :string,
-                    name: :page,
-                    description: 'Current page',
-                    required: false
-
-          security do
-            key :login_required_auth, []
-          end
-
-          response 200 do
-          end
-        end
-      end
-      def likes
-
-        @page = params[:page] || 1
-        @per_page = params[:per_page] || 25
-        @total = Photo.find_by_user(@current_user.id).count
-        @photos = Photo.find_by_user(@current_user.id).page(@page).per(@per_page).all
-
-      end
-
-      #---------------------------------------------------------
       # POST /api/photos/:photo_id/like
       swagger_path '/api/v1/photos/:photo_id/like' do
         operation :post do
@@ -72,7 +35,7 @@ module Api
         photo_id = params[:photo_id]
         head status: :not_found && return unless Photo.exists?(photo_id)
 
-        @favorite      = FavoritePhoto.find_or_initialize_by(photo_id: photo_id, user_id: @current_user.id)
+        @favorite      = FavoritePhoto.where(photo_id: photo_id, user_id: @current_user.id).find_or_initialize
         @favorite.like = true
         @favorite.save!
       end
@@ -104,7 +67,7 @@ module Api
         photo_id = params[:photo_id]
         head status: :not_found && return unless Photo.exists?(photo_id)
 
-        @favorite      = FavoritePhoto.find_or_initialize_by(photo_id: photo_id, user_id: @current_user.id)
+        @favorite      = FavoritePhoto.where(photo_id: photo_id, user_id: @current_user.id).find_or_initialize
         @favorite.like = false
         @favorite.save!
       end

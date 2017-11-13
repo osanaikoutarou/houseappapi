@@ -46,6 +46,14 @@ Rails.application.routes.draw do
         post '/:photo_id/pass' => 'photos#pass'
       end
 
+      scope :profile do
+
+        get '/favorite_architects' => 'profile#favorite_architects'
+        get '/favorite_houses' => 'profile#favorite_houses'
+        get '/favorite_photos' => 'profile#favorite_photos'
+
+      end
+
       scope :search do
 
         get '/matched_architects' => 'search#matched_architects'

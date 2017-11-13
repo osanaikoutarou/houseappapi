@@ -54,17 +54,10 @@ module Api
 
       #---------------------------------------------------------
       # POST /houses/:id/like
-      swagger_api :like do |api|
-        summary 'Add house to favorite list'
-        notes 'Login required'
-        param :path, :architect_id, :string, :required, 'Architect UUID'
-        BaseApiController::add_swagger_auth_params(api)
-        BaseApiController::add_swagger_common_params(api)
-      end
 
       def like
         house         = House.find(params[:house_id])
-        favorite      = FavoriteHouse.first_or_initialize(user_id: current_user.id, house_id: house.id)
+        favorite      = FavoriteHouse.where(user_id: current_user.id, house_id: house.id).first_or_initialize
         favorite.like = true
         favorite.save!
 
@@ -84,7 +77,7 @@ module Api
 
       def unlike
         house         = House.find(params[:house_id])
-        favorite      = FavoriteHouse.first_or_initialize(user_id: current_user.id, house_id: house.id)
+        favorite      = FavoriteHouse.where(user_id: current_user.id, house_id: house.id).first_or_initialize
         favorite.like = false
         favorite.save!
 

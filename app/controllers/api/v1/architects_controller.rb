@@ -3,8 +3,6 @@ module Api
     class ArchitectsController < BaseApiController
       include Swagger::Blocks
 
-      swagger_controller :architects, 'Manage requests for architect'
-
       before_action :verify_jwt_token, only: %i[like unlike]
 
       #---------------------------------------------------------

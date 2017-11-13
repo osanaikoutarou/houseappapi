@@ -87,8 +87,8 @@ class Api::V1::BaseApiController < ApplicationController
   def error_occurred(ex)
     logger.error ex.message
     ex.backtrace.each { |line| logger.error line }
-    @error  = ApiErrors::E00000
-    @errors = [ex.message]
+    @error = ApiErrors::E00000
+    @error.message = ex.message
     render '/api/v1/error', status: common_http_status
   end
 end

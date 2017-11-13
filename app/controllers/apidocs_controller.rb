@@ -30,6 +30,8 @@ class ApidocsController < ActionController::Base
   # A list of all classes that have swagger_* declarations.
   SWAGGERED_CLASSES = [
       Api::V1::AuthController,
+      Api::V1::ArchitectsController,
+      Api::V1::ProfileController,
       User,
       UserProfile,
       self,
