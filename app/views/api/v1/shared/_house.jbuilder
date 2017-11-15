@@ -1,6 +1,6 @@
 if house.present?
   json.id house.id
-  json.archtect_id house.architect_id
+  json.architect_id house.architect_id
   json.rank house.rank
   json.floor_space house.floor_space
   json.site_area_space house.site_area_space
@@ -18,4 +18,9 @@ if house.present?
   json.featured_photo  do
     json.partial! '/api/v1/shared/photo', photo: house.photos.first
   end
+
+  if current_user.present?
+    json.liked FavoriteHouse.exists?(user_id: current_user.id, house_id: house.id)
+  end
+
 end
