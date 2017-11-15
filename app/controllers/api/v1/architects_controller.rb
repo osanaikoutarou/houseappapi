@@ -87,7 +87,7 @@ module Api
 
       def like
         architect     = Architect.find(params[:architect_id])
-        favorite      = FavoriteArchitect.first_or_initialize(user_id: current_user.id, architect_id: architect.id)
+        favorite      = FavoriteArchitect.where(user_id: current_user.id, architect_id: architect.id).first_or_initialize
         favorite.like = true
         favorite.save!
 
@@ -107,7 +107,7 @@ module Api
 
       def unlike
         architect     = Architect.find(params[:architect_id])
-        favorite      = FavoriteArchitect.first_or_initialize(user_id: current_user.id, architect_id: architect.id)
+        favorite      = FavoriteArchitect.where(user_id: current_user.id, architect_id: architect.id).first_or_initialize
         favorite.like = false
         favorite.save!
       end
