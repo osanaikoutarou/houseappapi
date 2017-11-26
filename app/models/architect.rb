@@ -1,4 +1,7 @@
 class Architect < ApplicationRecord
+
+  include KeywordSearchable
+
   has_many :houses
   has_many :photos, through: :houses
 
@@ -24,6 +27,16 @@ class Architect < ApplicationRecord
                       ) A2 ON (A1.id = A2.id and A2.cnt > 0)
                       ORDER BY A2.cnt DESC
                       LIMIT 20 OFFSET :offset", {user_id: user.id, offset: offset}])
+  end
+
+  def self.fields_for_find_by_keywords
+    [
+        'architects.name' ,
+        'architects.affiliation',
+        'architects.message',
+        'architects.introduction',
+        'architects.speciality'
+    ]
   end
 
   def featured_photo

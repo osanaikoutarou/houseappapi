@@ -1,20 +1,32 @@
 module Api
   module V1
     class ArchitectsController < BaseApiController
+
       include Swagger::Blocks
 
       before_action :verify_jwt_token, only: %i[like unlike]
 
       #---------------------------------------------------------
       # GET /architects
-      swagger_api :index do
-        summary 'Get architect list'
-        param :query, :page, :integer, 'Page number'
+      swagger_path '/api/v1/architects' do
+        operation :get do
+
+          key :summary, 'Search for architects'
+          key :description, ''
+          key :tags, ['architect']
+
+          parameter paramType: :query,
+                    type: :string,
+                    name: :keyword,
+                    description: 'Keyword to search',
+                    required: false
+
+        end
       end
 
       def index
-        @architects = Architect.page(params[:page]).all
-        @total      = Architect.count
+        @finder = Finder::ArchitectFinder.new(Form::ArchitectForm.new(params))
+        @finder.find_architects
       end
 
       #---------------------------------------------------------

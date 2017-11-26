@@ -33,6 +33,7 @@ Rails.application.routes.draw do
       end
 
       scope :houses do
+        get '/' => 'houses#index'
         get '/:house_id' => 'houses#show'
         get '/:house_id/photos' => 'houses#photos'
         get '/:house_id/featured_photos' => 'houses#featured_photos'
@@ -41,6 +42,7 @@ Rails.application.routes.draw do
       end
 
       scope :photos do
+        get '/' => 'photos#index'
         get '/likes' => 'photos#likes'
         post '/:photo_id/like' => 'photos#like'
         post '/:photo_id/pass' => 'photos#pass'

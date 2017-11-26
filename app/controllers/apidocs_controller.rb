@@ -31,7 +31,9 @@ class ApidocsController < ActionController::Base
   SWAGGERED_CLASSES = [
       Api::V1::AuthController,
       Api::V1::ArchitectsController,
+      Api::V1::HousesController,
       Api::V1::ProfileController,
+      Api::V1::PhotosController,
       User,
       UserProfile,
       self,

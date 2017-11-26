@@ -33,15 +33,12 @@ module Api
         end
       end
       def favorite_architects
-        @page = params[:page] || 1
-        @per_page = params[:per_page] || 25
-        @total = FavoriteArchitect.where(user_id: current_user.id).count
-        favorites = FavoriteArchitect.where(user_id: current_user.id)
-                         .includes(:architect)
-                         .page(params[:page])
-                         .all
 
-        @architects = favorites.map { |f| f.architect }
+        form = Form::ArchitectForm.new(params)
+        form.current_user = @current_user
+        @finder = Finder::ArchitectFinder.new(form)
+
+        @finder.find_favorite_architects
 
       end
 
@@ -70,16 +67,12 @@ module Api
       end
 
       def favorite_houses
-        @page = params[:page] || 1
-        @per_page = params[:per_page] || 25
-        @total = FavoriteHouse.where(user_id: current_user.id).count
-        favorites = FavoriteHouse.where(user_id: current_user.id)
-                      .includes(:house)
-                      .page(@page)
-                      .per(@per_page)
-                      .all
 
-        @houses = favorites.map { |f| f.house }
+        form = Form::HouseForm.new(params)
+        form.current_user = @current_user
+        @finder = Finder::HouseFinder.new(form)
+
+        @finder.find_favorite_houses
       end
 
       #---------------------------------------------------------
@@ -106,16 +99,11 @@ module Api
       end
 
       def favorite_photos
-        @page = params[:page] || 1
-        @per_page = params[:per_page] || 25
-        @total = FavoritePhoto.where(user_id: current_user.id).count
-        favorites = FavoritePhoto.where(user_id: current_user.id)
-                      .includes(:photo)
-                      .page(@page)
-                      .per(@per_page)
-                      .all
 
-        @photos = favorites.map {|f| f.photo}
+        form = Form::PhotoForm.new(params)
+        form.current_user = @current_user
+        @finder = Finder::PhotoFinder.new(form)
+        @finder.find_favorite_photos
       end
 
     end

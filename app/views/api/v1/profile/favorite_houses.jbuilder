@@ -1,8 +1,8 @@
 json.partial! '/api/v1/common'
-json.page @page
-json.per_page @per_page
-json.total @total
+json.page @finder.page
+json.per_page @finder.per_page
+json.total @finder.total
 
-json.houses @houses do |house|
+json.houses @finder.results do |house|
   json.partial! '/api/v1/shared/house', house: house
 end

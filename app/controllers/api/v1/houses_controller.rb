@@ -4,10 +4,34 @@ module Api
     # Controller to handle house requests
     #
     class HousesController < BaseApiController
-      swagger_controller :houses, 'Manage requests for house'
+
+      include Swagger::Blocks
 
       before_action :load_house, only: %i[show photos]
       before_action :verify_jwt_token, only: %i[like unlike]
+
+      #---------------------------------------------------------
+      # GET /houses
+      swagger_path '/api/v1/houses' do
+        operation :get do
+
+          key :summary, 'Search for houses'
+          key :description, ''
+          key :tags, ['house']
+
+          parameter paramType: :query,
+                    type: :string,
+                    name: :keyword,
+                    description: 'Keyword to search',
+                    required: false
+
+        end
+      end
+      def index
+
+        @finder = Finder::HouseFinder.new(Form::HouseForm.new(params))
+        @finder.find_houses
+      end
 
       #---------------------------------------------------------
       # GET /houses/:house_id

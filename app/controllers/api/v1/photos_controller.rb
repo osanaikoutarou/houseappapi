@@ -6,7 +6,29 @@ module Api
     class PhotosController < BaseApiController
       include Swagger::Blocks
 
-      before_action :verify_jwt_token
+      before_action :verify_jwt_token, except: [:index]
+
+      #---------------------------------------------------------
+      # GET /api/photos
+      swagger_path '/api/v1/photos' do
+        operation :get do
+
+          key :summary, 'Search for photos'
+          key :description, ''
+          key :tags, ['photo']
+
+          parameter paramType: :query,
+                    type: :string,
+                    name: :keyword,
+                    description: 'Keyword to search',
+                    required: false
+
+        end
+      end
+      def index
+        @finder = Finder::PhotoFinder.new(Form::PhotoForm.new(params))
+        @finder.find_photos
+      end
 
       #---------------------------------------------------------
       # POST /api/photos/:photo_id/like
@@ -71,6 +93,7 @@ module Api
         @favorite.like = false
         @favorite.save!
       end
+
     end
   end
 end
