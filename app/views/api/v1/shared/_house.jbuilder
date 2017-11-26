@@ -1,5 +1,6 @@
 if house.present?
   json.id house.id
+  json.name house.name
   json.architect_id house.architect_id
   json.rank house.rank
   json.floor_space house.floor_space
