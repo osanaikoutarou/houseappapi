@@ -44,6 +44,7 @@ Rails.application.routes.draw do
       scope :photos do
         get '/' => 'photos#index'
         get '/likes' => 'photos#likes'
+        get '/:photo_id' => 'photos#show'
         post '/:photo_id/like' => 'photos#like'
         post '/:photo_id/pass' => 'photos#pass'
       end

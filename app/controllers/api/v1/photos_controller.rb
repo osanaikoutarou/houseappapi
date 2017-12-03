@@ -29,7 +29,21 @@ module Api
         @finder = Finder::PhotoFinder.new(Form::PhotoForm.new(params))
         @finder.find_photos
       end
+            
+      #---------------------------------------------------------
+      # GET /photos/:photo_id
+      swagger_api :show do
+        summary 'Get detail information about a photo'
+        param :path, :photo_id, :string, 'Photo UUID'
+        response :not_found
+      end
 
+      def show
+        @photo = Photo.find(params[:photo_id])
+      rescue
+        return head :not_found
+      end
+      
       #---------------------------------------------------------
       # POST /api/photos/:photo_id/like
       swagger_path '/api/v1/photos/:photo_id/like' do
