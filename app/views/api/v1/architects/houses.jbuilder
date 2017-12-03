@@ -5,6 +5,7 @@ json.total @total
 json.houses @houses do |house|
 
   json.id house.id
+  json.name house.name
   json.archtect_id house.architect_id
   json.rank house.rank
   json.floor_space house.floor_space
