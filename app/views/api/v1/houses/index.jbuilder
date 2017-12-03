@@ -6,7 +6,7 @@ json.total @finder.total
 json.houses @finder.results do |house|
   json.partial! '/api/v1/shared/house', house: house
 
-  json.top_photos house.top_photos do |photo|
+  json.top_photos house.photos.limit(8) do |photo|
     json.partial! '/api/v1/shared/photo', photo: photo
   end
 
