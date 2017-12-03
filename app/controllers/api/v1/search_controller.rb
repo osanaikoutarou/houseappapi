@@ -25,8 +25,6 @@ module Api
       end
       def matched_architects
 
-        page = params[:page].to_i || 0
-
         @user = current_user
         @likes = {
             photo_likes_count: FavoritePhoto.likes.by_user(@user).count,
@@ -34,7 +32,10 @@ module Api
             architect_likes_count: FavoriteArchitect.likes.by_user(@user).count
         }
 
-        @architects = Architect.match_favorites_for_user(@user, page)
+        form = Form::ArchitectForm.new(params)
+        form.current_user = current_user
+        @finder = Finder::ArchitectFinder.new(form)
+        @finder.match_architects
 
         render status: common_http_status
       end

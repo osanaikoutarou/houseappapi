@@ -12,11 +12,11 @@ class Architect < ApplicationRecord
   attr_accessor :house_count
   attr_accessor :house_likes_count
 
-  def self.match_favorites_for_user(user, page = 0)
-    return [] if user.nil?
+  def self.match_favorites_for_user(user_id, page = 1, per_page = 25)
+    return [] if user_id.blank?
 
     # Return 20 rows per page by default
-    offset = page * 20
+    offset = (page - 1) * per_page
 
     find_by_sql(["SELECT A1.* FROM architects A1 INNER JOIN (
                         SELECT architects.id, count(architects.id) cnt FROM architects
@@ -26,7 +26,7 @@ class Architect < ApplicationRecord
                         GROUP BY architects.id
                       ) A2 ON (A1.id = A2.id and A2.cnt > 0)
                       ORDER BY A2.cnt DESC
-                      LIMIT 20 OFFSET :offset", {user_id: user.id, offset: offset}])
+                      LIMIT :limit OFFSET :offset", {user_id: user_id, limit: per_page, offset: offset}])
   end
 
   def self.fields_for_find_by_keywords

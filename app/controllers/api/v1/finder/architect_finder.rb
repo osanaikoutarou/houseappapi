@@ -26,6 +26,13 @@ module Api
           self.total = favorites.total_count
           self.results = favorites.map { |f| f.architect }
         end
+
+        def match_architects
+          self.results = Architect.match_favorites_for_user(form.current_user_id,
+                                                            form.page,
+                                                            form.per_page)
+        end
+
       end
 
     end
