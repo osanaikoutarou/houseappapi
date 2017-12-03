@@ -8,9 +8,11 @@ module Api
 
         def find_houses
 
-          houses = House.find_by_keyword(@form.keyword)
+          houses = House.includes(:architect)
+                       .find_by_keyword(@form.keyword)
+                       .page(@form.page)
+                       .per(@form.per_page)
           houses = houses.tagged_with(@form.tags, any: true) if @form.tags
-          houses = houses.page(@form.page).per(@form.per_page)
 
           self.total = houses.total_count
           self.results = houses.all
