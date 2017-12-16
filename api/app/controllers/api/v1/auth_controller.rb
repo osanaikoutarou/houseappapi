@@ -6,6 +6,7 @@ module Api
   module V1
     # Auth logic
     class AuthController < BaseApiController
+
       include Swagger::Blocks
 
       before_action :verify_jwt_token, only: %i[profile update_profile change_password]
@@ -247,14 +248,24 @@ module Api
 
       #---------------------------------------------------------
       # PUT /api/auth/password
-      swagger_api :change_password do
-        summary 'Update current password'
-        param :header, 'Authorization', :string, :required, 'Bearer AccessToken'
-        param :form, :password, :string, :required
-        param :form, :new_password, :string, :required
-        response :ok
-        response :bad_request
-        response :unauthorized
+      swagger_path '/api/v1/auth/password' do
+        operation :put do
+          key :summary, 'Change password.'
+          key :tags, ['auth']
+
+          parameter paramType: :body,
+                    type: :string,
+                    name: :password,
+                    description: 'Current password',
+                    required: true
+
+          parameter paramType: :body,
+                    type: :string,
+                    name: :new_password,
+                    description: 'New password',
+                    required: true
+        end
+
       end
       def change_password
         password = params[:password]
@@ -273,21 +284,29 @@ module Api
 
       #---------------------------------------------------------
       # POST reset_password
-      swagger_api :reset_password do
-        summary 'Send email to reset current password'
-        param :form, :email, :string, :required
-        response :ok
-        response :bad_request
-      end
-      def reset_password
-        email = params[:email]
-        head :bad_request && return if email.blank? # TODO: validate email format
-
-        user = User.where(email: email).first
-        user.send_reset_password_instructions
-
-        render status: common_http_status
-      end
+      # swagger_path '/api/v1/auth/reset_password' do
+      #   operation :post do
+      #     key :summary, 'Change password.'
+      #     key :tags, ['auth']
+      #
+      #     parameter paramType: :body,
+      #               type: :string,
+      #               name: :email,
+      #               description: 'Registered email to reset password.',
+      #               required: true
+      #
+      #   end
+      #
+      # end
+      # def reset_password
+      #   email = params[:email]
+      #   head :bad_request && return if email.blank? # TODO: validate email format
+      #
+      #   user = User.where(email: email).first
+      #   user.send_reset_password_instructions
+      #
+      #   render status: common_http_status
+      # end
 
 
       #---------------------------------------------------------

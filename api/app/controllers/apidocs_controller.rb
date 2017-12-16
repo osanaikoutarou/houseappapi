@@ -15,7 +15,7 @@ class ApidocsController < ActionController::Base
       end
     end
 
-    key :host, Rails.env.production? ? 'https://houseapp.herokuapp.com' : 'http://localhost:3000'
+    key :host, Rails.env.production? ? 'houseapp.herokuapp.com' : 'localhost:3000'
     key :basePath, '/'
     key :consumes, ['application/json']
 

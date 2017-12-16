@@ -1,46 +1,63 @@
 version: '3'
 services:
-#===============================================================================
-# Database
-#===============================================================================
   postgres:
-    image: postgres:alpine
+    image: 'postgres:alpine'
     expose:
       - '5432'
     volumes:
-      - ${PERSISTENT_PATH}/data/postgres/${POSTGRES_DB}:/var/lib/postgresql/data
+      - '${PERSISTENT_PATH}/data/postgres/${POSTGRES_DB}:/var/lib/postgresql/data'
     environment:
-      - POSTGRES_USER=${POSTGRES_USER}
-      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
-      - POSTGRES_DB=${POSTGRES_DB}
+      - 'POSTGRES_USER=${POSTGRES_USER}'
+      - 'POSTGRES_PASSWORD=${POSTGRES_PASSWORD}'
+      - 'POSTGRES_DB=${POSTGRES_DB}'
       - POSTGRES_ENCODING=UTF8
       - POSTGRES_COLLATE=C
       - POSTGRES_COLLATE_TYPE=C
-  pgadmin:
-    image: fenglc/pgadmin4
+    networks:
+      - internal
+  pgweb:
+    image: sosedoff/pgweb
     ports:
-      - '5050:5050'
-
-#===============================================================================
-# API
-#===============================================================================
-  app:
-    build: ./app
-    volumes:
-      - ../:/app
-      - ${PERSISTENT_PATH}/usr/local/bundle:/usr/local/bundle
-    command: bash -c "bundle install && bundle exec puma -C config/puma.rb"
-    ports:
-      - "3000:3000"
+      - '8081:8081'
+    restart: on-failure
+    environment:
+      - 'DATABASE_URL=postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB}?sslmode=disable'
     depends_on:
       - postgres
-#===============================================================================
-# Networks
-#===============================================================================
-  nginx:
-    image: nginx
-    depends_on:
-      - app
+    networks:
+      - internal
+  api:
+    build: ./api
     volumes:
-      - ./nginx/nginx.devel.conf:/etc/nginx/conf.d/default.conf
-      - ${PERSISTENT_PATH}/logs/nginx:/var/log/nginx
+      - '../api:/api'
+      - '${PERSISTENT_PATH}/usr/local/bundle:/usr/local/bundle'
+    env_file:
+      - '.env'
+    command: bash -c "bundle install && bundle exec puma -C config/puma.rb"
+    ports:
+      - '3000:3000'
+    depends_on:
+      - postgres
+    networks:
+      - internal
+  nginx:
+    build: ./nginx
+    expose:
+      - '80'
+      - '443'
+    volumes:
+      - './nginx/nginx.devel.conf:/etc/nginx/conf.d/default.conf'
+      - './nginx/sites-available:/etc/nginx/sites-available:ro'
+      - '${PERSISTENT_PATH}/logs/nginx:/var/log/nginx'
+    depends_on:
+      - api
+    environment:
+      - 'VIRTUAL_HOST=${VIRTUAL_HOST}'
+    networks:
+      - nginxproxy_kenchikukatachi
+      - internal
+networks:
+  nginxproxy_kenchikukatachi:
+    external: true
+  internal:
+    driver: bridge
