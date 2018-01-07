@@ -37,6 +37,7 @@ Swagger::Docs::Config.register_apis(
 
 SwaggerUiEngine.configure do |config|
   config.swagger_url = {
+    admin: '/api/admin-specs',
     v1: '/api/specs'
   }
   config.request_headers = true

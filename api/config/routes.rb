@@ -1,13 +1,24 @@
 Rails.application.routes.draw do
+
+  devise_for :users
+
+  devise_for :admins, path: '/admin'
+
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   root to: 'visitors#index'
-  devise_for :users
 
   mount SwaggerUiEngine::Engine, at: '/api_docs'
 
   resources :apidocs, path: '/api/specs', only: [:index]
 
   namespace :api do
+
+    namespace :admin do
+      scope :auth do
+        post '/login' => 'auth#login'
+      end
+    end
+
     namespace :v1 do
 
       scope :architects do

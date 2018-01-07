@@ -116,15 +116,15 @@ module Api
           parameter paramType: :body,
                     type: :string,
                     name: :email,
-                    description: 'Email to register',
+                    description: 'Email to login',
                     required: true
           parameter paramType: :body,
                     type: :string,
                     name: :password,
-                    description: 'Password to register',
+                    description: 'Password to login',
                     required: true
           response 200 do
-            key :description, 'Create new guest user'
+            key :description, 'Login success'
             schema do
               property :user, '$ref' => :User
               property :access_token, type: :string
@@ -315,7 +315,6 @@ module Api
 
       #---------------------------------------------------------
 
-      private
       def verify_password(email, password)
         user = User.find_by_email(email)
         return user if user && user.valid_password?(password)
