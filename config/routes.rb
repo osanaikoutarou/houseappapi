@@ -41,6 +41,12 @@ Rails.application.routes.draw do
         post '/:house_id/unlike' => 'houses#unlike'
       end
 
+      scope :inquiries do
+
+        post '/' => 'inquiries#create'
+
+      end
+
       scope :photos do
         get '/' => 'photos#index'
         get '/likes' => 'photos#likes'

@@ -10,11 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171110113317) do
+ActiveRecord::Schema.define(version: 20180108104906) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "uuid-ossp"
+
+  create_table "admins", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0,  null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.inet     "current_sign_in_ip"
+    t.inet     "last_sign_in_ip"
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+    t.index ["email"], name: "index_admins_on_email", unique: true, using: :btree
+    t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true, using: :btree
+  end
 
   create_table "anonymous_users", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.uuid     "user_id"
@@ -127,6 +144,35 @@ ActiveRecord::Schema.define(version: 20171110113317) do
     t.datetime "created_at",                               null: false
     t.datetime "updated_at",                               null: false
     t.index ["created_at"], name: "index_houses_on_created_at", using: :btree
+  end
+
+  create_table "inquiries", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
+    t.uuid     "architect_id",          null: false
+    t.string   "approach_type"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "first_name_kana"
+    t.string   "last_name_kana"
+    t.integer  "year_of_birth"
+    t.string   "gender"
+    t.string   "living_pref_name"
+    t.string   "want_to_pref_name"
+    t.string   "prefer_contact_method"
+    t.string   "email"
+    t.string   "phone_number"
+    t.text     "message"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+    t.index ["architect_id"], name: "index_inquiries_on_architect_id", using: :btree
+  end
+
+  create_table "pg_search_documents", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
+    t.text     "content"
+    t.string   "searchable_type"
+    t.uuid     "searchable_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.index ["searchable_type", "searchable_id"], name: "index_pg_search_documents_on_searchable_type_and_searchable_id", using: :btree
   end
 
   create_table "photo_views", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
