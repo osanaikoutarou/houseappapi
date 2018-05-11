@@ -29,6 +29,12 @@ module Api
         @finder.find_architects
       end
 
+      def tags
+
+        Architect.tags
+
+      end
+
       #---------------------------------------------------------
       # GET /architects/:architect_id
       swagger_api :show do

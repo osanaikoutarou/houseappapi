@@ -1,11 +1,24 @@
 Rails.application.routes.draw do
-  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+
+  mount RailsAdmin::Engine => '/backend', as: 'rails_admin'
   root to: 'visitors#index'
+
   devise_for :users
+  devise_for :admin_users, path: '/admin'
 
   mount SwaggerUiEngine::Engine, at: '/api_docs'
 
   resources :apidocs, path: '/api/specs', only: [:index]
+
+  namespace :admin do
+
+    get '/' => 'dashboard#index'
+
+    resources :photos
+
+
+
+  end
 
   namespace :api do
     namespace :v1 do

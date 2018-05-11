@@ -2,6 +2,9 @@ if architect.present?
 
   json.id architect.id
   json.name architect.name
+  json.gender architect.gender
+  json.hometown architect.hometown
+  json.year_of_birth architect.year_of_birth
   json.affiliation architect.affiliation
   json.zip_code architect.zip_code
   json.prefecture architect.prefecture
