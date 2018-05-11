@@ -115,7 +115,7 @@ module Api
       #---------------------------------------------------------
 
       def load_house
-        @house = House.where(params[:id]).first
+        @house = House.where(params[:house_id]).first
         return head :not_found unless @house.present?
       end
 
