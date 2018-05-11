@@ -7,6 +7,9 @@ class Photo < ActiveRecord::Base
   has_one :architect, through: :house
   has_many :favorite_photos
 
+  #attr_accessible :name
+  #attr_accessible :tag_list, :places_list
+
   acts_as_taggable
   acts_as_taggable_on :places
 

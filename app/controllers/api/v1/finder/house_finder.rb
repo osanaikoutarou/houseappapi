@@ -12,8 +12,8 @@ module Api
                        .find_by_keyword(@form.keyword)
                        .page(@form.page)
                        .per(@form.per_page)
-          houses = houses.tagged_with(@form.tags, any: true) if @form.tags
-          houses = houses.where(rank: @form.rank) if @form.rank
+
+          houses = houses.where(rank: @form['rank']) if @form['rank'].present?
 
           self.total = houses.total_count
           self.results = houses.all

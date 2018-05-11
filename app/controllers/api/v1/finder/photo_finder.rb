@@ -9,7 +9,7 @@ module Api
         def find_photos
 
           photos = Photo.find_by_keyword(@form.keyword)
-          photos = photos.tagged_with(@form.tags, any: true) if @form.tags
+          photos = photos.tagged_with(@form['tags'], any: true) if @form['tags'].present?
           photos = photos.page(@form.page).per(@form.per_page)
 
           self.total = photos.total_count
