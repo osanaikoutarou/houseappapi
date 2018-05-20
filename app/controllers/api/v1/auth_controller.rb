@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rest-client'
 require 'json'
 require 'securerandom'
@@ -33,9 +35,7 @@ module Api
       end
       def create_guest_user
         @device_uuid = params[:device_uuid]
-        if @device_uuid.blank?
-          @device_uuid = SecureRandom.uuid
-        end
+        @device_uuid = SecureRandom.uuid if @device_uuid.blank?
 
         email = "#{@device_uuid}@temp.me"
         @user = User.where(email: email).first_or_initialize
@@ -149,7 +149,6 @@ module Api
         render '/api/v1/auth/login', status: common_http_status
       end
 
-
       #---------------------------------------------------------
       swagger_path '/api/v1/auth/token/facebook' do
         operation :post do
@@ -174,7 +173,6 @@ module Api
         end
       end
       def auth_facebook
-
         token = params[:access_token]
         device_uuid = params[:device_uuid]
 
@@ -187,7 +185,7 @@ module Api
           @device_uuid = user.device_uuid
         end
 
-        render '/api/v1/auth/register', :status => common_http_status
+        render '/api/v1/auth/register', status: common_http_status
       end
 
       #---------------------------------------------------------
@@ -235,7 +233,6 @@ module Api
             end
           end
         end
-
       end
       def update_profile
         @user = current_user
@@ -289,7 +286,6 @@ module Api
         render status: common_http_status
       end
 
-
       #---------------------------------------------------------
 
       private
@@ -297,6 +293,7 @@ module Api
       #---------------------------------------------------------
 
       private
+
       def verify_password(email, password)
         user = User.find_by_email(email)
         return user if user && user.valid_password?(password)
@@ -330,15 +327,12 @@ module Api
           user.user_profile = user_profile # Rebind user-profile if it was null
 
         elsif user.email != profile['email']
-            #Existing users, return error and ask user if they want to link-account
-            @error = ApiErrors::ATH030
-            return nil
-        else
-          # TODO: Update info from Facebook?
+          # Existing users, return error and ask user if they want to link-account
+          @error = ApiErrors::ATH030
+          return nil
         end
 
         return user
-
       rescue => ex
         logger.error ex.inspect
         return nil
@@ -360,7 +354,6 @@ module Api
                       :want_to_live_pref_name,
                       :have_own_land,
                       :user_states_for_architect,
-                      :contents_of_request,
                       :price_policy,
                       :resident_num,
                       :child_num,
@@ -368,9 +361,8 @@ module Api
                       :pet_dog,
                       :pet_cat,
                       :pet_other,
-                      :nickname
-        )
-
+                      :nickname,
+                      contents_of_request: [])
       end
     end
   end
