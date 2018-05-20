@@ -42,7 +42,7 @@ Rails.application.routes.draw do
         get '/profile' => 'auth#profile'
         match '/profile' => 'auth#update_profile', via: %i[post put]
         match '/password' => 'auth#change_password', via: %i[post put]
-        #match '/reset_password' => 'auth#reset_password', via: %i[post put] TODO: setup mail server
+        match '/reset_password' => 'auth#reset_password', via: %i[post put]
       end
 
       scope :houses do
