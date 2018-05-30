@@ -23,6 +23,18 @@ module Api
                     description: 'Keyword to search',
                     required: false
 
+          parameter paramType: :query,
+                    type: :string,
+                    name: :room,
+                    description: 'Room type',
+                    required: false
+
+          parameter paramType: :query,
+                    type: :integer,
+                    name: :rank,
+                    description: 'Room type',
+                    required: false
+
         end
       end
       def index

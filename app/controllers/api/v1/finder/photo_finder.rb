@@ -7,9 +7,13 @@ module Api
         include Pageable
 
         def find_photos
-
-          photos = Photo.find_by_keyword(@form.keyword)
+          photos = Photo.where('1 = 1')
+          photos = photos.joins(:house).where('houses.rank' => @form['rank']) if @form['rank'].present?
+          photos = photos.search_for(@form.keyword)
           photos = photos.tagged_with(@form['tags'], any: true) if @form['tags'].present?
+          photos = photos.tagged_with(@form['room'], on: :places) if @form['room'].present?
+
+
           photos = photos.page(@form.page).per(@form.per_page)
 
           self.total = photos.total_count

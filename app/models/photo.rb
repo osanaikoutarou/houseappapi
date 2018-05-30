@@ -2,6 +2,7 @@
 class Photo < ActiveRecord::Base
 
   include KeywordSearchable
+  include PgSearch
 
   belongs_to :house
   has_one :architect, through: :house
@@ -14,6 +15,8 @@ class Photo < ActiveRecord::Base
   acts_as_taggable_on :places
 
   mount_uploader :image, PhotoUploader
+
+  pg_search_scope :search_for, against: %i(title description keyword), using: { tsearch: { any_word: true } }
 
   def self.fields_for_find_by_keywords
     [
