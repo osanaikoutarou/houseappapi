@@ -6,6 +6,14 @@ RailsAdmin.config do |config|
   #   warden.authenticate! scope: :user
   # end
   # config.current_user_method(&:current_user)
+  RailsAdmin.config do |config|
+    config.authorize_with do
+      authenticate_or_request_with_http_basic('Site Message') do |username, password|
+        username == ENV['BASIC_AUTH_ADMIN_USER'] && password == ENV['BASIC_AUTH_ADMIN_PASSWORD']
+      end
+    end
+    #config.current_user_method(&:current_admin)
+  end
 
   ## == Cancan ==
   # config.authorize_with :cancan
