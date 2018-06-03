@@ -9,7 +9,7 @@ module Api
         def find_photos
           photos = Photo.where('1 = 1')
           photos = photos.joins(:house).where('houses.rank' => @form['rank']) if @form['rank'].present?
-          photos = photos.search_for(@form.keyword)
+          photos = photos.search_for(@form.keyword) if @form.keyword.present?
           photos = photos.tagged_with(@form['tags'], any: true) if @form['tags'].present?
           photos = photos.tagged_with(@form['room'], on: :places) if @form['room'].present?
 

@@ -1,7 +1,6 @@
 # Model class for Photo
 class Photo < ActiveRecord::Base
 
-  include KeywordSearchable
   include PgSearch
 
   belongs_to :house
