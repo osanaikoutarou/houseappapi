@@ -11,6 +11,9 @@ module Api
       end
       def create
         @inquiry = Inquiry.create!(permitted_params)
+
+        email = params[:email]
+        UserMailer.inquiry_received_email(@inquiry, email).deliver_later if email.present?
       end
 
       protected

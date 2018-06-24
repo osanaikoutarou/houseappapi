@@ -97,6 +97,8 @@ module Api
           @user = user
           @device_uuid = user.device_uuid
           @access_token = AuthToken.sign(user: @user.id, device: @user.device_uuid, scope: 'user')
+
+          UserMailer.signup_welcome_email(user).deliver_later
         else
           @error = ApiErrors::ATH010
           @error.message = user.errors
@@ -281,7 +283,10 @@ module Api
         head :bad_request && return if email.blank? # TODO: validate email format
 
         user = User.where(email: email).first
-        user.send_reset_password_instructions
+        if user.present?
+          token = user.set_reset_password_token
+          UserMailer.reset_password_email(user, token).deliver_later
+        end
 
         render status: common_http_status
       end
