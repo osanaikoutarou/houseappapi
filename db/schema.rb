@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180624064321) do
+ActiveRecord::Schema.define(version: 20180624070423) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -142,8 +142,8 @@ ActiveRecord::Schema.define(version: 20180624064321) do
     t.uuid     "architect_id"
     t.string   "name"
     t.integer  "rank"
-    t.integer  "floor_space"
-    t.integer  "site_area_space"
+    t.decimal  "floor_space"
+    t.decimal  "site_area_space"
     t.string   "area"
     t.string   "zip_code"
     t.string   "prefecture"
