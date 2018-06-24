@@ -5,7 +5,7 @@ class Photo < ActiveRecord::Base
 
   belongs_to :house
   has_one :architect, through: :house
-  has_many :favorite_photos
+  has_many :photo_likes
 
   #attr_accessible :name
   #attr_accessible :tag_list, :places_list
@@ -25,7 +25,7 @@ class Photo < ActiveRecord::Base
   end
 
   def self.find_by_user(user_id)
-    joins(:favorite_photos).where('favorite_photos.user_id = ?', user_id)
+    joins(:photo_likes).where('photo_likes.user_id = ?', user_id)
   end
 
 end

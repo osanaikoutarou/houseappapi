@@ -24,7 +24,7 @@ class Architect < ApplicationRecord
                         SELECT architects.id, count(architects.id) cnt FROM architects
                         LEFT JOIN houses ON architects.id = houses.architect_id
                         LEFT JOIN photos on (houses.id = photos.house_id)
-                        INNER JOIN favorite_photos ON (photos.id = favorite_photos.photo_id and favorite_photos.user_id = :user_id)
+                        INNER JOIN photo_likes ON (photos.id = photo_likes.photo_id and photo_likes.user_id = :user_id)
                         GROUP BY architects.id
                       ) A2 ON (A1.id = A2.id and A2.cnt > 0)
                       ORDER BY A2.cnt DESC
@@ -60,7 +60,7 @@ class Architect < ApplicationRecord
     PhotoLike.joins(:photo)
         .joins('INNER JOIN houses ON photos.house_id = houses.id')
         .where('houses.architect_id = ?', id)
-        .where('favorite_photos.user_id = ?', user_id)
+        .where('photo_likes.user_id = ?', user_id)
         .count
   end
 
@@ -69,7 +69,7 @@ class Architect < ApplicationRecord
   def count_house_likes_from_user(user_id)
     HouseLike.joins(:house)
         .where('houses.architect_id = ?', id)
-        .where('favorite_houses.user_id = ?', user_id)
+        .where('house_likes.user_id = ?', user_id)
         .count
   end
 
