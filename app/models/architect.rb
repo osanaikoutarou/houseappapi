@@ -20,7 +20,7 @@ class Architect < ApplicationRecord
     # Return 20 rows per page by default
     offset = (page - 1) * per_page
 
-    find_by_sql(["SELECT A1.* FROM architects A1 INNER JOIN (
+    find_by_sql(['SELECT A1.* FROM architects A1 INNER JOIN (
                         SELECT architects.id, count(architects.id) cnt FROM architects
                         LEFT JOIN houses ON architects.id = houses.architect_id
                         LEFT JOIN photos on (houses.id = photos.house_id)
@@ -28,7 +28,7 @@ class Architect < ApplicationRecord
                         GROUP BY architects.id
                       ) A2 ON (A1.id = A2.id and A2.cnt > 0)
                       ORDER BY A2.cnt DESC
-                      LIMIT :limit OFFSET :offset", {user_id: user_id, limit: per_page, offset: offset}])
+                      LIMIT :limit OFFSET :offset', {user_id: user_id, limit: per_page, offset: offset}])
   end
 
   def featured_photo

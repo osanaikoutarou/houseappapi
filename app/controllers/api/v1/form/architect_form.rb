@@ -10,15 +10,17 @@ module Api
           params['keyword'] || ''
         end
 
+        def prefecture
+          params['prefecture'] || ''
+        end
+
         def age_from
-          params['age_from'] || 0
+          params['age_from'] || nil
         end
 
         def age_to
-          params['age_to'] || 99
+          params['age_to'] || nil
         end
-
-
       end
 
     end
