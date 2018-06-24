@@ -21,7 +21,7 @@ module Api
         end
 
         def find_favorite_photos
-          favorites = FavoritePhoto.where(user_id: @form.current_user_id)
+          favorites = PhotoLike.where(user_id: @form.current_user_id)
                           .includes(:photo)
                           .page(@form.page)
                           .per(@form.per_page)

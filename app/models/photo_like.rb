@@ -1,4 +1,4 @@
-class FavoritePhoto < ApplicationRecord
+class PhotoLike < ApplicationRecord
 
   include Likable
   include UserFilterable

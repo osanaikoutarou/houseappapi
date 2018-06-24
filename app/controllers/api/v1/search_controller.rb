@@ -27,9 +27,9 @@ module Api
 
         @user = current_user
         @likes = {
-            photo_likes_count: FavoritePhoto.likes.by_user(@user).count,
-            house_likes_count: FavoriteHouse.likes.by_user(@user).count,
-            architect_likes_count: FavoriteArchitect.likes.by_user(@user).count
+            photo_likes_count: PhotoLike.likes.by_user(@user).count,
+            house_likes_count: HouseLike.likes.by_user(@user).count,
+            architect_likes_count: ArchitectLike.likes.by_user(@user).count
         }
 
         form = Form::ArchitectForm.new(params)

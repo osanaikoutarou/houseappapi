@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180530123631) do
+ActiveRecord::Schema.define(version: 20180624064321) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -64,6 +64,14 @@ ActiveRecord::Schema.define(version: 20180530123631) do
     t.index ["user_id"], name: "index_anonymous_users_on_user_id", using: :btree
   end
 
+  create_table "architect_likes", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
+    t.uuid     "user_id",      null: false
+    t.uuid     "architect_id", null: false
+    t.boolean  "like"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "architect_views", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.uuid     "architect_id"
     t.uuid     "user_id"
@@ -102,30 +110,6 @@ ActiveRecord::Schema.define(version: 20180530123631) do
     t.index ["user_id"], name: "index_architects_on_user_id", using: :btree
   end
 
-  create_table "favorite_architects", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
-    t.uuid     "user_id",      null: false
-    t.uuid     "architect_id", null: false
-    t.boolean  "like"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "favorite_houses", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
-    t.uuid     "user_id",    null: false
-    t.uuid     "house_id",   null: false
-    t.boolean  "like"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "favorite_photos", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
-    t.uuid     "user_id",    null: false
-    t.uuid     "photo_id",   null: false
-    t.boolean  "like"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "house_articles", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.uuid     "house_id"
     t.string   "title"
@@ -133,6 +117,14 @@ ActiveRecord::Schema.define(version: 20180530123631) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["house_id"], name: "index_house_articles_on_house_id", using: :btree
+  end
+
+  create_table "house_likes", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
+    t.uuid     "user_id",    null: false
+    t.uuid     "house_id",   null: false
+    t.boolean  "like"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "house_views", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
@@ -193,6 +185,14 @@ ActiveRecord::Schema.define(version: 20180530123631) do
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
     t.index ["searchable_type", "searchable_id"], name: "index_pg_search_documents_on_searchable_type_and_searchable_id", using: :btree
+  end
+
+  create_table "photo_likes", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
+    t.uuid     "user_id",    null: false
+    t.uuid     "photo_id",   null: false
+    t.boolean  "like"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "photo_views", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|

@@ -21,7 +21,7 @@ if house.present?
   end
 
   if current_user.present?
-    json.liked FavoriteHouse.exists?(user_id: current_user.id, house_id: house.id)
+    json.liked HouseLike.exists?(user_id: current_user.id, house_id: house.id)
   end
 
 end

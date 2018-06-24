@@ -7,6 +7,6 @@ if photo.present?
   json.featured_photo photo.featured_photo
 
   if current_user.present?
-    json.liked FavoritePhoto.exists?(user_id: current_user.id, photo_id: photo.id)
+    json.liked PhotoLike.exists?(user_id: current_user.id, photo_id: photo.id)
   end
 end

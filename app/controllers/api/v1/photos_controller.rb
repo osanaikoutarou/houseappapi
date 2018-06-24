@@ -83,7 +83,7 @@ module Api
         photo_id = params[:photo_id]
         head status: :not_found && return unless Photo.exists?(photo_id)
 
-        @favorite      = FavoritePhoto.where(photo_id: photo_id, user_id: @current_user.id).first_or_initialize
+        @favorite      = PhotoLike.where(photo_id: photo_id, user_id: @current_user.id).first_or_initialize
         @favorite.like = true
         @favorite.save!
       end
@@ -115,7 +115,7 @@ module Api
         photo_id = params[:photo_id]
         head status: :not_found && return unless Photo.exists?(photo_id)
 
-        @favorite      = FavoritePhoto.where(photo_id: photo_id, user_id: @current_user.id).first_or_initialize
+        @favorite      = PhotoLike.where(photo_id: photo_id, user_id: @current_user.id).first_or_initialize
         @favorite.like = false
         @favorite.save!
       end
