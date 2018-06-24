@@ -28,6 +28,6 @@ if architect.present?
   json.photo_count architect.photo_count
 
   if current_user.present?
-    json.liked FavoriteArchitect.exists?(user_id: current_user.id, architect_id: architect.id)
+    json.liked ArchitectLike.exists?(user_id: current_user.id, architect_id: architect.id)
   end
 end

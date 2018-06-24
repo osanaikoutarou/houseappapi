@@ -1,4 +1,4 @@
-class FavoriteArchitect < ApplicationRecord
+class ArchitectLike < ApplicationRecord
 
   include Likable
   include UserFilterable

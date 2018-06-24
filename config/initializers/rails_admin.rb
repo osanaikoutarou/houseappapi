@@ -46,5 +46,5 @@ RailsAdmin.config do |config|
     # history_show
   end
 
-  config.excluded_models = %w[ArchitectView FavoriteArchitect FavoriteHouse FavoritePhoto HouseView PhotoView]
+  config.excluded_models = %w[ArchitectView ArchitectLike HouseLike PhotoLike HouseView PhotoView]
 end

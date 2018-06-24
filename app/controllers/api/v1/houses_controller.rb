@@ -81,7 +81,7 @@ module Api
 
       def like
         house         = House.find(params[:house_id])
-        favorite      = FavoriteHouse.where(user_id: current_user.id, house_id: house.id).first_or_initialize
+        favorite      = HouseLike.where(user_id: current_user.id, house_id: house.id).first_or_initialize
         favorite.like = true
         favorite.save!
 
@@ -101,7 +101,7 @@ module Api
 
       def unlike
         house         = House.find(params[:house_id])
-        favorite      = FavoriteHouse.where(user_id: current_user.id, house_id: house.id).first_or_initialize
+        favorite      = HouseLike.where(user_id: current_user.id, house_id: house.id).first_or_initialize
         favorite.like = false
         favorite.save!
 

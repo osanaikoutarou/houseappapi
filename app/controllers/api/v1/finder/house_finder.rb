@@ -21,7 +21,7 @@ module Api
 
         def find_favorite_houses
 
-          favorites = FavoriteHouse.where(user_id: @form.current_user_id)
+          favorites = HouseLike.where(user_id: @form.current_user_id)
                           .includes(:house)
                           .page(@form.page)
                           .per(@form.per_page)

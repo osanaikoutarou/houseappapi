@@ -8,8 +8,8 @@ module Api
 
         def find_architects
 
-          architects = Architect.find_by_keyword(@form.keyword)
-          architects = architects.tagged_with(@form.tags, any: true) if @form.tags
+          architects = Architect.where('1 = 1')
+          architects = architects.search_for(@form.keyword) if @form.keyword.present?
           architects = architects.page(@form.page).per(@form.per_page)
 
           self.total = architects.total_count
@@ -18,7 +18,7 @@ module Api
 
         def find_favorite_architects
 
-          favorites = FavoriteArchitect.where(user_id: @form.current_user_id)
+          favorites = ArchitectLike.where(user_id: @form.current_user_id)
                           .includes(:architect)
                           .page(@form.page)
                           .per(@form.per_page)

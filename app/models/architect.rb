@@ -1,6 +1,6 @@
 class Architect < ApplicationRecord
 
-  include KeywordSearchable
+  include PgSearch
 
   has_many :houses
   has_many :photos, through: :houses
@@ -11,6 +11,8 @@ class Architect < ApplicationRecord
   attr_accessor :photo_likes_count
   attr_accessor :house_count
   attr_accessor :house_likes_count
+
+  pg_search_scope :search_for, against: %i(name affiliation message introduction speciality), using: { tsearch: { any_word: true } }
 
   def self.match_favorites_for_user(user_id, page = 1, per_page = 25)
     return [] if user_id.blank?
@@ -29,16 +31,6 @@ class Architect < ApplicationRecord
                       LIMIT :limit OFFSET :offset", {user_id: user_id, limit: per_page, offset: offset}])
   end
 
-  def self.fields_for_find_by_keywords
-    [
-        'architects.name' ,
-        'architects.affiliation',
-        'architects.message',
-        'architects.introduction',
-        'architects.speciality'
-    ]
-  end
-
   def featured_photo
     photos.where(featured_photo: true).first || photos.first
   end
@@ -52,20 +44,20 @@ class Architect < ApplicationRecord
   end
 
   def photo_likes_count
-    FavoritePhoto.joins(:photo)
+    PhotoLike.joins(:photo)
         .joins('INNER JOIN houses ON photos.house_id = houses.id')
         .where('houses.architect_id = ?', id)
         .count
   end
   def house_likes_count
-    FavoriteHouse.joins(:house)
+    HouseLike.joins(:house)
         .where('houses.architect_id = ?', id)
         .count
   end
 
 
   def count_photo_likes_from_user(user_id)
-    FavoritePhoto.joins(:photo)
+    PhotoLike.joins(:photo)
         .joins('INNER JOIN houses ON photos.house_id = houses.id')
         .where('houses.architect_id = ?', id)
         .where('favorite_photos.user_id = ?', user_id)
@@ -75,7 +67,7 @@ class Architect < ApplicationRecord
 
 
   def count_house_likes_from_user(user_id)
-    FavoriteHouse.joins(:house)
+    HouseLike.joins(:house)
         .where('houses.architect_id = ?', id)
         .where('favorite_houses.user_id = ?', user_id)
         .count

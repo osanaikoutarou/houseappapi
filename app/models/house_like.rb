@@ -1,4 +1,4 @@
-class FavoriteHouse < ApplicationRecord
+class HouseLike < ApplicationRecord
 
   include Likable
   include UserFilterable
