@@ -314,8 +314,13 @@ module Api
         # https://developers.facebook.com/docs/graph-api/reference/user/
         profile = graph.get_object('me?fields=id,name,email,picture.width(800).height(800),cover')
         logger.debug "[API::Authenticate::Facebook] Login user: #{profile.inspect}"
+        
+        user = if profile['email'].present?
+          User.where(email: profile['email']).first
+        else
+          User.where(facebook_id: profile['id']).first
+        end
 
-        user = User.where(facebook_id: profile['id']).first
         if user.nil?
           user = User.new
           user.password = SecureRandom.base64
