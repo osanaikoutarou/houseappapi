@@ -336,6 +336,8 @@ module Api
           user_profile.save!
           user.user_profile = user_profile # Rebind user-profile if it was null
 
+          UserMailer.signup_welcome_email(user).deliver # For new user only
+
         elsif user.email != profile['email']
           # Existing users, return error and ask user if they want to link-account
           @error = ApiErrors::ATH030
