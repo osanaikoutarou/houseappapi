@@ -2,7 +2,7 @@ if Object.const_defined?('RailsDb')
   RailsDb.setup do |config|
     # # enabled or not
     # config.enabled = Rails.env.development?
-    config.enabled = true # TODO: Remove me on Production later
+    config.enabled = Rails.env.development?
 
     # # automatic engine routes mounting
     # config.automatic_routes_mount = true
