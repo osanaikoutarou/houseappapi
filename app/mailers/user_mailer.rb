@@ -11,9 +11,15 @@ class UserMailer < ApplicationMailer
     mail(to: @user.email, subject: '【ケンチクカタチ】パスワード・リセット用リンク')
   end
 
-  def inquiry_received_email(inquiry, email)
+  def inquiry_received_for_user_email(inquiry, email)
     @inquiry = inquiry
     mail(to: email, subject: 'お問い合わせありがとうございます')
+  end
+
+  def inquiry_received_for_architect_email(inquiry, architect)
+    @inquiry = inquiry
+    @architect = architect
+    mail(to: architect.email, subject: 'お問い合わせありがとうございます')
   end
 
 end

@@ -11,9 +11,11 @@ module Api
       end
       def create
         @inquiry = Inquiry.create!(permitted_params)
+        @architect = Architect.where(id: permitted_params[:architect_id]).first
 
         email = params[:email]
-        UserMailer.inquiry_received_email(@inquiry, email).deliver if email.present?
+        UserMailer.inquiry_received_for_user_email(@inquiry, email).deliver if email.present?
+        UserMailer.inquiry_received_for_architect_email(@inquiry, @architect).deliver if @architect.present? && @architect.email.present?
       end
 
       protected

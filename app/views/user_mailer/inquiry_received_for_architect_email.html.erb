@@ -1,0 +1,36 @@
+<p>
+お客様より問い合わせが届きました。<br />
+下記の内容に合わせてメールで返信をお願いします。<br /><br />
+
+お問い合わせ内容：<%= @inquiry.message %><br />
+お名前：<%= @inquiry.first_name %><%= @inquiry.last_name %><br />
+生まれた年：<%= @inquiry.year_of_birth %><br />
+性別：<%= @inquiry.gender %><br />
+お住まいの地域：<%= @inquiry.living_pref_name %><br />
+建設予定の地域：<%= @inquiry.want_to_pref_name %><br />
+メールアドレス：<%= @inquiry.email%>（連絡の際は、CCにてarchitect@kenchikukatachi.comを入れてください）<br />
+<% if @user_profile.present? %>
+  建築家への依頼を検討中ですか？：◯◯◯<br/>
+  依頼内容は何ですか？：◯◯◯<br/>
+  価格の考え方を教えてください：◯◯◯<br/>
+  お住まいになる予定人数：◯◯◯<br/>
+  お住まいになるお子様の人数：◯◯◯<br/>
+  お住まいになるお年寄りの人数：◯◯◯<br/>
+  ペットを飼うご予定ですか？：◯◯◯<br/>
+<% end %>
+
+
+<br /><br />以上です。<br /><br />
+先ず、お客様への返信は可能な限り速やかに、仮に速やかに返信できない場合でも、当日中には必ず返信するようお願い申し上げます。<br />
+連絡の際は、CCにてarchitect@kenchikukatachi.comを入れてください。<br /><br />
+
+上記顧客情報の取り扱いについては、くれぐれもご注意ください。<br /><br />
+
+よろしくお願いいたします。
+</p>
+<p>
+━━━━━━━━━━━━━━━━━━━━━━<br/>
+  kenchikukatachi inc,<br/>
+  http://www.kenchikukatachi.com/<br/>
+  architect@kenchikukatachi.com<br/>
+</p>
