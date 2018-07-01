@@ -19,7 +19,7 @@ class UserMailer < ApplicationMailer
   def inquiry_received_for_architect_email(inquiry, architect)
     @inquiry = inquiry
     @architect = architect
-    mail(to: architect.email, subject: 'お問い合わせありがとうございます')
+    mail(to: architect.email, subject: 'お客様より問い合わせが届きました。')
   end
 
 end
